@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="50%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="lapisGrad" cx="38%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="40%" stop-color="#1d4ed8"/>
+      <stop offset="75%" stop-color="#1e40af"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </radialGradient>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="50%" y2="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="16" stdDeviation="22" flood-color="#000" flood-opacity="0.85"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Royal Blue Lazurite Cabochon -->
+  <g filter="url(#shadow)">
+    <ellipse cx="400" cy="300" rx="220" ry="160" fill="url(#lapisGrad)"/>
+  </g>
+
+  <!-- White Calcite Veins -->
+  <path d="M 240 320 Q 340 280, 480 340" fill="none" stroke="#f8fafc" stroke-width="3" opacity="0.45"/>
+  <path d="M 320 220 Q 420 250, 560 210" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.35"/>
+
+  <!-- Golden Pyrite Specks & Dust -->
+  <g fill="#f59e0b" opacity="0.9">
+    <circle cx="340" cy="240" r="3.5"/>
+    <circle cx="420" cy="220" r="4.5"/>
+    <circle cx="490" cy="280" r="3"/>
+    <circle cx="380" cy="320" r="4"/>
+    <circle cx="450" cy="360" r="2.5"/>
+    <circle cx="310" cy="360" r="3.5"/>
+    <circle cx="520" cy="320" r="3"/>
+    <circle cx="280" cy="270" r="4"/>
+    <circle cx="360" cy="280" r="2.5"/>
+    <circle cx="430" cy="260" r="3.5"/>
+  </g>
+
+  <!-- High Gloss Cabochon Polish Highlight -->
+  <ellipse cx="320" cy="210" rx="110" ry="55" fill="url(#shine)" transform="rotate(-20 320 210)"/>
+  <circle cx="260" cy="180" r="12" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Label Badge -->
+  <rect x="220" y="520" width="360" height="44" rx="22" fill="#020617" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="400" y="548" font-family="Cinzel, Georgia, serif" font-size="18" font-weight="bold" fill="#eff6ff" text-anchor="middle">
+    ROYAL LAPIS LAZULI (लाजवर्द)
+  </text>
+</svg>

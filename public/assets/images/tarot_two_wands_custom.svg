@@ -1,0 +1,285 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <!-- Sunset Sky Gradient -->
+    <linearGradient id="twSkyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2e1065" />
+      <stop offset="25%" stop-color="#581c87" />
+      <stop offset="50%" stop-color="#9a3412" />
+      <stop offset="75%" stop-color="#ea580c" />
+      <stop offset="90%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#fef08a" />
+    </linearGradient>
+
+    <!-- Sun Glow -->
+    <radialGradient id="twSunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="30%" stop-color="#fef08a" stop-opacity="0.9" />
+      <stop offset="70%" stop-color="#f97316" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#ea580c" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Ocean Gradient -->
+    <linearGradient id="twSeaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.6" />
+      <stop offset="15%" stop-color="#1e3a8a" />
+      <stop offset="50%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Golden Frame Gradient -->
+    <linearGradient id="twGoldFrame" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="20%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#d97706" />
+      <stop offset="80%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <!-- Crimson Robe Gradient -->
+    <linearGradient id="twRobeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e" />
+      <stop offset="30%" stop-color="#be123c" />
+      <stop offset="70%" stop-color="#881337" />
+      <stop offset="100%" stop-color="#4c0519" />
+    </linearGradient>
+
+    <!-- Inner Tunic Gold Gradient -->
+    <linearGradient id="twTunicGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ca8a04" />
+      <stop offset="50%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#854d0e" />
+    </linearGradient>
+
+    <!-- Luminous Globe Gradient -->
+    <radialGradient id="twGlobeGlow" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="30%" stop-color="#60a5fa" />
+      <stop offset="65%" stop-color="#2563eb" />
+      <stop offset="85%" stop-color="#1d4ed8" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </radialGradient>
+
+    <!-- Stone Castle Wall Gradient -->
+    <linearGradient id="twStoneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#64748b" />
+      <stop offset="30%" stop-color="#475569" />
+      <stop offset="70%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <!-- Wood Wand Gradient -->
+    <linearGradient id="twWoodGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="40%" stop-color="#b45309" />
+      <stop offset="70%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <!-- Leaf Green Gradient -->
+    <linearGradient id="twLeafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#86efac" />
+      <stop offset="50%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#14532d" />
+    </linearGradient>
+
+    <!-- Soft Glow Filter -->
+    <filter id="twGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="twShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feOffset dx="3" dy="6" result="offset" />
+      <feComposite in="SourceGraphic" in2="offset" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Sky Canvas -->
+  <rect width="600" height="800" fill="url(#twSkyGrad)" rx="24" />
+
+  <!-- Sun Setting on Sea Horizon -->
+  <circle cx="360" cy="380" r="140" fill="url(#twSunGlow)" />
+  <circle cx="360" cy="380" r="35" fill="#ffffff" filter="url(#twGlow)" />
+
+  <!-- Distant Mountain Ranges on Horizon -->
+  <path d="M 0 400 Q 120 370 240 390 Q 380 360 480 385 Q 540 375 600 395 L 600 440 L 0 440 Z" fill="#4c1d95" opacity="0.8" />
+  <path d="M 0 415 Q 160 390 300 410 Q 420 380 600 410 L 600 440 L 0 440 Z" fill="#311042" />
+
+  <!-- Vast Ocean -->
+  <rect x="0" y="420" width="600" height="120" fill="url(#twSeaGrad)" />
+
+  <!-- Sun Shimmer Reflections on Ocean Water -->
+  <ellipse cx="360" cy="430" rx="90" ry="3" fill="#fef08a" opacity="0.8" />
+  <ellipse cx="360" cy="445" rx="70" ry="2.5" fill="#fde047" opacity="0.7" />
+  <ellipse cx="360" cy="460" rx="110" ry="3" fill="#f97316" opacity="0.6" />
+  <ellipse cx="360" cy="480" rx="80" ry="2" fill="#f97316" opacity="0.4" />
+
+  <!-- Distant Sailing Voyage Ship on Ocean -->
+  <g transform="translate(420, 425)" filter="url(#twShadow)">
+    <path d="M -12 12 Q 0 16 16 12 L 12 4 L -8 4 Z" fill="#1e1b4b" />
+    <line x1="2" y1="4" x2="2" y2="-16" stroke="#1e1b4b" stroke-width="1.5" />
+    <path d="M 2 -16 Q 12 -10 2 -2 Z" fill="#fef08a" opacity="0.9" />
+    <path d="M 2 -14 Q -6 -8 2 -2 Z" fill="#fef08a" opacity="0.7" />
+  </g>
+
+  <!-- High Castle Parapet Wall (Terrace) -->
+  <g id="castleTerrace">
+    <!-- Main Wall Face -->
+    <rect x="0" y="520" width="600" height="280" fill="url(#twStoneGrad)" />
+    <line x1="0" y1="520" x2="600" y2="520" stroke="#94a3b8" stroke-width="3" />
+
+    <!-- Stone Masonry Textures -->
+    <path d="M 0 570 L 600 570 M 0 620 L 600 620 M 0 670 L 600 670 M 0 720 L 600 720" stroke="#1e293b" stroke-width="2" opacity="0.8" />
+    <path d="M 80 520 L 80 570 M 240 520 L 240 570 M 420 520 L 420 570 M 560 520 L 560 570" stroke="#1e293b" stroke-width="1.5" opacity="0.7" />
+    <path d="M 160 570 L 160 620 M 340 570 L 340 620 M 500 570 L 500 620" stroke="#1e293b" stroke-width="1.5" opacity="0.7" />
+    <path d="M 60 620 L 60 670 M 260 620 L 260 670 M 440 620 L 440 670" stroke="#1e293b" stroke-width="1.5" opacity="0.7" />
+
+    <!-- Parapet Battlements (Crenellations) -->
+    <rect x="20" y="460" width="100" height="60" fill="url(#twStoneGrad)" stroke="#1e293b" stroke-width="2" />
+    <rect x="180" y="460" width="110" height="60" fill="url(#twStoneGrad)" stroke="#1e293b" stroke-width="2" />
+    <rect x="350" y="460" width="110" height="60" fill="url(#twStoneGrad)" stroke="#1e293b" stroke-width="2" />
+    <rect x="510" y="460" width="90" height="60" fill="url(#twStoneGrad)" stroke="#1e293b" stroke-width="2" />
+
+    <!-- Battlement Top Ledges -->
+    <rect x="14" y="456" width="112" height="8" rx="2" fill="#94a3b8" />
+    <rect x="174" y="456" width="122" height="8" rx="2" fill="#94a3b8" />
+    <rect x="344" y="456" width="122" height="8" rx="2" fill="#94a3b8" />
+    <rect x="504" y="456" width="102" height="8" rx="2" fill="#94a3b8" />
+
+    <!-- Carved Rose Cross Coat of Arms / Seal on Stone Wall -->
+    <g transform="translate(130, 590)" filter="url(#twShadow)">
+      <circle cx="0" cy="0" r="32" fill="#0f172a" stroke="url(#twGoldFrame)" stroke-width="3" />
+      <path d="M -18 0 L 18 0 M 0 -18 L 0 18" stroke="#ef4444" stroke-width="5" stroke-linecap="round" />
+      <path d="M -12 -12 L 12 12 M -12 12 L 12 -12" stroke="#22c55e" stroke-width="3" />
+      <circle cx="0" cy="0" r="8" fill="#fef08a" stroke="#d97706" stroke-width="1.5" />
+    </g>
+  </g>
+
+  <!-- Staff 1: Fixed / Anchored to Stone Wall Bracket on Left -->
+  <g id="anchoredStaff" transform="translate(230, 480)">
+    <!-- Iron Wall Bracket -->
+    <rect x="-18" y="40" width="36" height="18" rx="4" fill="#0f172a" stroke="#cbd5e1" stroke-width="1.5" filter="url(#twShadow)" />
+    <circle cx="-10" cy="49" r="2.5" fill="#fef08a" />
+    <circle cx="10" cy="49" r="2.5" fill="#fef08a" />
+
+    <!-- Wand Body -->
+    <path d="M -8 -300 L -8 180 L 8 180 L 8 -300 Z" fill="url(#twWoodGrad)" stroke="#451a03" stroke-width="1.5" />
+
+    <!-- Sprouting Green Leaves on Wand 1 -->
+    <path d="M -8 -260 Q -40 -285 -18 -220 Z" fill="url(#twLeafGrad)" stroke="#14532d" stroke-width="1" />
+    <path d="M 8 -210 Q 45 -235 18 -170 Z" fill="url(#twLeafGrad)" stroke="#14532d" stroke-width="1" />
+    <path d="M -8 -150 Q -42 -175 -20 -110 Z" fill="url(#twLeafGrad)" stroke="#14532d" stroke-width="1" />
+    <path d="M 8 -90 Q 45 -115 18 -50 Z" fill="url(#twLeafGrad)" stroke="#14532d" stroke-width="1" />
+    <path d="M -8 -20 Q -40 -45 -18 20 Z" fill="url(#twLeafGrad)" stroke="#14532d" stroke-width="1" />
+
+    <!-- Top Glowing Orb Tip -->
+    <circle cx="0" cy="-305" r="14" fill="#fef08a" filter="url(#twGlow)" />
+  </g>
+
+  <!-- Noble Leader (Ruler) Standing on Parapet -->
+  <g id="nobleRuler" transform="translate(330, 440)">
+    <!-- Shadow beneath ruler -->
+    <ellipse cx="0" cy="80" rx="55" ry="12" fill="#0f172a" opacity="0.6" />
+
+    <!-- Royal Inner Tunic -->
+    <path d="M -30 -110 L 30 -110 L 40 80 L -40 80 Z" fill="url(#twTunicGrad)" stroke="#78350f" stroke-width="1.5" />
+    <!-- Tunic Pattern/Belt -->
+    <rect x="-32" y="-40" width="64" height="14" rx="2" fill="#451a03" stroke="#fef08a" stroke-width="1.5" />
+    <rect x="-8" y="-43" width="16" height="20" rx="3" fill="#fef08a" stroke="#d97706" stroke-width="1.5" />
+
+    <!-- Flowing Crimson Cloak / Mantle -->
+    <path d="M -35 -130 C -75 -100, -85 -20, -70 80 L -42 80 C -50 0, -45 -80, -30 -110 Z" fill="url(#twRobeGrad)" filter="url(#twShadow)" />
+    <path d="M 35 -130 C 75 -100, 85 -20, 70 80 L 42 80 C 50 0, 45 -80, 30 -110 Z" fill="url(#twRobeGrad)" filter="url(#twShadow)" />
+
+    <!-- Back Cloak Drape -->
+    <path d="M -45 -120 Q 0 -140 45 -120 L 60 80 Q 0 95 -60 80 Z" fill="url(#twRobeGrad)" opacity="0.95" />
+
+    <!-- Head & Royal Cap / Crown -->
+    <!-- Neck -->
+    <rect x="-10" y="-145" width="20" height="20" fill="#fbcfe8" />
+    <!-- Head Profile looking right toward sea -->
+    <path d="M -16 -175 Q 0 -185 16 -175 Q 22 -155 12 -140 Q -8 -135 -18 -150 Z" fill="#fed7aa" stroke="#9a3412" stroke-width="1" />
+    <!-- Noble Cap & Crown -->
+    <path d="M -20 -170 C -20 -195, 0 -200, 18 -190 C 22 -175, 15 -165, -18 -165 Z" fill="#881337" />
+    <path d="M -18 -170 L 18 -170 L 15 -180 L 0 -188 L -15 -180 Z" fill="url(#twGoldFrame)" stroke="#78350f" stroke-width="1" />
+
+    <!-- Right Arm holding Terrestrial Globe out toward Sea -->
+    <g transform="translate(18, -100)">
+      <!-- Arm in Sleeve -->
+      <path d="M 0 0 Q 30 10 50 -10 L 40 -25 Q 20 -5 0 -15 Z" fill="url(#twRobeGrad)" stroke="#4c0519" stroke-width="1" />
+      <!-- Hand holding globe -->
+      <circle cx="54" cy="-14" r="8" fill="#fed7aa" />
+
+      <!-- Glowing Terrestrial / Celestial Globe in Hand -->
+      <g transform="translate(70, -25)" filter="url(#twGlow)">
+        <!-- Globe Sphere -->
+        <circle cx="0" cy="0" r="28" fill="url(#twGlobeGlow)" stroke="#fef08a" stroke-width="2" />
+        <!-- Continents / Latitude Lines -->
+        <ellipse cx="0" cy="0" rx="28" ry="10" fill="none" stroke="#fef08a" stroke-width="1.2" opacity="0.8" />
+        <ellipse cx="0" cy="0" rx="12" ry="28" fill="none" stroke="#fef08a" stroke-width="1.2" opacity="0.8" />
+        <path d="M -20 -10 Q -5 -18 10 -8 Q 20 5 25 -10" fill="none" stroke="#86efac" stroke-width="2" />
+        <path d="M -15 10 Q 0 18 18 8" fill="none" stroke="#86efac" stroke-width="2" />
+        <!-- Equator Gold Band -->
+        <line x1="-28" y1="0" x2="28" y2="0" stroke="#fef08a" stroke-width="1.5" />
+      </g>
+    </g>
+
+    <!-- Left Hand Holding Wand 2 in Foreground -->
+    <g transform="translate(-18, -90)">
+      <path d="M 0 0 Q -30 20 -45 5 L -35 -10 Q -20 5 0 -12 Z" fill="url(#twRobeGrad)" />
+      <circle cx="-46" cy="2" r="7" fill="#fed7aa" />
+    </g>
+  </g>
+
+  <!-- Staff 2: Held in Leader's Hand in Foreground -->
+  <g id="heldStaff" transform="translate(275, 480)">
+    <!-- Wand Body -->
+    <path d="M -9 -310 L -9 185 L 9 185 L 9 -310 Z" fill="url(#twWoodGrad)" stroke="#451a03" stroke-width="1.5" filter="url(#twShadow)" />
+
+    <!-- Sprouting Leaves on Wand 2 -->
+    <path d="M 9 -280 Q 45 -305 20 -240 Z" fill="url(#twLeafGrad)" stroke="#14532d" stroke-width="1" />
+    <path d="M -9 -230 Q -45 -255 -20 -190 Z" fill="url(#twLeafGrad)" stroke="#14532d" stroke-width="1" />
+    <path d="M 9 -170 Q 48 -195 22 -130 Z" fill="url(#twLeafGrad)" stroke="#14532d" stroke-width="1" />
+    <path d="M -9 -110 Q -45 -135 -20 -70 Z" fill="url(#twLeafGrad)" stroke="#14532d" stroke-width="1" />
+    <path d="M 9 -40 Q 45 -65 20 10 Z" fill="url(#twLeafGrad)" stroke="#14532d" stroke-width="1" />
+
+    <!-- Top Glowing Orb Tip -->
+    <circle cx="0" cy="-315" r="15" fill="#fef08a" filter="url(#twGlow)" />
+  </g>
+
+  <!-- Ornate Golden Filigree Frame -->
+  <g id="tarotBorder">
+    <!-- Outer Golden Border -->
+    <rect x="16" y="16" width="568" height="768" rx="20" fill="none" stroke="url(#twGoldFrame)" stroke-width="6" />
+    <!-- Inner Dashed Filigree Border -->
+    <rect x="26" y="26" width="548" height="748" rx="14" fill="none" stroke="url(#twGoldFrame)" stroke-width="1.5" stroke-dasharray="8,4" />
+
+    <!-- Corner Seals -->
+    <path d="M 30 60 C 30 35, 35 30, 60 30 C 45 45, 45 45, 30 60 Z" fill="url(#twGoldFrame)" />
+    <circle cx="45" cy="45" r="4" fill="#fef08a" />
+
+    <path d="M 570 60 C 570 35, 565 30, 540 30 C 555 45, 555 45, 570 60 Z" fill="url(#twGoldFrame)" />
+    <circle cx="555" cy="45" r="4" fill="#fef08a" />
+
+    <path d="M 30 740 C 30 765, 35 770, 60 770 C 45 755, 45 755, 30 740 Z" fill="url(#twGoldFrame)" />
+    <circle cx="45" cy="755" r="4" fill="#fef08a" />
+
+    <path d="M 570 740 C 570 765, 565 770, 540 770 C 555 755, 555 755, 570 740 Z" fill="url(#twGoldFrame)" />
+    <circle cx="555" cy="755" r="4" fill="#fef08a" />
+
+    <!-- Top Header Badge -->
+    <g transform="translate(300, 48)">
+      <rect x="-140" y="-18" width="280" height="36" rx="18" fill="#0f172a" stroke="url(#twGoldFrame)" stroke-width="2" />
+      <text x="0" y="5" font-family="'Cinzel', Georgia, serif" font-size="15" font-weight="bold" fill="#fef08a" text-anchor="middle" letter-spacing="2">II • TWO OF WANDS</text>
+    </g>
+
+    <!-- Bottom Footer Badge -->
+    <g transform="translate(300, 736)">
+      <rect x="-210" y="-22" width="420" height="44" rx="22" fill="#0f172a" stroke="url(#twGoldFrame)" stroke-width="2" />
+      <text x="0" y="-2" font-family="'Cinzel', Georgia, serif" font-size="15" font-weight="bold" fill="#fef08a" text-anchor="middle">विश्व दृष्टि (Global Vision)</text>
+      <text x="0" y="15" font-family="sans-serif" font-size="11" fill="#fdba74" text-anchor="middle" letter-spacing="1">Future Planning • Bold Horizon • Ambition &amp; Expansion</text>
+    </g>
+  </g>
+</svg>

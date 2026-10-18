@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#022c22"/>
+      <stop offset="50%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#021f17"/>
+    </linearGradient>
+    <radialGradient id="aventurineGrad" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#a7f3d0"/>
+      <stop offset="40%" stop-color="#34d399"/>
+      <stop offset="70%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </radialGradient>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="60%" y2="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000" flood-opacity="0.75"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Shimmering Mint Green Aventurine Tumbled Nugget -->
+  <g filter="url(#shadow)">
+    <path d="M 280 180 C 400 120, 560 160, 580 280 C 600 400, 480 480, 360 460 C 240 440, 180 320, 280 180 Z" fill="url(#aventurineGrad)"/>
+  </g>
+
+  <!-- Aventurescence Sparkles (Chrome-Mica Flecks) -->
+  <g opacity="0.85">
+    <circle cx="340" cy="240" r="3" fill="#ffffff"/>
+    <circle cx="420" cy="220" r="4" fill="#d1fae5"/>
+    <circle cx="490" cy="280" r="2.5" fill="#ffffff"/>
+    <circle cx="380" cy="320" r="3.5" fill="#ecfdf5"/>
+    <circle cx="450" cy="370" r="2" fill="#ffffff"/>
+    <circle cx="310" cy="360" r="3" fill="#a7f3d0"/>
+    <circle cx="520" cy="340" r="2.5" fill="#ffffff"/>
+  </g>
+
+  <!-- High Polish Specular Highlight -->
+  <path d="M 310 200 C 400 150, 480 180, 510 230 C 450 220, 370 210, 310 200 Z" fill="url(#shine)"/>
+  <circle cx="330" cy="190" r="10" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Label Badge -->
+  <rect x="220" y="520" width="360" height="44" rx="22" fill="#022c22" stroke="#10b981" stroke-width="1.5"/>
+  <text x="400" y="548" font-family="Cinzel, Georgia, serif" font-size="18" font-weight="bold" fill="#a7f3d0" text-anchor="middle">
+    GREEN AVENTURINE (हरितमणि)
+  </text>
+</svg>

@@ -1,0 +1,276 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ========================================================
+    // GLOBAL SECURITY HELPERS & PRIMITIVES
+    // ========================================================
+
+    // Primitive: Authenticated request verification
+    function isAuthenticated() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    // Primitive: Super Admin role verification (strictly ravieadagale@gmail.com)
+    function isSuperAdmin() {
+      return isAuthenticated() && 
+        ('email' in request.auth.token) &&
+        request.auth.token.email != null &&
+        (request.auth.token.email == 'ravieadagale@gmail.com' ||
+         request.auth.token.email.lower() == 'ravieadagale@gmail.com');
+    }
+
+    // Primitive: Admin role verification (strictly ravii.adagale20@gmail.com)
+    function isAdmin() {
+      return isAuthenticated() && 
+        ('email' in request.auth.token) &&
+        request.auth.token.email != null &&
+        (request.auth.token.email == 'ravii.adagale20@gmail.com' ||
+         request.auth.token.email.lower() == 'ravii.adagale20@gmail.com');
+    }
+
+    // Helper: Access check for either Admin or Super Admin
+    function isStaffAdmin() {
+      return isSuperAdmin() || isAdmin();
+    }
+
+    // Primitive: Document ownership verification
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Primitive: ID variable format and volumetric hardening
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_-]+$');
+    }
+
+    // Helper: Access incoming write payload
+    function incoming() {
+      return request.resource.data;
+    }
+
+    // Helper: Access existing stored document data
+    function existing() {
+      return resource.data;
+    }
+
+    // ========================================================
+    // USER PROFILE VALIDATION BLUEPRINT
+    // ========================================================
+
+    function isValidBirthDetails(b) {
+      return b is map &&
+        b.keys().hasOnly(['date', 'time', 'timeAccuracy', 'placeName', 'latitude', 'longitude', 'timezone', 'precisionState']) &&
+        (!('precisionState' in b) || b.precisionState in ['NOT_PROVIDED', 'PARTIAL', 'COMPLETE']) &&
+        (!('date' in b) || (b.date is string && b.date.size() <= 32)) &&
+        (!('time' in b) || (b.time is string && b.time.size() <= 16)) &&
+        (!('timeAccuracy' in b) || b.timeAccuracy in ['EXACT', 'APPROXIMATE', 'UNKNOWN']) &&
+        (!('placeName' in b) || (b.placeName is string && b.placeName.size() <= 256)) &&
+        (!('latitude' in b) || (b.latitude is number && b.latitude >= -90 && b.latitude <= 90)) &&
+        (!('longitude' in b) || (b.longitude is number && b.longitude >= -180 && b.longitude <= 180)) &&
+        (!('timezone' in b) || (b.timezone is string && b.timezone.size() <= 64));
+    }
+
+    function isValidPreferences(p) {
+      return p is map &&
+        p.keys().hasOnly(['language', 'theme', 'notificationsEnabled']) &&
+        (!('language' in p) || (p.language is string && p.language.size() <= 16)) &&
+        (!('theme' in p) || (p.theme is string && p.theme.size() <= 32)) &&
+        (!('notificationsEnabled' in p) || p.notificationsEnabled is bool);
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['userId', 'email', 'role']) &&
+        data.keys().hasOnly(['userId', 'email', 'displayName', 'role', 'phoneNumber', 'photoURL', 'birthDetails', 'preferences', 'createdAt', 'lastLoginAt', 'updatedAt']) &&
+        data.userId is string && data.userId.size() > 0 && data.userId.size() <= 128 &&
+        data.email is string && data.email.size() > 0 && data.email.size() <= 256 &&
+        data.role in ['CUSTOMER', 'SUPER_ADMIN', 'ADMIN', 'PRACTITIONER', 'customer', 'super_admin', 'admin', 'practitioner'] &&
+        (!('displayName' in data) || (data.displayName is string && data.displayName.size() <= 128)) &&
+        (!('phoneNumber' in data) || (data.phoneNumber is string && data.phoneNumber.size() <= 32)) &&
+        (!('photoURL' in data) || (data.photoURL is string && data.photoURL.size() <= 512)) &&
+        (!('birthDetails' in data) || isValidBirthDetails(data.birthDetails)) &&
+        (!('preferences' in data) || isValidPreferences(data.preferences)) &&
+        (!('createdAt' in data) || (data.createdAt is string && data.createdAt.size() <= 64)) &&
+        (!('lastLoginAt' in data) || (data.lastLoginAt is string && data.lastLoginAt.size() <= 64)) &&
+        (!('updatedAt' in data) || (data.updatedAt is string && data.updatedAt.size() <= 64));
+    }
+
+    // ========================================================
+    // COLLECTION RULES
+    // ========================================================
+
+    // 1. User Profile Documents (users/{userId})
+    match /users/{userId} {
+      // PII Protection: Only the account owner, Admin, or Super Admin may read
+      allow get: if isOwner(userId) || isStaffAdmin();
+      allow list: if isStaffAdmin();
+
+      // Create: Owner can create their initial profile; cannot self-promote to elevated roles
+      allow create: if isSuperAdmin() || (
+        isOwner(userId) &&
+        isValidUser(incoming()) &&
+        incoming().userId == request.auth.uid &&
+        (incoming().role == 'CUSTOMER' || incoming().role == 'customer')
+      );
+
+      // Update: Owner can update profile info; cannot alter userId, createdAt, or escalate role
+      allow update: if isSuperAdmin() || (
+        isOwner(userId) &&
+        isValidUser(incoming()) &&
+        incoming().userId == existing().userId &&
+        (!('createdAt' in existing()) || incoming().createdAt == existing().createdAt) &&
+        (incoming().role == existing().role || isSuperAdmin())
+      );
+
+      // Delete: Only Super Admin may delete user profile documents
+      allow delete: if isSuperAdmin();
+
+      // Subcollection: Saved Natal Charts
+      match /charts/{chartId} {
+        allow read, write: if isOwner(userId) || isSuperAdmin();
+      }
+
+      // Subcollection: User Preferences
+      match /preferences/{prefId} {
+        allow read, write: if isOwner(userId) || isSuperAdmin();
+      }
+    }
+
+    // 2. Astrological Services & Products Catalog
+    match /services/{serviceId} {
+      allow read: if true;
+      allow write: if isSuperAdmin();
+    }
+
+    // 3. Orders & Consultations
+    match /orders/{orderId} {
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || isStaffAdmin());
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if isSuperAdmin();
+    }
+
+    // 4. System Configurations & Platform Settings
+    match /systemSettings/{settingId} {
+      allow read: if true;
+      allow write: if isSuperAdmin();
+    }
+
+    // 5. Test Connection probe for client boot validation
+    match /test/{docId} {
+      allow read: if true;
+      allow write: if isSuperAdmin();
+    }
+
+    // 6. Consultations Bookings (consultations/{bookingId})
+    match /consultations/{bookingId} {
+      // READ: Customer who booked, assigned Practitioner, or Admin / Super Admin
+      allow read: if isAuthenticated() && (
+        resource.data.clientId == request.auth.uid ||
+        resource.data.consultantId == request.auth.uid ||
+        resource.data.consultantEmail == request.auth.token.email ||
+        isStaffAdmin()
+      );
+
+      // CREATE: Authenticated customer creating their own booking
+      allow create: if isAuthenticated() &&
+        request.resource.data.clientId == request.auth.uid &&
+        (request.resource.data.status == "REQUESTED" || request.resource.data.status == "PENDING_CONFIRMATION") &&
+        request.resource.data.paymentStatus != "PAID" &&
+        request.resource.data.serviceId is string &&
+        request.resource.data.startTime is string &&
+        request.resource.data.endTime is string;
+
+      // UPDATE: Authorized state transitions or cancellations; immutable clientId, consultantId, createdAt
+      // Security Invariant: Direct browser/client writes can NEVER transition paymentStatus to "PAID".
+      // Payment status is authoritative only after trusted server-side verification.
+      allow update: if isAuthenticated() &&
+        (
+          resource.data.clientId == request.auth.uid ||
+          resource.data.consultantId == request.auth.uid ||
+          resource.data.consultantEmail == request.auth.token.email ||
+          isStaffAdmin()
+        ) &&
+        incoming().clientId == existing().clientId &&
+        incoming().consultantId == existing().consultantId &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().originalPrice.amountMinor == existing().originalPrice.amountMinor &&
+        incoming().originalPrice.currency == existing().originalPrice.currency &&
+        (
+          (existing().paymentStatus == "PAID" && incoming().paymentStatus == "PAID") ||
+          (existing().paymentStatus != "PAID" && incoming().paymentStatus != "PAID")
+        );
+
+      // Hard deletion strictly forbidden
+      allow delete: if false;
+    }
+
+    // 7. Atomic Concurrency Slot Locks (slotLocks/{lockId})
+    match /slotLocks/{lockId} {
+      allow read: if isAuthenticated();
+
+      allow create: if isAuthenticated() &&
+        request.resource.data.clientId == request.auth.uid &&
+        request.resource.data.status == "RESERVED";
+
+      // UPDATE: Authorized owner/staff actions OR legitimate reacquisition of a released lock
+      allow update: if isAuthenticated() && (
+        // Path 1: Current lock owner, assigned consultant, or staff admin releasing/cancelling lock
+        (
+          (
+            resource.data.clientId == request.auth.uid ||
+            resource.data.consultantId == request.auth.uid ||
+            isStaffAdmin()
+          ) &&
+          incoming().clientId == existing().clientId &&
+          incoming().consultantId == existing().consultantId &&
+          incoming().startTime == existing().startTime &&
+          incoming().endTime == existing().endTime &&
+          (incoming().status in ["RELEASED", "CANCELLED"])
+        ) ||
+        // Path 2: Legitimate reacquisition of a released lock by an authenticated seeker
+        (
+          (existing().status == "RELEASED" || existing().status == "CANCELLED") &&
+          incoming().clientId == request.auth.uid &&
+          incoming().status == "RESERVED" &&
+          incoming().consultantId == existing().consultantId &&
+          incoming().startTime == existing().startTime &&
+          incoming().endTime == existing().endTime
+        )
+      );
+
+      allow delete: if isSuperAdmin();
+    }
+
+    // 8. Direct Quick Question Inquiries (quickQuestions/{inquiryId})
+    match /quickQuestions/{inquiryId} {
+      allow read: if isAuthenticated() && (
+        resource.data.clientId == request.auth.uid ||
+        resource.data.clientEmail == request.auth.token.email ||
+        isStaffAdmin()
+      );
+
+      allow create: if isAuthenticated() &&
+        request.resource.data.clientId == request.auth.uid &&
+        (request.resource.data.status == "REQUESTED" || request.resource.data.status == "PENDING_REVIEW") &&
+        request.resource.data.question is string &&
+        request.resource.data.question.size() > 0 &&
+        request.resource.data.question.size() <= 4096;
+
+      allow update: if isAuthenticated() && (
+        isStaffAdmin() ||
+        (
+          resource.data.clientId == request.auth.uid &&
+          incoming().clientId == existing().clientId &&
+          incoming().createdAt == existing().createdAt
+        )
+      );
+
+      allow delete: if isSuperAdmin();
+    }
+
+    // Default Deny Fallback: Close all orphan paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+  <defs>
+    <!-- Background Studio Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#f5f0eb"/>
+      <stop offset="50%" stop-color="#e8dfd5"/>
+      <stop offset="100%" stop-color="#c8bcb0"/>
+    </radialGradient>
+
+    <!-- Marble Texture Pattern -->
+    <linearGradient id="marbleBase" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#f3f0ec"/>
+      <stop offset="70%" stop-color="#e5e0d8"/>
+      <stop offset="100%" stop-color="#d8cfc4"/>
+    </linearGradient>
+
+    <!-- Green Jade Deep Sub-surface Scattering Radial Gradient -->
+    <radialGradient id="jadeSubsurface" cx="38%" cy="32%" r="68%">
+      <stop offset="0%" stop-color="#a7f3d0"/>
+      <stop offset="25%" stop-color="#34d399"/>
+      <stop offset="55%" stop-color="#059669"/>
+      <stop offset="85%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </radialGradient>
+
+    <!-- Specular Reflection Highlight -->
+    <linearGradient id="jadeGlint" x1="0%" y1="0%" x2="60%" y2="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="80%" stop-color="#a7f3d0" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Soft Ambient Drop Shadow -->
+    <filter id="studioShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="25"/>
+      <feOffset dx="0" dy="28" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.45"/>
+      </feComponentTransfer>
+      <feMerge> 
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Studio Wall Background -->
+  <rect width="1200" height="800" fill="url(#bgGrad)"/>
+
+  <!-- Soft Depth Blur Background Bokeh Elements -->
+  <g opacity="0.25">
+    <circle cx="200" cy="180" r="140" fill="#a7f3d0" filter="url(#softGlow)"/>
+    <circle cx="1000" cy="220" r="180" fill="#6ee7b7" filter="url(#softGlow)"/>
+    <circle cx="850" cy="120" r="90" fill="#d1fae5" filter="url(#softGlow)"/>
+  </g>
+
+  <!-- Marble Slab Pedestal -->
+  <g>
+    <!-- Marble Slab Shadow -->
+    <path d="M 150 560 L 1050 560 L 980 720 L 220 720 Z" fill="#000000" opacity="0.18" filter="url(#softGlow)"/>
+    
+    <!-- Marble Top Surface -->
+    <path d="M 180 540 L 1020 540 L 950 680 L 250 680 Z" fill="url(#marbleBase)"/>
+    <!-- Marble Veins -->
+    <path d="M 280 560 Q 420 620, 600 580 T 880 640" fill="none" stroke="#a3998e" stroke-width="2.5" opacity="0.35"/>
+    <path d="M 350 545 Q 500 580, 720 550" fill="none" stroke="#8c8275" stroke-width="1.5" opacity="0.3"/>
+    
+    <!-- Marble Front Bevel Edge -->
+    <path d="M 250 680 L 950 680 L 930 710 L 270 710 Z" fill="#b0a496"/>
+  </g>
+
+  <!-- Natural Green Moss Framing Base -->
+  <g opacity="0.85">
+    <path d="M 190 560 Q 240 500, 290 540 Q 330 490, 380 550 Z" fill="#2d6a4f"/>
+    <path d="M 210 550 Q 250 510, 280 545" fill="#52b788" opacity="0.8"/>
+    <path d="M 820 550 Q 880 490, 930 540 Q 970 480, 1010 560 Z" fill="#1b4332"/>
+    <path d="M 850 540 Q 890 500, 930 535" fill="#74c69d" opacity="0.8"/>
+  </g>
+
+  <!-- Main Polished Green Jade Crystal Cabochon -->
+  <g filter="url(#studioShadow)">
+    <!-- Base Contact Shadow on Marble -->
+    <ellipse cx="600" cy="540" rx="260" ry="60" fill="#000000" opacity="0.35"/>
+    
+    <!-- Jade Curved Pebble Gemstone Body -->
+    <path d="M 380 480 C 350 300, 480 200, 620 220 C 780 240, 850 380, 810 500 C 780 570, 420 560, 380 480 Z" fill="url(#jadeSubsurface)"/>
+
+    <!-- Inner Veined Nephrite Clouds -->
+    <path d="M 440 430 C 480 340, 560 300, 660 320 C 720 330, 750 420, 700 480 C 620 520, 480 500, 440 430 Z" fill="#a7f3d0" opacity="0.22"/>
+    <path d="M 500 380 Q 580 310, 680 350" fill="none" stroke="#ecfdf5" stroke-width="8" opacity="0.2" filter="url(#softGlow)"/>
+    <path d="M 460 460 Q 560 420, 640 470" fill="none" stroke="#047857" stroke-width="12" opacity="0.25"/>
+
+    <!-- High Polish Gloss Glassy Surface Reflection -->
+    <path d="M 450 380 C 430 280, 520 230, 620 245 C 570 270, 480 300, 450 380 Z" fill="url(#jadeGlint)"/>
+    <ellipse cx="490" cy="280" rx="35" ry="18" fill="#ffffff" opacity="0.95" transform="rotate(-25 490 280)"/>
+    <circle cx="435" cy="310" r="8" fill="#ffffff" opacity="0.85"/>
+  </g>
+
+  <!-- Golden Brass Luxury Accent Tag -->
+  <g transform="translate(600, 730)">
+    <rect x="-220" y="-22" width="440" height="44" rx="22" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="0" y="6" font-family="'Cinzel', 'Playfair Display', Georgia, serif" font-size="20" font-weight="bold" fill="#fef3c7" text-anchor="middle" letter-spacing="2">
+      EMERALD GREEN JADE • (यशब)
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,7 @@
+{
+  "name": "Remix Dev-Guru",
+  "description": "Imported from GitHub: ravieadagale-lang/Dev-Guru",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

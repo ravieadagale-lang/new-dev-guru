@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="earthBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#061a12" />
+      <stop offset="50%" stop-color="#113826" />
+      <stop offset="100%" stop-color="#04120c" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="800" fill="url(#earthBg)" rx="24" />
+
+  <!-- Stars & Emerald Sparkles -->
+  <circle cx="90" cy="110" r="2.5" fill="#fef08a" opacity="0.9" />
+  <circle cx="510" cy="130" r="3" fill="#4ade80" opacity="0.8" />
+  <circle cx="180" cy="220" r="2" fill="#fff" opacity="0.7" />
+  <circle cx="430" cy="270" r="2.5" fill="#fef08a" opacity="0.9" />
+
+  <!-- Frame -->
+  <rect x="20" y="20" width="560" height="760" fill="none" stroke="url(#goldGrad)" stroke-width="6" rx="16" />
+  <rect x="30" y="30" width="540" height="740" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" stroke-dasharray="8,4" rx="12" />
+
+  <!-- Title Badge -->
+  <rect x="120" y="45" width="360" height="40" fill="#061a12" stroke="url(#goldGrad)" stroke-width="2" rx="20" />
+  <text x="300" y="71" font-family="'Cinzel', Georgia, serif" font-size="17" font-weight="bold" fill="#fef08a" text-anchor="middle" letter-spacing="2">X - TEN OF PENTACLES</text>
+
+  <!-- Tree of Life Arrangement of 10 Pentacles -->
+  <g transform="translate(300, 390)">
+    <!-- Tree Connecting Lines -->
+    <path d="M 0,-210 L -120,-140 L -120,-10 L -120,120 L 0,190 L 120,120 L 120,-10 L 120,-140 Z" fill="none" stroke="#22c55e" stroke-width="1.5" opacity="0.5" />
+    <path d="M 0,-210 L 0,-75 L 0,60 L 0,190" fill="none" stroke="#eab308" stroke-width="1.5" opacity="0.5" />
+    <path d="M -120,-140 L 120,-10 M 120,-140 L -120,-10 M -120,-10 L 120,120 M 120,-10 L -120,120" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.3" />
+
+    <!-- 10 Coins -->
+    <!-- 1: Crown -->
+    <g transform="translate(0, -210)"><circle cx="0" cy="0" r="32" fill="url(#goldGrad)" /><circle cx="0" cy="0" r="26" fill="none" stroke="#061a12" stroke-width="2" /><polygon points="0,-20 6,-6 20,-6 9,3 13,17 0,8 -13,17 -9,3 -20,-6 -6,-6" fill="#061a12" /></g>
+    <!-- 2: Wisdom (R) -->
+    <g transform="translate(120, -140)"><circle cx="0" cy="0" r="32" fill="url(#goldGrad)" /><circle cx="0" cy="0" r="26" fill="none" stroke="#061a12" stroke-width="2" /><polygon points="0,-20 6,-6 20,-6 9,3 13,17 0,8 -13,17 -9,3 -20,-6 -6,-6" fill="#061a12" /></g>
+    <!-- 3: Understanding (L) -->
+    <g transform="translate(-120, -140)"><circle cx="0" cy="0" r="32" fill="url(#goldGrad)" /><circle cx="0" cy="0" r="26" fill="none" stroke="#061a12" stroke-width="2" /><polygon points="0,-20 6,-6 20,-6 9,3 13,17 0,8 -13,17 -9,3 -20,-6 -6,-6" fill="#061a12" /></g>
+    <!-- 4: Mercy (R) -->
+    <g transform="translate(120, -10)"><circle cx="0" cy="0" r="32" fill="url(#goldGrad)" /><circle cx="0" cy="0" r="26" fill="none" stroke="#061a12" stroke-width="2" /><polygon points="0,-20 6,-6 20,-6 9,3 13,17 0,8 -13,17 -9,3 -20,-6 -6,-6" fill="#061a12" /></g>
+    <!-- 5: Severity (L) -->
+    <g transform="translate(-120, -10)"><circle cx="0" cy="0" r="32" fill="url(#goldGrad)" /><circle cx="0" cy="0" r="26" fill="none" stroke="#061a12" stroke-width="2" /><polygon points="0,-20 6,-6 20,-6 9,3 13,17 0,8 -13,17 -9,3 -20,-6 -6,-6" fill="#061a12" /></g>
+    <!-- 6: Beauty (Center) -->
+    <g transform="translate(0, -75)"><circle cx="0" cy="0" r="36" fill="url(#goldGrad)" /><circle cx="0" cy="0" r="30" fill="none" stroke="#061a12" stroke-width="2" /><polygon points="0,-22 7,-7 22,-7 10,3 15,19 0,9 -15,19 -10,3 -22,-7 -7,-7" fill="#061a12" /></g>
+    <!-- 7: Victory (R) -->
+    <g transform="translate(120, 120)"><circle cx="0" cy="0" r="32" fill="url(#goldGrad)" /><circle cx="0" cy="0" r="26" fill="none" stroke="#061a12" stroke-width="2" /><polygon points="0,-20 6,-6 20,-6 9,3 13,17 0,8 -13,17 -9,3 -20,-6 -6,-6" fill="#061a12" /></g>
+    <!-- 8: Glory (L) -->
+    <g transform="translate(-120, 120)"><circle cx="0" cy="0" r="32" fill="url(#goldGrad)" /><circle cx="0" cy="0" r="26" fill="none" stroke="#061a12" stroke-width="2" /><polygon points="0,-20 6,-6 20,-6 9,3 13,17 0,8 -13,17 -9,3 -20,-6 -6,-6" fill="#061a12" /></g>
+    <!-- 9: Foundation (Center) -->
+    <g transform="translate(0, 60)"><circle cx="0" cy="0" r="34" fill="url(#goldGrad)" /><circle cx="0" cy="0" r="28" fill="none" stroke="#061a12" stroke-width="2" /><polygon points="0,-20 6,-6 20,-6 9,3 13,17 0,8 -13,17 -9,3 -20,-6 -6,-6" fill="#061a12" /></g>
+    <!-- 10: Kingdom (Bottom) -->
+    <g transform="translate(0, 190)"><circle cx="0" cy="0" r="38" fill="url(#goldGrad)" /><circle cx="0" cy="0" r="32" fill="none" stroke="#061a12" stroke-width="2.5" /><polygon points="0,-24 8,-8 24,-8 11,4 16,21 0,10 -16,21 -11,4 -24,-8 -8,-8" fill="#061a12" /></g>
+  </g>
+
+  <!-- Sanskrit Title -->
+  <text x="300" y="720" font-family="sans-serif" font-size="16" fill="#fef08a" text-anchor="middle" opacity="0.9">कुल समृद्धि (Generational Prosperity & Heritage)</text>
+</svg>

@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <!-- Sky & Nebula Background -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020617" />
+      <stop offset="35%" stop-color="#0f172a" />
+      <stop offset="70%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <!-- Ocean Wave Depth -->
+    <linearGradient id="seaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="30%" stop-color="#0284c7" />
+      <stop offset="75%" stop-color="#0369a1" />
+      <stop offset="100%" stop-color="#082f49" />
+    </linearGradient>
+
+    <!-- Ultra-Luminous Gold Metallic -->
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="20%" stop-color="#fef08a" />
+      <stop offset="45%" stop-color="#eab308" />
+      <stop offset="75%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#713f12" />
+    </linearGradient>
+
+    <!-- Marble Stone Throne -->
+    <linearGradient id="stoneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cbd5e1" />
+      <stop offset="40%" stop-color="#64748b" />
+      <stop offset="80%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Royal Crimson & Velvet Robe -->
+    <linearGradient id="velvetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8" />
+      <stop offset="40%" stop-color="#4338ca" />
+      <stop offset="80%" stop-color="#312e81" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+
+    <linearGradient id="tealRobe" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2dd4bf" />
+      <stop offset="50%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#042f2e" />
+    </linearGradient>
+
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="intenseGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Deep Background Canvas -->
+  <rect width="600" height="800" fill="url(#skyGrad)" rx="20" />
+
+  <!-- Cosmic Aura & Mystic Sun Rays -->
+  <g opacity="0.6">
+    <circle cx="300" cy="220" r="220" fill="#38bdf8" opacity="0.12" filter="url(#intenseGlow)" />
+    <circle cx="300" cy="220" r="140" fill="#fef08a" opacity="0.1" filter="url(#softGlow)" />
+
+    <!-- Rays -->
+    <path d="M 300 220 L 100 0 M 300 220 L 500 0 M 300 220 L 50 200 M 300 220 L 550 200 M 300 220 L 120 400 M 300 220 L 480 400" stroke="#bae6fd" stroke-width="1" opacity="0.3" stroke-dasharray="10,8" />
+  </g>
+
+  <!-- Stars -->
+  <g fill="#fff" opacity="0.9">
+    <circle cx="90" cy="110" r="2" />
+    <circle cx="160" cy="70" r="1.5" />
+    <circle cx="240" cy="130" r="2.5" fill="#fef08a" />
+    <circle cx="370" cy="90" r="1.8" />
+    <circle cx="480" cy="120" r="2.2" />
+    <circle cx="530" cy="70" r="1.5" />
+    <circle cx="70" cy="250" r="1.8" fill="#38bdf8" />
+    <circle cx="520" cy="280" r="2" />
+  </g>
+
+  <!-- Outer Ornate Gold Frame -->
+  <rect x="16" y="16" width="568" height="768" fill="none" stroke="url(#gold)" stroke-width="6" rx="18" />
+  <rect x="26" y="26" width="548" height="748" fill="none" stroke="url(#gold)" stroke-width="1.5" stroke-dasharray="8,4" rx="14" />
+
+  <!-- Corner Filigree Flourishes -->
+  <g stroke="url(#gold)" stroke-width="2.5" fill="none">
+    <path d="M 32 65 C 65 65 65 32 65 32" />
+    <path d="M 568 65 C 535 65 535 32 535 32" />
+    <path d="M 32 735 C 65 735 65 768 65 768" />
+    <path d="M 568 735 C 535 735 535 768 535 768" />
+  </g>
+
+  <!-- Header Title Shield -->
+  <g transform="translate(300, 52)">
+    <rect x="-140" y="-18" width="280" height="36" fill="#020617" stroke="url(#gold)" stroke-width="2" rx="18" />
+    <text x="0" y="5" font-family="'Cinzel', Georgia, serif" font-size="16" font-weight="bold" fill="#fef08a" text-anchor="middle" letter-spacing="2">KING OF CUPS</text>
+  </g>
+
+  <!-- Rolling Mystic Ocean -->
+  <path d="M 26 490 Q 150 440 280 490 T 574 470 L 574 772 L 26 772 Z" fill="url(#seaGrad)" />
+  <path d="M 26 520 Q 200 470 380 530 T 574 500" fill="none" stroke="#bae6fd" stroke-width="3" opacity="0.8" />
+  <path d="M 26 570 Q 180 530 340 580 T 574 560" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.6" />
+
+  <!-- Leaping Cresting Dolphin / Fish -->
+  <g transform="translate(480, 420)" filter="url(#softGlow)">
+    <path d="M -35 45 C -15 -30 25 -20 30 -5 C 10 15 -15 35 -35 45 Z" fill="url(#gold)" />
+    <path d="M 25 -10 Q 38 -25 32 -2 Q 20 8 25 -10 Z" fill="url(#gold)" /> <!-- Tail Fin -->
+    <circle cx="-18" cy="18" r="2.5" fill="#020617" />
+    <!-- Spray -->
+    <circle cx="-28" cy="50" r="3.5" fill="#fff" opacity="0.9" />
+    <circle cx="-18" cy="54" r="2.5" fill="#bae6fd" opacity="0.9" />
+  </g>
+
+  <!-- Floating Stone Throne -->
+  <g transform="translate(300, 360)">
+    <!-- Main Backrest -->
+    <rect x="-110" y="-150" width="220" height="270" fill="url(#stoneGrad)" stroke="url(#gold)" stroke-width="3" rx="14" />
+    <!-- Side Pillars -->
+    <rect x="-130" y="-160" width="35" height="290" fill="url(#stoneGrad)" stroke="url(#gold)" stroke-width="2.5" rx="8" />
+    <rect x="95" y="-160" width="35" height="290" fill="url(#stoneGrad)" stroke="url(#gold)" stroke-width="2.5" rx="8" />
+    <circle cx="-112" cy="-160" r="14" fill="url(#gold)" />
+    <circle cx="112" cy="-160" r="14" fill="url(#gold)" />
+
+    <!-- Carved Wave & Fish Relic on Stone -->
+    <path d="M -50 -110 Q 0 -145 50 -110 Q 0 -75 -50 -110 Z" fill="none" stroke="url(#gold)" stroke-width="2.5" />
+    <circle cx="0" cy="-110" r="8" fill="#0284c7" stroke="url(#gold)" stroke-width="1.5" />
+  </g>
+
+  <!-- King Sovereign Figure -->
+  <g transform="translate(300, 370)">
+    <!-- Heavy Velvet Mantle -->
+    <path d="M -85 -35 Q 0 -60 85 -35 L 120 180 Q 0 210 -120 180 Z" fill="url(#velvetGrad)" />
+    <!-- Inner Teal Tunic -->
+    <path d="M -60 -25 Q 0 -45 60 -25 L 85 170 Q 0 190 -85 170 Z" fill="url(#tealRobe)" />
+
+    <!-- Gold Embroidered Sash -->
+    <path d="M -25 -25 L 0 170 M 25 -25 L 0 170" stroke="url(#gold)" stroke-width="3.5" />
+    <path d="M -85 170 Q 0 190 85 170" fill="none" stroke="url(#gold)" stroke-width="4.5" />
+
+    <!-- Sovereign Head & Facial Structure -->
+    <circle cx="0" cy="-85" r="32" fill="#fef08a" opacity="0.3" filter="url(#intenseGlow)" /> <!-- Halo -->
+    <path d="M -18 -100 Q 0 -115 18 -100 Q 22 -75 0 -62 Q -22 -75 -18 -100 Z" fill="#fed7aa" /> <!-- Skin -->
+
+    <!-- Royal Graying Hair & Full Beard -->
+    <path d="M -24 -80 Q -32 -32 0 -38 Q 32 -32 24 -80 Q 35 -45 22 -22 Q 0 -16 -22 -22 Q -35 -45 -24 -80 Z" fill="#475569" />
+    <path d="M -12 -84 Q -6 -87 0 -84" stroke="#1e293b" stroke-width="2.5" fill="none" />
+    <path d="M 0 -84 Q 6 -87 12 -84" stroke="#1e293b" stroke-width="2.5" fill="none" />
+
+    <!-- Imperial Crown -->
+    <path d="M -26 -100 L -35 -132 L -15 -114 L 0 -138 L 15 -114 L 35 -132 L 26 -100 Z" fill="url(#gold)" stroke="#713f12" stroke-width="1.5" />
+    <circle cx="0" cy="-138" r="6" fill="#0284c7" stroke="url(#gold)" stroke-width="1" />
+    <circle cx="-35" cy="-132" r="4" fill="#38bdf8" />
+    <circle cx="35" cy="-132" r="4" fill="#38bdf8" />
+
+    <!-- Fish Amulet -->
+    <path d="M -28 -50 Q 0 -32 28 -50" stroke="url(#gold)" stroke-width="2.5" fill="none" />
+    <circle cx="0" cy="-38" r="9" fill="url(#gold)" />
+    <path d="M -6 -38 Q 0 -44 6 -38 Q 0 -32 -6 -38 Z" fill="#0284c7" />
+
+    <!-- Left Arm Holding Golden Scepter -->
+    <g transform="translate(-52, 18)">
+      <path d="M 12 -30 L -32 22 L -12 32 L 22 -20 Z" fill="url(#velvetGrad)" />
+      <circle cx="-32" cy="27" r="8" fill="#fed7aa" />
+      <line x1="-32" y1="-65" x2="-32" y2="95" stroke="url(#gold)" stroke-width="6" stroke-linecap="round" />
+      <circle cx="-32" cy="-70" r="12" fill="url(#gold)" filter="url(#softGlow)" />
+      <path d="M -38 -70 L -26 -70 M -32 -76 L -32 -64" stroke="#0284c7" stroke-width="2.5" />
+    </g>
+
+    <!-- Right Arm Holding Master Chalice -->
+    <g transform="translate(52, 18)">
+      <path d="M -12 -30 L 32 22 L 12 32 L -22 -20 Z" fill="url(#velvetGrad)" />
+      <circle cx="32" cy="27" r="8" fill="#fed7aa" />
+
+      <!-- Master Chalice of Calm Waters -->
+      <g transform="translate(32, 0)" filter="url(#softGlow)">
+        <path d="M -20 42 L 20 42 L 12 32 L -12 32 Z" fill="url(#gold)" />
+        <rect x="-5" y="10" width="10" height="22" fill="url(#gold)" />
+        <circle cx="0" cy="21" r="7" fill="url(#gold)" />
+        <!-- Bowl -->
+        <path d="M -32 -22 Q -36 12 0 14 Q 36 12 32 -22 Z" fill="url(#gold)" />
+        <path d="M -14 -6 Q 0 -20 14 -6 Q 0 8 -14 -6 Z" fill="#0284c7" />
+        <circle cx="6" cy="-8" r="2" fill="#fef08a" />
+        <!-- Aura Ring -->
+        <circle cx="0" cy="-4" r="42" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.7" stroke-dasharray="5,5" />
+      </g>
+    </g>
+  </g>
+
+  <!-- Sanskrit Title Footer Badge -->
+  <g transform="translate(300, 735)">
+    <text x="0" y="0" font-family="sans-serif" font-size="16" font-weight="bold" fill="#fef08a" text-anchor="middle">भावना स्वामी (Master of Calm Wisdom)</text>
+    <text x="0" y="18" font-family="sans-serif" font-size="12" fill="#bae6fd" text-anchor="middle" opacity="0.9">Emotional Mastery • Calm Wisdom • Diplomacy • Unshakable Equilibrium</text>
+  </g>
+</svg>

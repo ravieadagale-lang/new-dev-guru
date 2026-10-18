@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2a0404" />
+      <stop offset="35%" stop-color="#7c2d12" />
+      <stop offset="65%" stop-color="#c2410c" />
+      <stop offset="85%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#fef08a" />
+    </linearGradient>
+
+    <linearGradient id="goldFrame" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb" />
+      <stop offset="20%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#d97706" />
+      <stop offset="80%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <linearGradient id="staffGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="40%" stop-color="#fde047" />
+      <stop offset="70%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <radialGradient id="sparkBurst" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="30%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#f97316" opacity="0.8" />
+      <stop offset="100%" stop-color="#ea580c" opacity="0" />
+    </radialGradient>
+
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feOffset dx="2" dy="4" result="offset" />
+      <feComposite in="SourceGraphic" in2="offset" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Sky -->
+  <rect width="600" height="800" fill="url(#skyGrad)" rx="24" />
+
+  <!-- Grassy Meadow Ground -->
+  <path d="M 0 520 Q 300 480 600 520 L 600 800 L 0 800 Z" fill="#15803d" />
+  <path d="M 0 550 Q 300 510 600 550 L 600 800 L 0 800 Z" fill="#166534" />
+
+  <!-- Central Clashing Spark Burst Aura -->
+  <circle cx="300" cy="350" r="160" fill="url(#sparkBurst)" filter="url(#glow)" />
+
+  <!-- Five Clashing Sprouted Wooden Staves with Energy Motion -->
+  <g id="clashingStaves">
+    <!-- Staff 1 (Diagonal Left to Right Down) -->
+    <line x1="80" y1="140" x2="480" y2="520" stroke="url(#staffGrad)" stroke-width="14" stroke-linecap="round" filter="url(#softShadow)" />
+    <path d="M 120 180 Q 80 160 100 210 Z" fill="#22c55e" />
+    <circle cx="80" cy="140" r="8" fill="#fef08a" filter="url(#glow)" />
+
+    <!-- Staff 2 (Diagonal Right to Left Down) -->
+    <line x1="520" y1="140" x2="120" y2="520" stroke="url(#staffGrad)" stroke-width="14" stroke-linecap="round" filter="url(#softShadow)" />
+    <path d="M 480 180 Q 520 160 500 210 Z" fill="#22c55e" />
+    <circle cx="520" cy="140" r="8" fill="#fef08a" filter="url(#glow)" />
+
+    <!-- Staff 3 (Vertical Center Thrust) -->
+    <line x1="300" y1="100" x2="300" y2="560" stroke="url(#staffGrad)" stroke-width="14" stroke-linecap="round" filter="url(#softShadow)" />
+    <path d="M 300 160 Q 260 140 280 190 Z" fill="#22c55e" />
+    <circle cx="300" cy="100" r="8" fill="#fef08a" filter="url(#glow)" />
+
+    <!-- Staff 4 (Low Angle Left Up) -->
+    <line x1="60" y1="380" x2="520" y2="240" stroke="url(#staffGrad)" stroke-width="14" stroke-linecap="round" filter="url(#softShadow)" />
+    <path d="M 480 250 Q 520 230 500 280 Z" fill="#22c55e" />
+    <circle cx="520" cy="240" r="8" fill="#fef08a" filter="url(#glow)" />
+
+    <!-- Staff 5 (Low Angle Right Up) -->
+    <line x1="540" y1="380" x2="80" y2="240" stroke="url(#staffGrad)" stroke-width="14" stroke-linecap="round" filter="url(#softShadow)" />
+    <path d="M 120 250 Q 80 230 100 280 Z" fill="#22c55e" />
+    <circle cx="80" cy="240" r="8" fill="#fef08a" filter="url(#glow)" />
+  </g>
+
+  <!-- Sparks & Fire Embers at Clashing Intersection Point (300, 350) -->
+  <g id="clashSparks" filter="url(#glow)">
+    <circle cx="300" cy="350" r="28" fill="#ffffff" />
+    <circle cx="300" cy="350" r="45" fill="#fef08a" opacity="0.6" />
+    <line x1="250" y1="300" x2="350" y2="400" stroke="#ffffff" stroke-width="3" />
+    <line x1="250" y1="400" x2="350" y2="300" stroke="#ffffff" stroke-width="3" />
+    <line x1="300" y1="280" x2="300" y2="420" stroke="#ffffff" stroke-width="3" />
+    <line x1="230" y1="350" x2="370" y2="350" stroke="#ffffff" stroke-width="3" />
+    <!-- Flying Embers -->
+    <circle cx="260" cy="310" r="5" fill="#fde047" />
+    <circle cx="340" cy="320" r="6" fill="#f97316" />
+    <circle cx="270" cy="380" r="4" fill="#fde047" />
+    <circle cx="330" cy="390" r="5" fill="#ef4444" />
+  </g>
+
+  <!-- Five Energetic Contenders in Action Silhouettes / Robes -->
+  <g id="contenders">
+    <!-- Contender 1 (Left, Yellow Tunic) -->
+    <g transform="translate(130, 420)">
+      <path d="M -20 30 L 20 30 L 25 120 L -25 120 Z" fill="#eab308" filter="url(#softShadow)" />
+      <circle cx="0" cy="0" r="18" fill="#fed7aa" />
+      <path d="M -15 20 L -40 -10 M 15 20 L 40 50" stroke="#fed7aa" stroke-width="8" stroke-linecap="round" />
+    </g>
+
+    <!-- Contender 2 (Right, Red Tunic) -->
+    <g transform="translate(470, 420)">
+      <path d="M -20 30 L 20 30 L 25 120 L -25 120 Z" fill="#dc2626" filter="url(#softShadow)" />
+      <circle cx="0" cy="0" r="18" fill="#fed7aa" />
+      <path d="M -15 20 L -40 50 M 15 20 L 40 -10" stroke="#fed7aa" stroke-width="8" stroke-linecap="round" />
+    </g>
+
+    <!-- Contender 3 (Center, Blue Tunic) -->
+    <g transform="translate(300, 440)">
+      <path d="M -22 30 L 22 30 L 28 130 L -28 130 Z" fill="#2563eb" filter="url(#softShadow)" />
+      <circle cx="0" cy="0" r="18" fill="#fed7aa" />
+      <path d="M -15 20 L -10 -30 M 15 20 L 10 -30" stroke="#fed7aa" stroke-width="8" stroke-linecap="round" />
+    </g>
+
+    <!-- Contender 4 (Far Left, Green Tunic) -->
+    <g transform="translate(70, 450)">
+      <path d="M -18 30 L 18 30 L 22 120 L -22 120 Z" fill="#16a34a" filter="url(#softShadow)" />
+      <circle cx="0" cy="0" r="16" fill="#fed7aa" />
+    </g>
+
+    <!-- Contender 5 (Far Right, Orange Tunic) -->
+    <g transform="translate(530, 450)">
+      <path d="M -18 30 L 18 30 L 22 120 L -22 120 Z" fill="#ea580c" filter="url(#softShadow)" />
+      <circle cx="0" cy="0" r="16" fill="#fed7aa" />
+    </g>
+  </g>
+
+  <!-- Golden Mystical Ornate Border Frame -->
+  <g id="tarotBorder">
+    <!-- Outer Border -->
+    <rect x="16" y="16" width="568" height="768" rx="20" fill="none" stroke="url(#goldFrame)" stroke-width="6" />
+    <rect x="26" y="26" width="548" height="748" rx="14" fill="none" stroke="url(#goldFrame)" stroke-width="1.5" stroke-dasharray="8,4" />
+
+    <!-- Four Corner Filigree Scrolls -->
+    <path d="M 30 60 C 30 35, 35 30, 60 30 C 45 45, 45 45, 30 60 Z" fill="url(#goldFrame)" />
+    <circle cx="45" cy="45" r="4" fill="#fef08a" />
+    <path d="M 570 60 C 570 35, 565 30, 540 30 C 555 45, 555 45, 570 60 Z" fill="url(#goldFrame)" />
+    <circle cx="555" cy="45" r="4" fill="#fef08a" />
+    <path d="M 30 740 C 30 765, 35 770, 60 770 C 45 755, 45 755, 30 740 Z" fill="url(#goldFrame)" />
+    <circle cx="45" cy="755" r="4" fill="#fef08a" />
+    <path d="M 570 740 C 570 765, 565 770, 540 770 C 555 755, 555 755, 570 740 Z" fill="url(#goldFrame)" />
+    <circle cx="555" cy="755" r="4" fill="#fef08a" />
+
+    <!-- Top Header Badge -->
+    <g transform="translate(300, 48)">
+      <rect x="-140" y="-18" width="280" height="36" rx="18" fill="#0f172a" stroke="url(#goldFrame)" stroke-width="2" />
+      <text x="0" y="5" font-family="'Cinzel', Georgia, serif" font-size="15" font-weight="bold" fill="#fef08a" text-anchor="middle" letter-spacing="2">V • FIVE OF WANDS</text>
+    </g>
+
+    <!-- Bottom Footer Badge -->
+    <g transform="translate(300, 736)">
+      <rect x="-210" y="-22" width="420" height="44" rx="22" fill="#0f172a" stroke="url(#goldFrame)" stroke-width="2" />
+      <text x="0" y="-2" font-family="'Cinzel', Georgia, serif" font-size="15" font-weight="bold" fill="#fef08a" text-anchor="middle">द्वंद्व क्रीड़ा (Dynamic Competition)</text>
+      <text x="0" y="15" font-family="sans-serif" font-size="11" fill="#fdba74" text-anchor="middle" letter-spacing="1">Constructive Rivalry • Brainstorming • Testing Strength</text>
+    </g>
+  </g>
+</svg>

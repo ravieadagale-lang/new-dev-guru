@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+  <defs>
+    <!-- Background Studio Warm Glow Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#fdf2f8"/>
+      <stop offset="50%" stop-color="#fce7f3"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </radialGradient>
+
+    <!-- Marble Texture Base -->
+    <linearGradient id="marbleBase" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#faf5f0"/>
+      <stop offset="70%" stop-color="#f0eae1"/>
+      <stop offset="100%" stop-color="#e2d8cd"/>
+    </linearGradient>
+
+    <!-- Rose Quartz Subsurface Translucent Gradient -->
+    <radialGradient id="roseSubsurface" cx="38%" cy="32%" r="68%">
+      <stop offset="0%" stop-color="#fff1f2"/>
+      <stop offset="25%" stop-color="#ffe4e6"/>
+      <stop offset="55%" stop-color="#fecdd3"/>
+      <stop offset="85%" stop-color="#fb7185"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </radialGradient>
+
+    <!-- High Polish Surface Glint -->
+    <linearGradient id="roseGlint" x1="0%" y1="0%" x2="60%" y2="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="80%" stop-color="#ffe4e6" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="studioShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="22"/>
+      <feOffset dx="0" dy="26" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.4"/>
+      </feComponentTransfer>
+      <feMerge> 
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="10" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Studio Background -->
+  <rect width="1200" height="800" fill="url(#bgGrad)"/>
+
+  <!-- Soft Pink Ambient Bokeh Circles -->
+  <g opacity="0.3">
+    <circle cx="220" cy="190" r="150" fill="#fbcfe8" filter="url(#softGlow)"/>
+    <circle cx="980" cy="240" r="170" fill="#fecdd3" filter="url(#softGlow)"/>
+    <circle cx="820" cy="130" r="100" fill="#ffe4e6" filter="url(#softGlow)"/>
+  </g>
+
+  <!-- Marble Pedestal Base -->
+  <g>
+    <!-- Shadow -->
+    <path d="M 150 560 L 1050 560 L 980 720 L 220 720 Z" fill="#000000" opacity="0.16" filter="url(#softGlow)"/>
+    
+    <!-- Top Surface -->
+    <path d="M 180 540 L 1020 540 L 950 680 L 250 680 Z" fill="url(#marbleBase)"/>
+    <!-- Marble Veins -->
+    <path d="M 300 555 Q 450 610, 620 575 T 890 630" fill="none" stroke="#d4a373" stroke-width="2" opacity="0.25"/>
+    <path d="M 380 540 Q 520 570, 750 545" fill="none" stroke="#9a8c98" stroke-width="1.5" opacity="0.2"/>
+    
+    <!-- Front Bevel -->
+    <path d="M 250 680 L 950 680 L 930 710 L 270 710 Z" fill="#c9ada7"/>
+  </g>
+
+  <!-- Natural Green Moss & Flower Petal Base Framing -->
+  <g opacity="0.85">
+    <path d="M 180 560 Q 230 495, 280 535 Q 320 485, 370 545 Z" fill="#386641"/>
+    <path d="M 200 550 Q 240 505, 270 540" fill="#6a994e" opacity="0.85"/>
+    <path d="M 830 545 Q 890 485, 940 535 Q 980 475, 1020 555 Z" fill="#2a9d8f"/>
+    <path d="M 860 535 Q 900 495, 940 530" fill="#e9c46a" opacity="0.7"/>
+  </g>
+
+  <!-- Main Translucent Rose Quartz Raw Crystal Cluster -->
+  <g filter="url(#studioShadow)">
+    <!-- Base Shadow -->
+    <ellipse cx="600" cy="535" rx="250" ry="58" fill="#000000" opacity="0.32"/>
+    
+    <!-- Crystal Body Path -->
+    <path d="M 390 470 C 350 310, 460 190, 610 210 C 760 230, 840 360, 800 490 C 760 560, 420 550, 390 470 Z" fill="url(#roseSubsurface)"/>
+
+    <!-- Internal Crystalline Fractures & Veils -->
+    <path d="M 430 420 C 470 330, 550 280, 650 310 C 720 330, 740 410, 690 470 C 610 510, 470 490, 430 420 Z" fill="#fff1f2" opacity="0.35"/>
+    <path d="M 480 370 Q 570 290, 670 340" fill="none" stroke="#ffffff" stroke-width="7" opacity="0.45" filter="url(#softGlow)"/>
+    <path d="M 450 450 Q 550 410, 630 460" fill="none" stroke="#f43f5e" stroke-width="10" opacity="0.2"/>
+    <path d="M 520 260 L 590 380 L 680 290" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.6"/>
+
+    <!-- Gloss Specular Highlight -->
+    <path d="M 440 370 C 420 270, 510 220, 610 235 C 560 260, 470 290, 440 370 Z" fill="url(#roseGlint)"/>
+    <ellipse cx="480" cy="270" rx="34" ry="17" fill="#ffffff" opacity="0.95" transform="rotate(-25 480 270)"/>
+    <circle cx="425" cy="300" r="7.5" fill="#ffffff" opacity="0.85"/>
+  </g>
+
+  <!-- Luxury Rose Gold Accent Badge -->
+  <g transform="translate(600, 730)">
+    <rect x="-220" y="-22" width="440" height="44" rx="22" fill="#4c0519" stroke="#f43f5e" stroke-width="2"/>
+    <text x="0" y="6" font-family="'Cinzel', 'Playfair Display', Georgia, serif" font-size="20" font-weight="bold" fill="#ffe4e6" text-anchor="middle" letter-spacing="2">
+      ROSE QUARTZ • (गुलाबी स्फटिक)
+    </text>
+  </g>
+</svg>

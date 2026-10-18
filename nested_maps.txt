@@ -1,0 +1,375 @@
+src/components/MobileNumerologyView.tsx:337:r.bestFor === {r.bestFor.map((item, idx) => (
+src/components/MobileNumerologyView.tsx:348:r.avoidFor === {r.avoidFor.map((item, idx) => (
+src/components/MobileNumerologyView.tsx:393:comp.best === {comp.best.map((num) => (
+src/components/MobileNumerologyView.tsx:404:comp.avoid === {comp.avoid.map((num) => (
+src/components/MobileNumerologyView.tsx:438:dom.optimalPrimary === {dom.optimalPrimary.map((num) => (
+src/components/MobileNumerologyView.tsx:472:CHAPTER_TWENTY_EIGHT_THEORY.fourMethodsSummary === {CHAPTER_TWENTY_EIGHT_THEORY.fourMethodsSummary.map((m, idx) => (
+src/components/MobileNumerologyView.tsx:633:result.specialPatterns.repeatingDigits === {result.specialPatterns.repeatingDigits.map((rd) => (
+src/components/PlanetaryPositionsStrengthCharts.tsx:246:shadbalaReport.rankedList === return shadbalaReport.rankedList.map((p) => ({
+src/components/PlanetaryPositionsStrengthCharts.tsx:363:shadbalaReport.rankedList === {shadbalaReport.rankedList.map((p) => (
+src/components/PlanetaryPositionsStrengthCharts.tsx:732:vargaConfluence.domains[selectedConfluenceDomain].supportingFactors === {vargaConfluence.domains[selectedConfluenceDomain].supportingFactors.map((f, i) => (
+src/components/PlanetaryPositionsStrengthCharts.tsx:751:VargaConfluenceEngine.SHODASHAVARGA_CODES === {VargaConfluenceEngine.SHODASHAVARGA_CODES.map((code) => (
+src/components/PlanetaryPositionsStrengthCharts.tsx:761:VargaConfluenceEngine.SHODASHAVARGA_CODES === {VargaConfluenceEngine.SHODASHAVARGA_CODES.map((code) => {
+src/components/PlanetaryPositionsStrengthCharts.tsx:838:currentPlanetEvidence.evidenceChain === {currentPlanetEvidence.evidenceChain.map((ev) => (
+src/components/AncientTithiNakshatraRitualsWidget.tsx:942:activeRitual.samagriList === {activeRitual.samagriList.map((s, idx) => {
+src/components/AncientTithiNakshatraRitualsWidget.tsx:1005:activeRitual.preparationSteps === {activeRitual.preparationSteps.map((pStep, idx) => (
+src/components/AncientTithiNakshatraRitualsWidget.tsx:1022:activeRitual.executionSteps === {activeRitual.executionSteps.map((eStep) => (
+src/components/AncientTithiNakshatraRitualsWidget.tsx:1161:activeRitual.dosAndDonts.dos === {activeRitual.dosAndDonts.dos.map((d, idx) => (
+src/components/AncientTithiNakshatraRitualsWidget.tsx:1177:activeRitual.dosAndDonts.donts === {activeRitual.dosAndDonts.donts.map((d, idx) => (
+src/components/SamudrikaScannerModal.tsx:1527:scanResult.detectedLandmarks === {scanResult.detectedLandmarks.map((mark, i) => (
+src/components/PanchangFestivalRemediesWidget.tsx:238:activeFestival.remedies === {activeFestival.remedies.map((remedy, idx) => {
+src/components/PanchangFestivalRemediesWidget.tsx:311:activeRemedy.materials === {activeRemedy.materials.map((mat, idx) => (
+src/components/PersonalizedRemediesView.tsx:397:remedy.donation.items === {remedy.donation.items.map((item, idx) => (
+src/components/PersonalizedRemediesView.tsx:428:remedy.lalKitabRemedies === {remedy.lalKitabRemedies.map((rule, idx) => (
+src/components/NumerologyKnowledgeBaseView.tsx:262:selectedArticle.summaryParagraphs === {selectedArticle.summaryParagraphs.map((para, idx) => (
+src/components/NumerologyKnowledgeBaseView.tsx:281:selectedArticle.keyTable.headers === {selectedArticle.keyTable.headers.map((h, i) => (
+src/components/NumerologyKnowledgeBaseView.tsx:289:selectedArticle.keyTable.rows === {selectedArticle.keyTable.rows.map((row, rIdx) => (
+src/components/NumerologyKnowledgeBaseView.tsx:312:selectedArticle.backlinks === {selectedArticle.backlinks.map((link, idx) => (
+src/components/SpiritualMilestonesBadgeWidget.tsx:887:activeArticle.content === {activeArticle.content.map((para, idx) => (
+src/components/SacredImagesGalleryView.tsx:486:activeModalItem.benefits === {activeModalItem.benefits.map((b, idx) => (
+src/components/ChakraBalancingRemediesView.tsx:190:CHAKRA_CHAPTER_INTRO.introduction === {CHAKRA_CHAPTER_INTRO.introduction.map((paragraph, idx) => (
+src/components/ChakraBalancingRemediesView.tsx:302:selectedChakra.affirmations === {selectedChakra.affirmations.map((aff, i) => (
+src/components/ChakraBalancingRemediesView.tsx:327:selectedChakra.meditation.steps === {selectedChakra.meditation.steps.map((st) => (
+src/components/ChakraBalancingRemediesView.tsx:346:selectedChakra.ritualRemedies === {selectedChakra.ritualRemedies.map((rit) => (
+src/components/ChakraBalancingRemediesView.tsx:412:selectedChakra.meditation.steps === {selectedChakra.meditation.steps.map((step) => (
+src/components/ChakraBalancingRemediesView.tsx:462:ch.ritualRemedies === {ch.ritualRemedies.map((rit) => (
+src/components/ChakraBalancingRemediesView.tsx:573:ph.dailyPractices === {ph.dailyPractices.map((dp, idx) => (
+src/components/ChakraBalancingRemediesView.tsx:585:ph.additions === {ph.additions.map((ad, idx) => (
+src/components/LoShuGridSystemView.tsx:296:loShuResult.planes === {loShuResult.planes.map((plane, pIdx) => (
+src/components/LoShuGridSystemView.tsx:330:loShuResult.missingRemedies === Missing Numbers Growth Opportunities ({loShuResult.missingRemedies.map(m => m.digit).join(", ")})
+src/components/LoShuGridSystemView.tsx:583:CHAPTER_TWENTY_FOUR_THEORY_TEXT.originsText === {CHAPTER_TWENTY_FOUR_THEORY_TEXT.originsText.map((para, idx) => (
+src/components/LoShuGridSystemView.tsx:600:CHAPTER_TWENTY_FOUR_THEORY_TEXT.constructionSteps === {CHAPTER_TWENTY_FOUR_THEORY_TEXT.constructionSteps.map((step, idx) => (
+src/components/LoShuGridSystemView.tsx:611:CHAPTER_TWENTY_FOUR_THEORY_TEXT.readingSteps === {CHAPTER_TWENTY_FOUR_THEORY_TEXT.readingSteps.map((step) => (
+src/components/LoShuGridSystemView.tsx:626:CHAPTER_TWENTY_FOUR_THEORY_TEXT.specialConfigurations === {CHAPTER_TWENTY_FOUR_THEORY_TEXT.specialConfigurations.map((cfg, idx) => (
+src/components/LoShuGridSystemView.tsx:658:CHAPTER_TWENTY_FIVE_THEORY_TEXT.introductionText === {CHAPTER_TWENTY_FIVE_THEORY_TEXT.introductionText.map((para, idx) => (
+src/components/LoShuGridSystemView.tsx:705:CHAPTER_TWENTY_FOUR_THEORY_TEXT.workedCaseStudies === {CHAPTER_TWENTY_FOUR_THEORY_TEXT.workedCaseStudies.map((cs, idx) => (
+src/components/LoShuGridSystemView.tsx:742:cs.analysisParagraphs === {cs.analysisParagraphs.map((para, pIdx) => (
+src/components/VehicleNumerologyView.tsx:365:parsedVehicle.colourGuide.bestColours === {parsedVehicle.colourGuide.bestColours.map((c, idx) => (
+src/components/VehicleNumerologyView.tsx:376:parsedVehicle.colourGuide.avoidColours === {parsedVehicle.colourGuide.avoidColours.map((c, idx) => (
+src/components/VehicleNumerologyView.tsx:495:r.bestFor === {r.bestFor.map((item, idx) => (
+src/components/VehicleNumerologyView.tsx:506:r.avoidFor === {r.avoidFor.map((item, idx) => (
+src/components/VehicleNumerologyView.tsx:556:comp.best === {comp.best.map((num) => (
+src/components/VehicleNumerologyView.tsx:567:comp.avoid === {comp.avoid.map((num) => (
+src/components/VehicleNumerologyView.tsx:609:guide.bestColours === {guide.bestColours.map((c, idx) => (
+src/components/VehicleNumerologyView.tsx:620:guide.avoidColours === {guide.avoidColours.map((c, idx) => (
+src/components/VehicleNumerologyView.tsx:655:CHAPTER_TWENTY_NINE_THEORY.fourMethodsSummary === {CHAPTER_TWENTY_NINE_THEORY.fourMethodsSummary.map((m, idx) => (
+src/components/VehicleNumerologyView.tsx:682:CHAPTER_TWENTY_NINE_THEORY.consecrationRitualSteps === {CHAPTER_TWENTY_NINE_THEORY.consecrationRitualSteps.map((step, idx) => (
+src/components/MasterVedicDossierViewer.tsx:335:m.neechabhangaRulesTriggered === {m.neechabhangaRulesTriggered.map((rule, idx) => (
+src/components/MasterVedicDossierViewer.tsx:613:calc.jaiminiKarakas === {calc.jaiminiKarakas.map((k) => (
+src/components/MasterVedicDossierViewer.tsx:654:interp.ashtakavarga_matrix_exploitation.highScoringHouses === {interp.ashtakavarga_matrix_exploitation.highScoringHouses.map((h) => (
+src/components/MasterVedicDossierViewer.tsx:667:interp.ashtakavarga_matrix_exploitation.lowScoringHouses === {interp.ashtakavarga_matrix_exploitation.lowScoringHouses.map((h) => (
+src/components/MasterVedicDossierViewer.tsx:763:interp.triple_layer_dasha_and_gochar_intersection.jupiterTransitAnalysis.blessedHousesAndThemes === {interp.triple_layer_dasha_and_gochar_intersection.jupiterTransitAnalysis.blessedHousesAndThemes.map((b, idx) => (
+src/components/PlanetaryMoodChart.tsx:504:stats.topDays === {stats.topDays.map((top, idx) => (
+src/components/RemediesLibrary.tsx:417:remedy.materialsNeeded === {remedy.materialsNeeded.map((mat, i) => (
+src/components/RemediesLibrary.tsx:457:remedy.stepByStepGuidance === {remedy.stepByStepGuidance.map((step, idx) => (
+src/components/DailyPlanetaryTransitWidget.tsx:120:currentPlanets.planets === const planetsWithHouses = currentPlanets.planets.map(p => {
+src/components/PaymentCheckoutModal.tsx:679:orderResult.digitalDownloads === {orderResult.digitalDownloads.map((dl: any, idx: number) => (
+src/components/HouseNumerologyView.tsx:353:parsedHouse.reading.bestFor === {parsedHouse.reading.bestFor.map((item, idx) => (
+src/components/HouseNumerologyView.tsx:362:parsedHouse.reading.notIdealFor === {parsedHouse.reading.notIdealFor.map((item, idx) => (
+src/components/HouseNumerologyView.tsx:376:parsedHouse.reading.remediesAndGuidance === {parsedHouse.reading.remediesAndGuidance.map((rem, idx) => (
+src/components/HouseNumerologyView.tsx:448:r.bestFor === {r.bestFor.map((item, idx) => (
+src/components/HouseNumerologyView.tsx:459:r.notIdealFor === {r.notIdealFor.map((item, idx) => (
+src/components/HouseNumerologyView.tsx:573:comp.best === {comp.best.map((num) => (
+src/components/HouseNumerologyView.tsx:584:comp.avoid === {comp.avoid.map((num) => (
+src/components/HouseNumerologyView.tsx:645:CHAPTER_THIRTY_THEORY.fourMethodsSummary === {CHAPTER_THIRTY_THEORY.fourMethodsSummary.map((m, idx) => (
+src/components/KundliChartSVG.tsx:260:cat.charts === {cat.charts.map((subChart) => {
+src/components/NumerologyArchetypeBookView.tsx:136:archetype.mythsBusted === {archetype.mythsBusted.map((item, idx) => (
+src/components/NumerologyArchetypeBookView.tsx:249:archetype.practicalRemediesAndGrowthAdvice === {archetype.practicalRemediesAndGrowthAdvice.map((remedy, idx) => (
+src/components/NumerologyArchetypeBookView.tsx:267:NUMEROLOGY_BOOK_META.exercisesAndReflections.exercises === {NUMEROLOGY_BOOK_META.exercisesAndReflections.exercises.map((ex) => (
+src/components/NumerologyArchetypeBookView.tsx:278:NUMEROLOGY_BOOK_META.exercisesAndReflections.reflectionQuestions === {NUMEROLOGY_BOOK_META.exercisesAndReflections.reflectionQuestions.map((q, idx) => (
+src/components/JaiminiPapasamyaView.tsx:79:papasamya.detailsA === {papasamya.detailsA.map((d, i) => (
+src/components/JaiminiPapasamyaView.tsx:96:papasamya.detailsB === {papasamya.detailsB.map((d, i) => (
+src/components/AdvanceNumerologyReportView.tsx:671:activeReport.birthNumberAnalysis.strengths === {activeReport.birthNumberAnalysis.strengths.map((str, idx) => (
+src/components/AdvanceNumerologyReportView.tsx:683:activeReport.birthNumberAnalysis.challenges === {activeReport.birthNumberAnalysis.challenges.map((ch, idx) => (
+src/components/AdvanceNumerologyReportView.tsx:824:activeReport.combination81Analysis.career === {activeReport.combination81Analysis.career.map((car, idx) => (
+src/components/AdvanceNumerologyReportView.tsx:971:activeReport.pinnaclesAndChallenges.phases === {activeReport.pinnaclesAndChallenges.phases.map((phase: any, idx: number) => (
+src/components/AdvanceNumerologyReportView.tsx:1021:activeReport.masterAndKarmicDetails.masterDetails === {activeReport.masterAndKarmicDetails.masterDetails.map((master, idx) => (
+src/components/AdvanceNumerologyReportView.tsx:1034:activeReport.masterAndKarmicDetails.karmicDetails === {activeReport.masterAndKarmicDetails.karmicDetails.map((karmic, idx) => (
+src/components/AdvanceNumerologyReportView.tsx:1289:activeReport.missingNumberRemedies === {activeReport.missingNumberRemedies.map((remedy) => (
+src/components/AdvanceNumerologyReportView.tsx:1380:activeReport.chakraBalancing.remedySteps === {activeReport.chakraBalancing.remedySteps.map((step: string, idx: number) => (
+src/components/AdvanceNumerologyReportView.tsx:1440:activeReport.forecastData.threeYearOutlook === {activeReport.forecastData.threeYearOutlook.map((item) => (
+src/components/AdvanceNumerologyReportView.tsx:2119:graha.attributes === {graha.attributes.map((attr, aIdx) => (
+src/components/LoShuMissingRepeatedView.tsx:74:CHAPTER_TWENTY_SEVEN_THEORY_TEXT.introductionText === {CHAPTER_TWENTY_SEVEN_THEORY_TEXT.introductionText.map((p, idx) => (
+src/components/LoShuMissingRepeatedView.tsx:229:evalResult.missingNumbers === {evalResult.missingNumbers.map((mn) => (
+src/components/LoShuMissingRepeatedView.tsx:249:mn.remedies.practicalGuidance === {mn.remedies.practicalGuidance.map((g, idx) => (
+src/components/LoShuMissingRepeatedView.tsx:293:evalResult.repeatedNumbers === {evalResult.repeatedNumbers.map(({ detail, count }) => (
+src/components/LoShuMissingRepeatedView.tsx:328:detail.managementPractices === {detail.managementPractices.map((practice, pIdx) => (
+src/components/LoShuMissingRepeatedView.tsx:415:mn.remedies.practicalGuidance === {mn.remedies.practicalGuidance.map((g, gIdx) => (
+src/components/LoShuMissingRepeatedView.tsx:511:rn.managementPractices === {rn.managementPractices.map((p, pIdx) => (
+src/components/GunaMilanCalculator.tsx:270:matchingResult.kootaBreakdown === {matchingResult.kootaBreakdown.map((koota) => (
+src/components/MuhurtaNumerologyView.tsx:303:suitabilityResult.protocol.primaryNumbers === {suitabilityResult.protocol.primaryNumbers.map((n) => (
+src/components/MuhurtaNumerologyView.tsx:314:suitabilityResult.protocol.bestDaysOfWeek === {suitabilityResult.protocol.bestDaysOfWeek.map((d) => (
+src/components/MuhurtaNumerologyView.tsx:326:suitabilityResult.protocol.protocolSteps === {suitabilityResult.protocol.protocolSteps.map((step, idx) => (
+src/components/MuhurtaNumerologyView.tsx:482:day.bestFor === {day.bestFor.map((item, idx) => (
+src/components/MuhurtaNumerologyView.tsx:495:day.avoidFor === {day.avoidFor.map((item, idx) => (
+src/components/MuhurtaNumerologyView.tsx:534:day.remedies === {day.remedies.map((rem, rIdx) => (
+src/components/AshtakavargaMatrix.tsx:180:pb.points === {pb.points.map((pt, idx) => (
+src/components/DualDatePanchangComparisonWidget.tsx:618:dataA.planetary.planets === {dataA.planetary.planets.map(p => (
+src/components/DualDatePanchangComparisonWidget.tsx:635:dataB.planetary.planets === {dataB.planetary.planets.map(p => (
+src/components/FuturePanchangCalendarWidget.tsx:529:planetaryPositions.planets === {planetaryPositions.planets.map((p) => (
+src/components/YantrasCrystalsEnergyView.tsx:493:yantraData.sacredGeometryElements === {yantraData.sacredGeometryElements.map((elem, idx) => (
+src/components/YantrasCrystalsEnergyView.tsx:507:yantraData.detailedGuidance === {yantraData.detailedGuidance.map((para, idx) => (
+src/components/YantrasCrystalsEnergyView.tsx:568:SRI_YANTRA_DATA.overview === {SRI_YANTRA_DATA.overview.map((para, idx) => (
+src/components/YantrasCrystalsEnergyView.tsx:588:SRI_YANTRA_DATA.structuralLayers === {SRI_YANTRA_DATA.structuralLayers.map((layer) => (
+src/components/YantrasCrystalsEnergyView.tsx:648:crystalData.substituteCrystals === {crystalData.substituteCrystals.map((sub, sIdx) => (
+src/components/YantrasCrystalsEnergyView.tsx:675:crystalData.detailedGuidance === {crystalData.detailedGuidance.map((para, idx) => (
+src/components/YantrasCrystalsEnergyView.tsx:811:crystal.benefits === {crystal.benefits.map((b, bIdx) => (
+src/components/YantrasCrystalsEnergyView.tsx:1090:chakraData.healingPractices === {chakraData.healingPractices.map((prac, idx) => (
+src/components/YantrasCrystalsEnergyView.tsx:1142:triad.instructions === {triad.instructions.map((inst, iIdx) => (
+src/components/BirthMonthView.tsx:93:BIRTH_MONTH_HEADER_INFO.introParagraphs === {BIRTH_MONTH_HEADER_INFO.introParagraphs.map((para, idx) => (
+src/components/AIRelationshipAdviceSection.tsx:328:matchResult.doshas.doshaRemedies === {matchResult.doshas.doshaRemedies.map((rem, idx) => (
+src/components/D3VedicChart.tsx:581:cat.charts === {cat.charts.map((subChart) => {
+src/components/NumerologyMasterKarmicView.tsx:145:MASTER_KARMIC_CHAPTER_META.preservationRulesTable === {MASTER_KARMIC_CHAPTER_META.preservationRulesTable.map((row, idx) => (
+src/components/NumerologyMasterKarmicView.tsx:175:MASTER_KARMIC_CHAPTER_META.karmicPositionSignificance === {MASTER_KARMIC_CHAPTER_META.karmicPositionSignificance.map((pos, idx) => (
+src/components/NumerologyMasterKarmicView.tsx:245:activeMasterDetail.lifeStages === {activeMasterDetail.lifeStages.map((stage, idx) => (
+src/components/NumerologyMasterKarmicView.tsx:280:activeMasterDetail.compatibilityTable === {activeMasterDetail.compatibilityTable.map((row, idx) => (
+src/components/NumerologyMasterKarmicView.tsx:303:activeMasterDetail.careerDomains === {activeMasterDetail.careerDomains.map((domain, idx) => (
+src/components/NumerologyMasterKarmicView.tsx:337:activeMasterDetail.unawakenedVsAwakened === {activeMasterDetail.unawakenedVsAwakened.map((row, idx) => (
+src/components/NumerologyMasterKarmicView.tsx:421:activeKarmicDetail.tableData === {activeKarmicDetail.tableData.map((row, idx) => (
+src/components/NumerologyMasterKarmicView.tsx:457:MASTER_KARMIC_CHAPTER_META.masterComparisonTable === {MASTER_KARMIC_CHAPTER_META.masterComparisonTable.map((row, idx) => (
+src/components/NumerologyMasterKarmicView.tsx:489:MASTER_KARMIC_CHAPTER_META.quickReferenceTable === {MASTER_KARMIC_CHAPTER_META.quickReferenceTable.map((row, idx) => (
+src/components/NumerologyMasterKarmicView.tsx:523:MASTER_KARMIC_CHAPTER_META.exercisesAndReflections.exercises === {MASTER_KARMIC_CHAPTER_META.exercisesAndReflections.exercises.map((ex) => (
+src/components/NumerologyMasterKarmicView.tsx:534:MASTER_KARMIC_CHAPTER_META.exercisesAndReflections.reflectionQuestions === {MASTER_KARMIC_CHAPTER_META.exercisesAndReflections.reflectionQuestions.map((q, idx) => (
+src/components/CategorizedVargaSelector.tsx:294:currentCategoryGroup.charts === {currentCategoryGroup.charts.map((chart) => {
+src/components/CategorizedVargaSelector.tsx:344:cat.charts === {cat.charts.map((ch) => {
+src/components/CategorizedVargaSelector.tsx:473:currentChartInfo.keyPrinciples === {currentChartInfo.keyPrinciples.map((principle, idx) => (
+src/components/CategorizedVargaSelector.tsx:488:currentChartInfo.technicalIndicators === {currentChartInfo.technicalIndicators.map((ind, idx) => (
+src/components/PanchangWidget.tsx:155:panchang.choghadiya === {panchang.choghadiya.map((ch, idx) => {
+src/components/SpiritualRemediesMantrasView.tsx:232:mantraSet.deityMantras === {mantraSet.deityMantras.map((dm, idx) => (
+src/components/SpiritualRemediesMantrasView.tsx:274:mantraSet.practiceProtocol === {mantraSet.practiceProtocol.map((p, idx) => (
+src/components/SpiritualRemediesMantrasView.tsx:286:mantraSet.indications === {mantraSet.indications.map((ind, idx) => (
+src/components/SpiritualRemediesMantrasView.tsx:434:kData.dailyRoutine === {kData.dailyRoutine.map((r, idx) => (
+src/components/SpiritualRemediesMantrasView.tsx:493:u.recommendedFor === {u.recommendedFor.map((rec, rIdx) => (
+src/components/SpiritualRemediesMantrasView.tsx:539:step.instructions === {step.instructions.map((inst, iIdx) => (
+src/components/BrandNumerologyView.tsx:301:parsedBrand.chaldeanLetterValues === {parsedBrand.chaldeanLetterValues.map((item, idx) => (
+src/components/BrandNumerologyView.tsx:416:parsedBrand.reading.bestFor === {parsedBrand.reading.bestFor.map((item, idx) => (
+src/components/BrandNumerologyView.tsx:425:parsedBrand.reading.notIdealFor === {parsedBrand.reading.notIdealFor.map((item, idx) => (
+src/components/BrandNumerologyView.tsx:509:r.bestFor === {r.bestFor.map((item, idx) => (
+src/components/BrandNumerologyView.tsx:603:LOGO_NUMEROLOGY_GUIDE.colors === {LOGO_NUMEROLOGY_GUIDE.colors.map((col, idx) => (
+src/components/BrandNumerologyView.tsx:630:LOGO_NUMEROLOGY_GUIDE.shapes === {LOGO_NUMEROLOGY_GUIDE.shapes.map((shp, idx) => (
+src/components/BrandNumerologyView.tsx:672:comp.bestBrandNums === {comp.bestBrandNums.map((num) => (
+src/components/BrandNumerologyView.tsx:683:comp.avoidBrandNums === {comp.avoidBrandNums.map((num) => (
+src/components/NumerologyLuckyRemediesView.tsx:293:profile.primaryLuckyNumbers === {profile.primaryLuckyNumbers.map((n) => (
+src/components/NumerologyLuckyRemediesView.tsx:307:profile.secondaryLuckyNumbers === {profile.secondaryLuckyNumbers.map((n) => (
+src/components/NumerologyLuckyRemediesView.tsx:321:profile.neutralNumbers === {profile.neutralNumbers.map((n) => (
+src/components/NumerologyLuckyRemediesView.tsx:335:profile.enemyNumbers === {profile.enemyNumbers.map((n) => (
+src/components/NumerologyLuckyRemediesView.tsx:378:profile.colorData.hexCodes === {profile.colorData.hexCodes.map((hex, i) => (
+src/components/NumerologyLuckyRemediesView.tsx:391:profile.colorData.avoidColors === {profile.colorData.avoidColors.map((c, i) => (
+src/components/NumerologyLuckyRemediesView.tsx:453:profile.directionData.powerSectorUsage === {profile.directionData.powerSectorUsage.map((u, i) => (
+src/components/NumerologyLuckyRemediesView.tsx:462:profile.directionData.avoidPlacement === {profile.directionData.avoidPlacement.map((u, i) => (
+src/components/NumerologyLuckyRemediesView.tsx:514:profile.gemstoneData.substituteCrystals === {profile.gemstoneData.substituteCrystals.map((sub, i) => (
+src/components/NumerologyLuckyRemediesView.tsx:629:profile.remedyData.donationItems === {profile.remedyData.donationItems.map((item, i) => (
+src/components/NumerologyLuckyRemediesView.tsx:650:profile.remedyData.lifestyleHabits === {profile.remedyData.lifestyleHabits.map((habit, idx) => {
+src/components/UnvarnishedRiskAuditView.tsx:67:riskAudit.keyFrictionAreas === {riskAudit.keyFrictionAreas.map((f, i) => (
+src/components/UnvarnishedRiskAuditView.tsx:83:riskAudit.recommendedPrecautions === {riskAudit.recommendedPrecautions.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:628:currentSoulUrgeAnalysis.keywords === {currentSoulUrgeAnalysis.keywords.map((kw, i) => (
+src/components/NumerologyNameSystemView.tsx:719:currentSoulUrgeAnalysis.practicalGuidance === {currentSoulUrgeAnalysis.practicalGuidance.map((guide, idx) => (
+src/components/NumerologyNameSystemView.tsx:759:currentPersonalityAnalysis.firstImpressionParagraphs === {currentPersonalityAnalysis.firstImpressionParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:768:currentPersonalityAnalysis.gapParagraphs === {currentPersonalityAnalysis.gapParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:777:currentPersonalityAnalysis.practicalGuidance === {currentPersonalityAnalysis.practicalGuidance.map((g, i) => (
+src/components/NumerologyNameSystemView.tsx:802:currentInnerDreamAnalysis.secretSelfParagraphs === {currentInnerDreamAnalysis.secretSelfParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:818:currentInnerDreamAnalysis.consultationIntegration === {currentInnerDreamAnalysis.consultationIntegration.map((c, i) => (
+src/components/NumerologyNameSystemView.tsx:1125:ach.keywords === {ach.keywords.map((kw, i) => (
+src/components/NumerologyNameSystemView.tsx:1160:ach.detailedParagraphs === {ach.detailedParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:1212:bal.keywords === {bal.keywords.map((kw, i) => (
+src/components/NumerologyNameSystemView.tsx:1257:bal.detailedParagraphs === {bal.detailedParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:1365:CHAPTER_FIFTEEN_THEORY_DATA.introParagraphs === {CHAPTER_FIFTEEN_THEORY_DATA.introParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:1534:lp.keywords === {lp.keywords.map((kw, i) => (
+src/components/NumerologyNameSystemView.tsx:1574:lp.strengths === {lp.strengths.map((s, i) => (
+src/components/NumerologyNameSystemView.tsx:1590:lp.challenges === {lp.challenges.map((c, i) => (
+src/components/NumerologyNameSystemView.tsx:1651:CHAPTER_NINETEEN_THEORY_DATA.introParagraphs === {CHAPTER_NINETEEN_THEORY_DATA.introParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:1762:pc.phases === {pc.phases.map((ph) => (
+src/components/NumerologyNameSystemView.tsx:1893:pin.opportunities === {pin.opportunities.map((op, i) => (
+src/components/NumerologyNameSystemView.tsx:1909:pin.primaryDemands === {pin.primaryDemands.map((dem, i) => (
+src/components/NumerologyNameSystemView.tsx:2002:ch.recurringObstacles === {ch.recurringObstacles.map((obs, i) => (
+src/components/NumerologyNameSystemView.tsx:2018:ch.lessonsToMaster === {ch.lessonsToMaster.map((les, i) => (
+src/components/NumerologyNameSystemView.tsx:2057:CHAPTER_TWENTY_THEORY_DATA.introParagraphs === {CHAPTER_TWENTY_THEORY_DATA.introParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:2189:pyDetail.keyFocusAreas === {pyDetail.keyFocusAreas.map((item, i) => (
+src/components/NumerologyNameSystemView.tsx:2204:pyDetail.whatToAvoid === {pyDetail.whatToAvoid.map((item, i) => (
+src/components/NumerologyNameSystemView.tsx:2259:fullOverview.monthlyBreakdown === {fullOverview.monthlyBreakdown.map((pm) => (
+src/components/NumerologyNameSystemView.tsx:2397:py.keyFocusAreas === {py.keyFocusAreas.map((item, i) => (
+src/components/NumerologyNameSystemView.tsx:2412:py.whatToAvoid === {py.whatToAvoid.map((item, i) => (
+src/components/NumerologyNameSystemView.tsx:2506:pm.bestActivities === {pm.bestActivities.map((act, i) => (
+src/components/NumerologyNameSystemView.tsx:2521:pm.keyChallenges === {pm.keyChallenges.map((ch, i) => (
+src/components/NumerologyNameSystemView.tsx:2560:CHAPTER_TWENTY_ONE_THEORY_DATA.introParagraphs === {CHAPTER_TWENTY_ONE_THEORY_DATA.introParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:2832:detail.keyFocusAreas === {detail.keyFocusAreas.map((item, idx) => (
+src/components/NumerologyNameSystemView.tsx:2843:detail.whatToAvoid === {detail.whatToAvoid.map((item, idx) => (
+src/components/NumerologyNameSystemView.tsx:2954:CHAPTER_TWENTY_TWO_THEORY_DATA.introParagraphs === {CHAPTER_TWENTY_TWO_THEORY_DATA.introParagraphs.map((para, idx) => (
+src/components/NumerologyNameSystemView.tsx:3172:pairResult.personalDomain.strengths === {pairResult.personalDomain.strengths.map((s, i) => (
+src/components/NumerologyNameSystemView.tsx:3183:pairResult.personalDomain.challenges === {pairResult.personalDomain.challenges.map((c, i) => (
+src/components/NumerologyNameSystemView.tsx:3222:pairResult.professionalDomain.strengths === {pairResult.professionalDomain.strengths.map((s, i) => (
+src/components/NumerologyNameSystemView.tsx:3233:pairResult.professionalDomain.challenges === {pairResult.professionalDomain.challenges.map((c, i) => (
+src/components/NumerologyNameSystemView.tsx:3272:pairResult.romanticDomain.strengths === {pairResult.romanticDomain.strengths.map((s, i) => (
+src/components/NumerologyNameSystemView.tsx:3283:pairResult.romanticDomain.challenges === {pairResult.romanticDomain.challenges.map((c, i) => (
+src/components/NumerologyNameSystemView.tsx:3424:CHAPTER_TWENTY_THREE_THEORY_DATA.introParagraphs === {CHAPTER_TWENTY_THREE_THEORY_DATA.introParagraphs.map((para, idx) => (
+src/components/NumerologyNameSystemView.tsx:3614:b.keywords === {b.keywords.map((kw, i) => (
+src/components/NumerologyNameSystemView.tsx:3656:b.strengths === {b.strengths.map((s, i) => (
+src/components/NumerologyNameSystemView.tsx:3672:b.challenges === {b.challenges.map((c, i) => (
+src/components/NumerologyNameSystemView.tsx:3711:b.professionalInclinations === {b.professionalInclinations.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:3804:CHAPTER_EIGHTEEN_THEORY_DATA.introParagraphs === {CHAPTER_EIGHTEEN_THEORY_DATA.introParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:3918:liveCorrectionDiagnosis.triggeredIndicators === {liveCorrectionDiagnosis.triggeredIndicators.map((ind, idx) => (
+src/components/NumerologyNameSystemView.tsx:4054:cs.indicatorDiagnosis === {cs.indicatorDiagnosis.map((ind, i) => (
+src/components/NumerologyNameSystemView.tsx:4075:cs.correctedNameAnalysis.keyBenefits === {cs.correctedNameAnalysis.keyBenefits.map((ben, i) => (
+src/components/NumerologyNameSystemView.tsx:4108:CHAPTER_SEVENTEEN_THEORY_DATA.introParagraphs === {CHAPTER_SEVENTEEN_THEORY_DATA.introParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:4162:m.practicalExamples === {m.practicalExamples.map((ex, idx) => (
+src/components/NumerologyNameSystemView.tsx:4177:CHAPTER_SEVENTEEN_THEORY_DATA.implementationSteps === {CHAPTER_SEVENTEEN_THEORY_DATA.implementationSteps.map((step, idx) => (
+src/components/NumerologyNameSystemView.tsx:4291:liveBusinessResult.guideline.idealApplications === {liveBusinessResult.guideline.idealApplications.map((app, i) => (
+src/components/NumerologyNameSystemView.tsx:4338:bg.keywords === {bg.keywords.map((kw, i) => (
+src/components/NumerologyNameSystemView.tsx:4351:bg.detailedParagraphs === {bg.detailedParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:4674:dg.bestPractices === {dg.bestPractices.map((bp, idx) => (
+src/components/NumerologyNameSystemView.tsx:4704:CHAPTER_SIXTEEN_THEORY_DATA.introParagraphs === {CHAPTER_SIXTEEN_THEORY_DATA.introParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:4784:kl.keywords === {kl.keywords.map((kw, i) => (
+src/components/NumerologyNameSystemView.tsx:4831:kl.practicalGuidance === {kl.practicalGuidance.map((g, i) => (
+src/components/NumerologyNameSystemView.tsx:4846:kl.detailedParagraphs === {kl.detailedParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:5016:sc.detailedParagraphs === {sc.detailedParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:5042:KARMIC_THEORY_DATA.introParagraphs === {KARMIC_THEORY_DATA.introParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:5122:hp.keywords === {hp.keywords.map((kw, i) => (
+src/components/NumerologyNameSystemView.tsx:5139:hp.detailedParagraphs === {hp.detailedParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:5230:cs.detailedParagraphs === {cs.detailedParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:5244:cp.detailedParagraphs === {cp.detailedParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:5325:fv.detailedParagraphs === {fv.detailedParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:5348:FINER_DIMENSIONS_THEORY.introParagraphs === {FINER_DIMENSIONS_THEORY.introParagraphs.map((p, idx) => (
+src/components/NumerologyNameSystemView.tsx:5417:pAnalysis.keywords === {pAnalysis.keywords.map((kw, i) => (
+src/components/NumerologyNameSystemView.tsx:5432:pAnalysis.firstImpressionParagraphs === {pAnalysis.firstImpressionParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:5444:pAnalysis.gapParagraphs === {pAnalysis.gapParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:5456:pAnalysis.practicalGuidance === {pAnalysis.practicalGuidance.map((guide, idx) => (
+src/components/NumerologyNameSystemView.tsx:5511:idAnalysis.keywords === {idAnalysis.keywords.map((kw, i) => (
+src/components/NumerologyNameSystemView.tsx:5526:idAnalysis.secretSelfParagraphs === {idAnalysis.secretSelfParagraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:5548:idAnalysis.consultationIntegration === {idAnalysis.consultationIntegration.map((guide, idx) => (
+src/components/NumerologyNameSystemView.tsx:5573:PERSONALITY_INNER_DREAM_THEORY.introParagraphs === {PERSONALITY_INNER_DREAM_THEORY.introParagraphs.map((p, idx) => (
+src/components/NumerologyNameSystemView.tsx:5657:su.keywords === {su.keywords.map((kw, i) => (
+src/components/NumerologyNameSystemView.tsx:5742:su.practicalGuidance === {su.practicalGuidance.map((guide, idx) => (
+src/components/NumerologyNameSystemView.tsx:5797:exp.keywords === {exp.keywords.map((kw, i) => (
+src/components/NumerologyNameSystemView.tsx:5824:exp.strengths === {exp.strengths.map((str, idx) => (
+src/components/NumerologyNameSystemView.tsx:5833:exp.shadowAndDrawbacks === {exp.shadowAndDrawbacks.map((sh, idx) => (
+src/components/NumerologyNameSystemView.tsx:5912:dest.practicalGuidance === {dest.practicalGuidance.map((guide, idx) => (
+src/components/NumerologyNameSystemView.tsx:5935:NAME_ENERGY_THEORY.sections === {NAME_ENERGY_THEORY.sections.map((sec) => (
+src/components/NumerologyNameSystemView.tsx:5939:sec.paragraphs === {sec.paragraphs.map((p, i) => (
+src/components/NumerologyNameSystemView.tsx:5948:sec.keyTakeaways === {sec.keyTakeaways.map((kt, i) => (
+src/components/NumerologyNameSystemView.tsx:5965:NAME_ENERGY_THEORY.letterValueSystems === {NAME_ENERGY_THEORY.letterValueSystems.map((sys, idx) => (
+src/components/NumerologyNameSystemView.tsx:5986:NAME_ENERGY_THEORY.calculationSteps === {NAME_ENERGY_THEORY.calculationSteps.map((s) => (
+src/components/SignatureAnalysisView.tsx:586:rule.detailedReading.options === {rule.detailedReading.options.map((opt, idx) => (
+src/components/SignatureAnalysisView.tsx:662:specimen.graphologicalTraits === {specimen.graphologicalTraits.map((trait, idx) => (
+src/components/SignatureAnalysisView.tsx:715:step.guidelines === {step.guidelines.map((g, gIdx) => (
+src/components/BusinessNumerologyView.tsx:317:parsedBrand.chaldeanLetterValues === {parsedBrand.chaldeanLetterValues.map((item, idx) => (
+src/components/BusinessNumerologyView.tsx:380:parsedBrand.reading.bestFor === {parsedBrand.reading.bestFor.map((item, idx) => (
+src/components/BusinessNumerologyView.tsx:488:parsedProduct.productReading.bestFor === {parsedProduct.productReading.bestFor.map((item, idx) => (
+src/components/BusinessNumerologyView.tsx:618:SERVICE_TIER_RECOMMENDATION.tiers === {SERVICE_TIER_RECOMMENDATION.tiers.map((t, idx) => (
+src/components/BusinessNumerologyView.tsx:669:SKU_AND_PRODUCT_CODE_GUIDANCE.flagshipSKUTargets === {SKU_AND_PRODUCT_CODE_GUIDANCE.flagshipSKUTargets.map((item, idx) => (
+src/components/BusinessNumerologyView.tsx:681:PRODUCT_LAUNCH_TIMING_GUIDANCE.auspiciousLaunchDays === {PRODUCT_LAUNCH_TIMING_GUIDANCE.auspiciousLaunchDays.map((ld, idx) => (
+src/components/BusinessNumerologyView.tsx:704:PACKAGING_QUANTITY_GUIDANCE.quantities === {PACKAGING_QUANTITY_GUIDANCE.quantities.map((q, idx) => (
+src/components/BusinessNumerologyView.tsx:714:PACKAGING_QUANTITY_GUIDANCE.weights === {PACKAGING_QUANTITY_GUIDANCE.weights.map((w, idx) => (
+src/components/ChineseZodiacFengShuiView.tsx:163:trine.animals === {trine.animals.map((an) => (
+src/components/LoShuArrowsView.tsx:72:CHAPTER_TWENTY_SIX_THEORY_TEXT.introductionText === {CHAPTER_TWENTY_SIX_THEORY_TEXT.introductionText.map((p, idx) => (
+src/components/LoShuArrowsView.tsx:217:arrowEvaluation.activeStrength === {arrowEvaluation.activeStrength.map((arrow) => (
+src/components/LoShuArrowsView.tsx:255:arrowEvaluation.activeWeakness === {arrowEvaluation.activeWeakness.map((arrow) => (
+src/components/LoShuArrowsView.tsx:305:arrowEvaluation.partialStrength === {arrowEvaluation.partialStrength.map((pItem) => (
+src/components/LoShuArrowsView.tsx:434:arrow.remediesAndPractices.practicalGuidance === {arrow.remediesAndPractices.practicalGuidance.map((guide, gIdx) => (
+src/components/AstrologicalDeepDiveSection.tsx:182:h.planets === planets: h.planets.map((p) => `${p.name} (${p.dignity})`),
+src/components/AstrologicalDeepDiveSection.tsx:418:selectedHouseDetail.planets === ? selectedHouseDetail.planets.map((p) => p.name).join(", ")
+src/components/AstrologicalDeepDiveSection.tsx:436:selectedHouseDetail.planets === {selectedHouseDetail.planets.map((p, pIdx) => (
+src/components/AstrologicalDeepDiveSection.tsx:501:selectedHouseDetail.planets === The presence of {selectedHouseDetail.planets.map((p) => `${p.name} (${p.dignity})`).join(", ")} activates intense karmic activity in House #{selectedHouseDetail.houseNum}.
+src/components/RealtimePrashnaKundaliEngine.tsx:1262:prashnaAstroState.houses === {prashnaAstroState.houses.map((hObj) => {
+src/components/RealtimePrashnaKundaliEngine.tsx:1304:hObj.occupants === {hObj.occupants.map((pl) => {
+src/components/RealtimePrashnaKundaliEngine.tsx:1463:houseObj.occupants === {houseObj.occupants.map((pl) => (
+src/components/RealtimePrashnaKundaliEngine.tsx:1899:liveAstroState.houses === {liveAstroState.houses.map((hObj) => {
+src/components/RealtimePrashnaKundaliEngine.tsx:1933:hObj.occupants === {hObj.occupants.map((pl) => (
+src/components/RealtimePrashnaKundaliEngine.tsx:1993:liveAstroState.planets === {liveAstroState.planets.map((pl) => (
+src/components/RealtimePrashnaKundaliEngine.tsx:2076:liveAstroState.planets === {liveAstroState.planets.map((pl) => (
+src/components/astrology/YogasDoshasWorkspace.tsx:472:yoga.conditionsEvaluated === {yoga.conditionsEvaluated.map((cond, idx) => (
+src/components/astrology/YogasDoshasWorkspace.tsx:508:yoga.supportingFactors === {yoga.supportingFactors.map((s, i) => (
+src/components/astrology/YogasDoshasWorkspace.tsx:511:yoga.weakeningFactors === {yoga.weakeningFactors.map((w, i) => (
+src/components/astrology/YogasDoshasWorkspace.tsx:558:doshaEvaluation.detectedDoshas === {doshaEvaluation.detectedDoshas.map((dosha) => {
+src/components/astrology/YogasDoshasWorkspace.tsx:651:dosha.conditionsEvaluated === {dosha.conditionsEvaluated.map((c, i) => (
+src/components/astrology/YogasDoshasWorkspace.tsx:668:dosha.cancellationsFound === dosha.cancellationsFound.map((canc, i) => (
+src/components/astrology/YogasDoshasWorkspace.tsx:686:dosha.remedialSuggestions === {dosha.remedialSuggestions.map((rem, i) => (
+src/components/astrology/PrashnaWorkspaceView.tsx:244:prashnaReport.verdict.supportingFactors === {prashnaReport.verdict.supportingFactors.map((f, i) => (
+src/components/astrology/PrashnaWorkspaceView.tsx:257:prashnaReport.verdict.inhibitingFactors === {prashnaReport.verdict.inhibitingFactors.map((f, i) => (
+src/components/astrology/PrashnaWorkspaceView.tsx:272:prashnaReport.yogas.activeYogas === {prashnaReport.yogas.activeYogas.map((y, i) => (
+src/components/astrology/PrashnaWorkspaceView.tsx:303:prashnaReport.radicality.strictures === {prashnaReport.radicality.strictures.map((s, i) => (
+src/components/astrology/DashaWorkspace.tsx:628:activeMDEvidence.positiveFactors === {activeMDEvidence.positiveFactors.map((pf, idx) => (
+src/components/astrology/DashaWorkspace.tsx:644:activeMDEvidence.challengingFactors === activeMDEvidence.challengingFactors.map((cf, idx) => (
+src/components/astrology/DashaWorkspace.tsx:685:activeADEvidence.positiveFactors === {activeADEvidence.positiveFactors.map((pf, idx) => (
+src/components/astrology/DashaWorkspace.tsx:701:activeADEvidence.challengingFactors === activeADEvidence.challengingFactors.map((cf, idx) => (
+src/components/astrology/DashaWorkspace.tsx:850:transitionMilestones.upcomingTransitionsNext5Years === {transitionMilestones.upcomingTransitionsNext5Years.map((t, idx) => (
+src/components/astrology/DashaWorkspace.tsx:900:auxiliaryDashas.yogini === {auxiliaryDashas.yogini.map((yd, idx) => (
+src/components/astrology/DashaWorkspace.tsx:926:auxiliaryDashas.chara === {auxiliaryDashas.chara.map((cd, idx) => (
+src/components/astrology/DashaWorkspace.tsx:985:validationReport.tests === {validationReport.tests.map((t) => (
+src/components/astrology/LifeAreasWorkspace.tsx:294:currentArea.strengths === {currentArea.strengths.map((s, idx) => (
+src/components/astrology/LifeAreasWorkspace.tsx:306:currentArea.challenges === {currentArea.challenges.map((c, idx) => (
+src/components/astrology/LifeAreasWorkspace.tsx:339:currentArea.whyEvidence === {currentArea.whyEvidence.map((item, idx) => (
+src/components/astrology/KundliWorkspace.tsx:688:jaiminiData.charaKarakas === jaiminiData.charaKarakas.map((k) => (
+src/components/astrology/Phase7AuditWorkspaceView.tsx:134:selectedSuite.details === {selectedSuite.details.map((test) => (
+src/components/astrology/JaiminiWorkspaceView.tsx:139:karakas.karakaList === {karakas.karakaList.map((k) => {
+src/components/astrology/JaiminiWorkspaceView.tsx:208:arudhaPadas.padasList === {arudhaPadas.padasList.map((p) => {
+src/components/astrology/JaiminiWorkspaceView.tsx:335:upapadaAnalysis.ruleEvidence === {upapadaAnalysis.ruleEvidence.map((ev, idx) => (
+src/components/astrology/JaiminiWorkspaceView.tsx:454:charaDasha.mahadashas === {charaDasha.mahadashas.map((md, idx) => {
+src/components/astrology/JaiminiWorkspaceView.tsx:502:charaDasha.mahadashas[selectedMahadashaIndex].antardashas === {charaDasha.mahadashas[selectedMahadashaIndex].antardashas.map((ad, adIdx) => (
+src/components/astrology/JaiminiWorkspaceView.tsx:528:jaiminiYogas.detectedYogas === {jaiminiYogas.detectedYogas.map((y, idx) => (
+src/components/astrology/JaiminiWorkspaceView.tsx:553:y.conditionsMet === {y.conditionsMet.map((c, cIdx) => (
+src/components/astrology/JaiminiWorkspaceView.tsx:608:signArgala.interventions === {signArgala.interventions.map((pair, pIdx) => (
+src/components/astrology/TransitsWorkspace.tsx:466:masterTransitReport.gocharaFromMoon === {masterTransitReport.gocharaFromMoon.map((g) => (
+src/components/astrology/TransitsWorkspace.tsx:527:masterTransitReport.natalVsTransit === {masterTransitReport.natalVsTransit.map((comp) => (
+src/components/astrology/TransitsWorkspace.tsx:702:masterTransitReport.jupiterTransit.aspectsActive === {masterTransitReport.jupiterTransit.aspectsActive.map((aspect, idx) => (
+src/components/astrology/TransitsWorkspace.tsx:889:masterTransitReport.dashaTransitConfluence === {masterTransitReport.dashaTransitConfluence.map((item) => (
+src/components/astrology/TransitsWorkspace.tsx:950:masterTransitReport.transitEventsUpcoming === {masterTransitReport.transitEventsUpcoming.map((evt) => (
+src/components/astrology/BNNWorkspaceView.tsx:293:group.planets === {group.planets.map((p, pIdx) => (
+src/components/astrology/BNNWorkspaceView.tsx:472:group.planets === const names = group.planets.map((p) => p.name);
+src/components/astrology/LalKitabWorkspaceView.tsx:312:h.planetsInHouse === {h.planetsInHouse.map((p, idx) => (
+src/components/astrology/LalKitabWorkspaceView.tsx:383:h.planetsInHouse === {h.planetsInHouse.length > 0 ? h.planetsInHouse.map((p) => p.name).join(", ") : "Awakened via 7th"}
+src/components/astrology/TajikaWorkspaceView.tsx:222:varshaReport.panchadhikariResult.candidates === {varshaReport.panchadhikariResult.candidates.map((c, i) => (
+src/components/astrology/TajikaWorkspaceView.tsx:263:varshaReport.activeTajikaYogas === {varshaReport.activeTajikaYogas.map((y, i) => (
+src/components/astrology/TajikaWorkspaceView.tsx:316:varshaReport.sahamsList === {varshaReport.sahamsList.map((s, i) => (
+src/components/astrology/TajikaWorkspaceView.tsx:373:varshaReport.muddaDasha.periods === {varshaReport.muddaDasha.periods.map((p, i) => (
+src/components/astrology/TajikaWorkspaceView.tsx:418:varshaReport.masaPravesha.months === {varshaReport.masaPravesha.months.map((m) => (
+src/components/astrology/TajikaWorkspaceView.tsx:464:varshaReport.masaPravesha.months === {varshaReport.masaPravesha.months.map((m) => (
+src/components/astrology/TajikaWorkspaceView.tsx:506:varshaReport.triPatakiChakra.vedhasDetected === {varshaReport.triPatakiChakra.vedhasDetected.map((v, i) => (
+src/components/astrology/EventTimingWorkspaceView.tsx:179:timingReport.eventWindows === {timingReport.eventWindows.map((win) => (
+src/components/astrology/EventTimingWorkspaceView.tsx:212:win.primaryTriggers === {win.primaryTriggers.map((t, i) => (
+src/components/astrology/EventTimingWorkspaceView.tsx:220:win.supportingFactors === {win.supportingFactors.map((f, i) => (
+src/components/astrology/EventTimingWorkspaceView.tsx:285:timingReport.multiSystemStreams === {timingReport.multiSystemStreams.map((stream, i) => (
+src/components/astrology/CrossValidationWorkspaceView.tsx:139:crossValReport.themeComparisons === {crossValReport.themeComparisons.map((theme) => {
+src/components/astrology/DailyAstrologyView.tsx:169:domain.whyItems === {domain.whyItems.map((item, idx) => (
+src/components/tarot/TarotCardModal.tsx:143:card.keywords === {card.keywords.map((kw, i) => (
+src/components/tarot/TarotReadingRoom.tsx:480:selectedSpread.positions === {selectedSpread.positions.map((pos) => (
+src/components/tarot/TarotReadingRoom.tsx:579:selectedSpread.positions === {selectedSpread.positions.map((pos, idx) => {
+src/components/tarot/TarotReadingRoom.tsx:793:analysis.actionSteps === {analysis.actionSteps.map((step, idx) => (
+src/components/palmistry/PalmistryReportView.tsx:205:report.cheirognomySummary.fingerThumbInsights === {report.cheirognomySummary.fingerThumbInsights.map((insight, idx) => (
+src/components/palmistry/PalmistryReportView.tsx:336:report.dominantMountsSection.leadingMounts === {report.dominantMountsSection.leadingMounts.map((m, idx) => (
+src/components/palmistry/PalmistryReportView.tsx:388:report.dualHandComparison.evolutionDiffs === {report.dualHandComparison.evolutionDiffs.map((diff, idx) => (
+src/components/palmistry/PalmistryReportView.tsx:417:report.keyMarkings === {report.keyMarkings.map((mark, idx) => (
+src/components/palmistry/PalmistryReportView.tsx:445:report.ageMilestones === {report.ageMilestones.map((milestone, idx) => (
+src/components/palmistry/PalmistryReportView.tsx:472:report.remedies === {report.remedies.map((remedy, idx) => (
+src/components/palmistry/PalmistryReportView.tsx:503:report.fixedMarksSection.moles === {report.fixedMarksSection.moles.map((mole, idx) => (
+src/components/palmistry/PalmistryReportView.tsx:515:report.fixedMarksSection.scars === {report.fixedMarksSection.scars.map((scar, idx) => (
+src/components/palmistry/PalmistryReportView.tsx:558:report.closingSynthesis.convergingSignals === {report.closingSynthesis.convergingSignals.map((signal, idx) => (
+src/components/palmistry/PalmistryReportView.tsx:571:report.closingSynthesis.compoundingNotes === {report.closingSynthesis.compoundingNotes.map((note, idx) => (
+src/components/facereading/FaceReadingReportView.tsx:270:report.wuXingSection.harmonyStrengths === {report.wuXingSection.harmonyStrengths.map((str, idx) => (
+src/components/facereading/FaceReadingReportView.tsx:282:report.wuXingSection.growthOpportunities === {report.wuXingSection.growthOpportunities.map((g, idx) => (
+src/components/facereading/FaceReadingReportView.tsx:310:report.twelvePalacesSection === {report.twelvePalacesSection.map((palace) => (
+src/components/facereading/FaceReadingReportView.tsx:337:report.remedies === {report.remedies.map((remedy, idx) => (
+src/components/facereading/FaceReadingReportView.tsx:368:report.fixedMarksSection.moles === {report.fixedMarksSection.moles.map((mole, idx) => (
+src/components/facereading/FaceReadingReportView.tsx:380:report.fixedMarksSection.scars === {report.fixedMarksSection.scars.map((scar, idx) => (
+src/components/facereading/FaceReadingReportView.tsx:423:report.closingSynthesis.convergingSignals === {report.closingSynthesis.convergingSignals.map((signal, idx) => (
+src/components/facereading/FaceReadingReportView.tsx:436:report.closingSynthesis.compoundingNotes === {report.closingSynthesis.compoundingNotes.map((note, idx) => (
+src/data/tarotOracleBankData.ts:1768:guide.questions === return guide.questions.map(q => q.question);
+src/data/astrologyData.ts:627:eph.planets === const rawPlanets = eph.planets.map((p) => {
+src/data/astrologyData.ts:1068:p.dayChoghadiya === choghadiya: p.dayChoghadiya.map((c) => ({
+src/engine/astronomyValidationSuite.ts:1825:KPSubDivisionEngine.BOUNDARY_SPLITS === actual: `Boundary Splits: ${KPSubDivisionEngine.BOUNDARY_SPLITS.length} at ${KPSubDivisionEngine.BOUNDARY_SPLITS.map(b => b.boundaryLongitudeDeg + '°').join(', ')}`,
+src/engine/astronomyValidationSuite.ts:2000:jupiterTransitReport.aspects === actual: `Aspects count: ${jupiterTransitReport.aspects.length} (${jupiterTransitReport.aspects.map(a => a.targetSignName).join(', ')})`,
+src/features/MarketplaceView.tsx:306:selectedProduct.benefits === {selectedProduct.benefits.map((b, i) => (
+src/features/VratGuideView.tsx:190:selectedVrat.vidhi === {selectedVrat.vidhi.map((step, idx) => (
+src/features/VratGuideView.tsx:200:selectedVrat.permittedFoods === {selectedVrat.permittedFoods.map((f, i) => (
+src/features/VratGuideView.tsx:212:selectedVrat.forbiddenFoods === {selectedVrat.forbiddenFoods.map((f, i) => (
+src/features/BlogView.tsx:75:sec.paragraphs === {sec.paragraphs.map((p, pIdx) => (
+src/features/RefundPolicyView.tsx:115:cat.rules === {cat.rules.map((rule, idx) => (
+src/features/VastuFengShuiView.tsx:437:selectedDirection.bestUses === {selectedDirection.bestUses.map((u, i) => (
+src/features/VastuFengShuiView.tsx:450:selectedDirection.forbidden === {selectedDirection.forbidden.map((f, i) => (
+src/features/VastuFengShuiView.tsx:623:kuaData.luckyDirections === {kuaData.luckyDirections.map((ld, i) => (
+src/features/CompatibilityView.tsx:561:matchResult.synastryHighlights === {matchResult.synastryHighlights.map((hl, idx) => (
+src/features/DreamInterpretationView.tsx:574:topic.actionableTechniques === {topic.actionableTechniques.map((tech, idx) => (
+src/features/DreamInterpretationView.tsx:747:selectedScenario.keywords === {selectedScenario.keywords.map((kw, i) => (
+src/features/NumerologyView.tsx:207:numbers.karmicDebts === userKarmicDebt={numbers.karmicDebts.map((x) => x.name)}
+src/features/ConsultationView.tsx:182:expert.specialties === {expert.specialties.map((spec) => (
+src/features/TarotView.tsx:861:reading.drawnCards === {reading.drawnCards.map((cardItem, idx) => (
+src/features/TarotView.tsx:972:master.specialties === {master.specialties.map((sp, idx) => (

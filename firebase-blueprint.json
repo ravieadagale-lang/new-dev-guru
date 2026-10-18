@@ -1,0 +1,192 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profile",
+      "description": "Authenticated user profile document with identity, role, and audit timestamps",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Unique Firebase Auth UID matching the document path identifier"
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Normalized user email address"
+        },
+        "displayName": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Optional user display name or full name"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["CUSTOMER", "SUPER_ADMIN", "ADMIN", "PRACTITIONER"],
+          "description": "Attribute-based access control system role"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "maxLength": 32,
+          "description": "Optional contact telephone or mobile number"
+        },
+        "photoURL": {
+          "type": "string",
+          "maxLength": 512,
+          "description": "Optional profile photo URL"
+        },
+        "birthDetails": {
+          "type": "object",
+          "description": "Customer birth details including date, time, precisionState, coordinates, and timezone"
+        },
+        "preferences": {
+          "type": "object",
+          "description": "Customer application preferences including language, theme, and notifications"
+        },
+        "createdAt": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "Immutable ISO 8601 creation timestamp"
+        },
+        "lastLoginAt": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "ISO 8601 timestamp of most recent authentication"
+        },
+        "updatedAt": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "ISO 8601 timestamp of most recent profile modification"
+        }
+      },
+      "required": ["userId", "email", "role", "createdAt", "lastLoginAt"]
+    },
+    "charts": {
+      "title": "Saved Natal Chart",
+      "description": "Calculated Vedic horoscope chart and birth data",
+      "type": "object",
+      "properties": {
+        "chartId": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "location": { "type": "string" },
+        "lat": { "type": "number" },
+        "lon": { "type": "number" },
+        "ayanamsa": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["chartId", "userId", "name", "date", "time"]
+    },
+    "services": {
+      "title": "AstroNext Catalog Service",
+      "description": "Astrological consultations and remedial gemstone services",
+      "type": "object",
+      "properties": {
+        "serviceId": { "type": "string" },
+        "title": { "type": "string" },
+        "price": { "type": "number" },
+        "category": { "type": "string" },
+        "active": { "type": "boolean" }
+      },
+      "required": ["serviceId", "title", "price"]
+    },
+    "consultations": {
+      "title": "Consultation Booking",
+      "description": "Authoritative booking document for 1-on-1 consultations with Ravie Adagale",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "bookingId": { "type": "string", "maxLength": 128 },
+        "clientId": { "type": "string", "maxLength": 128 },
+        "clientEmail": { "type": "string", "maxLength": 256 },
+        "clientName": { "type": "string", "maxLength": 128 },
+        "consultantId": { "type": "string", "maxLength": 128 },
+        "consultantEmail": { "type": "string", "maxLength": 256 },
+        "serviceId": { "type": "string", "maxLength": 128 },
+        "category": { "type": "string", "maxLength": 64 },
+        "mode": { "type": "string", "maxLength": 64 },
+        "startTime": { "type": "string", "maxLength": 64 },
+        "endTime": { "type": "string", "maxLength": 64 },
+        "timezone": { "type": "string", "maxLength": 64 },
+        "clientQuestion": { "type": "string", "maxLength": 2048 },
+        "clientNotes": { "type": "string", "maxLength": 2048 },
+        "status": { "type": "string", "maxLength": 64 },
+        "paymentStatus": { "type": "string", "maxLength": 64 },
+        "paymentOption": { "type": "string", "maxLength": 64 },
+        "originalPrice": { "type": "object" },
+        "finalPrice": { "type": "object" },
+        "discountAmount": { "type": "object" },
+        "rescheduleHistory": { "type": "array" },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "clientId", "clientEmail", "consultantId", "serviceId", "startTime", "endTime", "status", "paymentStatus", "createdAt"]
+    },
+    "slotLocks": {
+      "title": "Slot Lock Concurrency Guard",
+      "description": "Atomic reservation lock preventing simultaneous double-booking of a time slot",
+      "type": "object",
+      "properties": {
+        "lockId": { "type": "string", "maxLength": 128 },
+        "bookingId": { "type": "string", "maxLength": 128 },
+        "consultantId": { "type": "string", "maxLength": 128 },
+        "clientId": { "type": "string", "maxLength": 128 },
+        "startTime": { "type": "string", "maxLength": 64 },
+        "endTime": { "type": "string", "maxLength": 64 },
+        "status": { "type": "string", "maxLength": 32 },
+        "expiresAt": { "type": "object" },
+        "createdAt": { "type": "object" }
+      },
+      "required": ["lockId", "consultantId", "clientId", "startTime", "endTime", "status"]
+    },
+    "quickQuestions": {
+      "title": "Quick Question Inquiry",
+      "description": "Focused single-inquiry astrological consultation request with rapid turnaround",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "serviceId": { "type": "string", "maxLength": 128 },
+        "clientId": { "type": "string", "maxLength": 128 },
+        "clientEmail": { "type": "string", "maxLength": 256 },
+        "clientName": { "type": "string", "maxLength": 128 },
+        "clientPhone": { "type": "string", "maxLength": 32 },
+        "question": { "type": "string", "maxLength": 4096 },
+        "category": { "type": "string", "maxLength": 64 },
+        "deliveryFormat": { "type": "string", "maxLength": 64 },
+        "turnaroundHours": { "type": "number" },
+        "status": { "type": "string", "maxLength": 64 },
+        "totalPrice": { "type": "object" },
+        "answer": { "type": "string", "maxLength": 8192 },
+        "answeredAt": { "type": "string", "maxLength": 64 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "clientId", "clientEmail", "clientName", "question", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User profile collection partitioned by authenticated Firebase UID"
+    },
+    "/services/{serviceId}": {
+      "schema": "services",
+      "description": "Astrology service catalog items"
+    },
+    "/consultations/{bookingId}": {
+      "schema": "consultations",
+      "description": "Authoritative consultation booking documents with status, pricing, and client details"
+    },
+    "/slotLocks/{lockId}": {
+      "schema": "slotLocks",
+      "description": "Atomic concurrency lock documents preventing overlapping appointment bookings"
+    },
+    "/quickQuestions/{inquiryId}": {
+      "schema": "quickQuestions",
+      "description": "Direct single-inquiry consultation records for expedited astrologer counsel"
+    }
+  }
+}

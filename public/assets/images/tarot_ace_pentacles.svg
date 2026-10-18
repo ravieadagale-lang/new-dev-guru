@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="earthBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#061a12" />
+      <stop offset="50%" stop-color="#113826" />
+      <stop offset="100%" stop-color="#04120c" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="800" fill="url(#earthBg)" rx="24" />
+
+  <!-- Stars & Emerald Sparkles -->
+  <circle cx="100" cy="110" r="2.5" fill="#fef08a" opacity="0.9" />
+  <circle cx="480" cy="140" r="3" fill="#4ade80" opacity="0.8" />
+  <circle cx="210" cy="200" r="2" fill="#fff" opacity="0.7" />
+  <circle cx="410" cy="260" r="2" fill="#fef08a" opacity="0.9" />
+
+  <!-- Frame -->
+  <rect x="20" y="20" width="560" height="760" fill="none" stroke="url(#goldGrad)" stroke-width="6" rx="16" />
+  <rect x="30" y="30" width="540" height="740" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" stroke-dasharray="8,4" rx="12" />
+
+  <!-- Title Badge -->
+  <rect x="130" y="45" width="340" height="40" fill="#061a12" stroke="url(#goldGrad)" stroke-width="2" rx="20" />
+  <text x="300" y="70" font-family="'Cinzel', Georgia, serif" font-size="18" font-weight="bold" fill="#fef08a" text-anchor="middle" letter-spacing="2">ACE OF PENTACLES</text>
+
+  <!-- Luminous Golden Pentacle Coin -->
+  <g transform="translate(300, 410)">
+    <!-- Aura -->
+    <circle cx="0" cy="0" r="140" fill="none" stroke="#4ade80" stroke-width="2" opacity="0.4" stroke-dasharray="8,6" />
+    <!-- Coin Body -->
+    <circle cx="0" cy="0" r="110" fill="url(#goldGrad)" />
+    <circle cx="0" cy="0" r="95" fill="none" stroke="#061a12" stroke-width="4" />
+    <!-- Star Pentagram -->
+    <polygon points="0,-80 24,-25 80,-25 36,12 52,68 0,32 -52,68 -36,12 -80,-25 -24,-25" fill="#061a12" />
+    <!-- Center Jewel -->
+    <circle cx="0" cy="0" r="14" fill="#fef08a" />
+  </g>
+
+  <!-- Sanskrit Title -->
+  <text x="300" y="720" font-family="sans-serif" font-size="16" fill="#fef08a" text-anchor="middle" opacity="0.9">पृथ्वी रत्न (Seed of Manifested Wealth)</text>
+</svg>

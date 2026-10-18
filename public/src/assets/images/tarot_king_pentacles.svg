@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <!-- Rich Mystical Background Gradients -->
+    <linearGradient id="kingBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#02140d" />
+      <stop offset="40%" stop-color="#0b2e1e" />
+      <stop offset="80%" stop-color="#04180f" />
+      <stop offset="100%" stop-color="#010a06" />
+    </linearGradient>
+
+    <!-- Metallic Gold Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed" />
+      <stop offset="25%" stop-color="#fde047" />
+      <stop offset="50%" stop-color="#eab308" />
+      <stop offset="75%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#854d0e" />
+    </linearGradient>
+
+    <!-- Emerald Glow Gradient -->
+    <radialGradient id="emeraldAura" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#15803d" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#02140d" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Deep Red Velvet Robe -->
+    <linearGradient id="robeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#881337" />
+      <stop offset="50%" stop-color="#4c0519" />
+      <stop offset="100%" stop-color="#1e020a" />
+    </linearGradient>
+
+    <!-- Stone Throne Gradient -->
+    <linearGradient id="stoneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="50%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="600" height="800" fill="url(#kingBg)" rx="24" />
+  <rect width="600" height="800" fill="url(#emeraldAura)" rx="24" />
+
+  <!-- Mystical Celestial Stars & Shimmer -->
+  <g opacity="0.85">
+    <circle cx="90" cy="110" r="2.5" fill="#fef08a" />
+    <circle cx="510" cy="130" r="3" fill="#4ade80" />
+    <circle cx="140" cy="220" r="2" fill="#ffffff" />
+    <circle cx="470" cy="240" r="2.5" fill="#fef08a" />
+    <circle cx="80" cy="680" r="2" fill="#4ade80" />
+    <circle cx="520" cy="670" r="2.5" fill="#fde047" />
+  </g>
+
+  <!-- Ornate Outer Border -->
+  <rect x="20" y="20" width="560" height="760" fill="none" stroke="url(#goldGrad)" stroke-width="6" rx="16" />
+  <rect x="30" y="30" width="540" height="740" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" stroke-dasharray="8,4" rx="12" />
+
+  <!-- Corner Ornamental Accents -->
+  <g fill="url(#goldGrad)">
+    <polygon points="25,25 45,25 25,45" />
+    <polygon points="575,25 555,25 575,45" />
+    <polygon points="25,775 45,775 25,755" />
+    <polygon points="575,775 555,775 575,755" />
+  </g>
+
+  <!-- Title Badge Top -->
+  <g transform="translate(300, 65)">
+    <rect x="-170" y="-20" width="340" height="42" fill="#04180f" stroke="url(#goldGrad)" stroke-width="2" rx="21" />
+    <text x="0" y="6" font-family="'Cinzel', Georgia, serif" font-size="19" font-weight="bold" fill="#fef08a" text-anchor="middle" letter-spacing="2">KING OF PENTACLES</text>
+  </g>
+
+  <!-- Distant Castle & Grapevine Estate Sky Scene -->
+  <g transform="translate(300, 240)">
+    <!-- Sun Ray Glow -->
+    <circle cx="0" cy="-60" r="110" fill="#fde047" opacity="0.12" />
+    <!-- Castle Towers Silhouette -->
+    <path d="M -180,60 L -180,0 L -160,-20 L -140,0 L -140,60 L -60,60 L -60,-40 L -40,-60 L -20,-40 L -20,60 L 20,60 L 20,-40 L 40,-60 L 60,-40 L 60,60 L 140,60 L 140,0 L 160,-20 L 180,0 L 180,60 Z" fill="#0b2e1e" opacity="0.6" />
+  </g>
+
+  <!-- Main King Figure & Throne Scene -->
+  <g transform="translate(300, 420)">
+
+    <!-- Massive Bull-Carved Stone Throne -->
+    <path d="M -160,-180 L -160,-240 L -110,-240 L -110,-180 L 110,-180 L 110,-240 L 160,-240 L 160,-180 L 180,180 L -180,180 Z" fill="url(#stoneGrad)" stroke="url(#goldGrad)" stroke-width="3" />
+
+    <!-- Bull Head Carvings on Throne Armrests -->
+    <!-- Left Bull Head -->
+    <g transform="translate(-135, -210)" fill="url(#goldGrad)">
+      <path d="M 0,-15 C -15,-25 -25,-10 -20,5 C -15,15 0,20 0,20 C 0,20 15,15 20,5 C 25,-10 15,-25 0,-15 Z" />
+      <path d="M -15,-20 C -30,-35 -35,-20 -20,-10 Z" />
+      <path d="M 15,-20 C 30,-35 35,-20 20,-10 Z" />
+    </g>
+    <!-- Right Bull Head -->
+    <g transform="translate(135, -210)" fill="url(#goldGrad)">
+      <path d="M 0,-15 C -15,-25 -25,-10 -20,5 C -15,15 0,20 0,20 C 0,20 15,15 20,5 C 25,-10 15,-25 0,-15 Z" />
+      <path d="M -15,-20 C -30,-35 -35,-20 -20,-10 Z" />
+      <path d="M 15,-20 C 30,-35 35,-20 20,-10 Z" />
+    </g>
+
+    <!-- King's Rich Royal Velvet Cloak & Grapevine Trim -->
+    <path d="M -120,-120 Q 0,-140 120,-120 L 150,160 Q 0,200 -150,160 Z" fill="url(#robeGrad)" stroke="url(#goldGrad)" stroke-width="2" />
+
+    <!-- Grapevine Embroidery Motifs on Robe -->
+    <g fill="#fde047" opacity="0.75">
+      <circle cx="-80" cy="0" r="5" /><circle cx="-72" cy="-6" r="4" /><circle cx="-72" cy="6" r="4" /><circle cx="-64" cy="0" r="3" />
+      <circle cx="80" cy="0" r="5" /><circle cx="72" cy="-6" r="4" /><circle cx="72" cy="6" r="4" /><circle cx="64" cy="0" r="3" />
+      <circle cx="-60" cy="80" r="5" /><circle cx="60" cy="80" r="5" />
+    </g>
+
+    <!-- King's Golden Royal Crown -->
+    <g transform="translate(0, -150)">
+      <path d="M -50,0 L -35,-45 L 0,-20 L 35,-45 L 50,0 Z" fill="url(#goldGrad)" stroke="#02140d" stroke-width="2" />
+      <circle cx="0" cy="-20" r="7" fill="#22c55e" />
+      <circle cx="-35" cy="-45" r="5" fill="#ef4444" />
+      <circle cx="35" cy="-45" r="5" fill="#ef4444" />
+    </g>
+
+    <!-- Scepter of Authority (Right Hand) -->
+    <g transform="translate(90, 0)">
+      <line x1="0" y1="-100" x2="0" y2="140" stroke="url(#goldGrad)" stroke-width="7" stroke-linecap="round" />
+      <circle cx="0" cy="-112" r="16" fill="url(#goldGrad)" />
+      <polygon points="0,-122 5,-110 15,-110 7,-102 10,-92 0,-98 -10,-92 -7,-102 -15,-110 -5,-110" fill="#22c55e" />
+    </g>
+
+    <!-- Massive Glowing Golden Pentacle Coin resting on Knee -->
+    <g transform="translate(-20, 20)">
+      <!-- Outer Glow -->
+      <circle cx="0" cy="0" r="85" fill="#fde047" opacity="0.25" />
+      <!-- Golden Coin Base -->
+      <circle cx="0" cy="0" r="75" fill="url(#goldGrad)" stroke="#02140d" stroke-width="3" />
+      <circle cx="0" cy="0" r="63" fill="none" stroke="#02140d" stroke-width="2.5" />
+      <!-- Five-Pointed Star / Pentagram Emblem -->
+      <polygon points="0,-52 15,-17 50,-17 22,5 32,40 0,18 -32,40 -22,5 -50,-17 -15,-17" fill="#02140d" />
+      <!-- Inner Jewel Center -->
+      <circle cx="0" cy="0" r="9" fill="#22c55e" />
+    </g>
+  </g>
+
+  <!-- Lush Grapevines & Flowers Base -->
+  <g transform="translate(300, 670)">
+    <path d="M -220,30 C -120,-20 120,-20 220,30" fill="none" stroke="#22c55e" stroke-width="4" />
+    <circle cx="-140" cy="10" r="8" fill="#a855f7" />
+    <circle cx="-130" cy="16" r="7" fill="#8b5cf6" />
+    <circle cx="-145" cy="20" r="6" fill="#a855f7" />
+    <circle cx="140" cy="10" r="8" fill="#a855f7" />
+    <circle cx="130" cy="16" r="7" fill="#8b5cf6" />
+    <circle cx="145" cy="20" r="6" fill="#a855f7" />
+  </g>
+
+  <!-- Sanskrit Title Footer -->
+  <g transform="translate(300, 725)">
+    <text x="0" y="0" font-family="'Cinzel', Georgia, 'Noto Sans', sans-serif" font-size="16" font-weight="bold" fill="#fef08a" text-anchor="middle" opacity="0.95">कुबेर स्वामी • MASTER OF WEALTH &amp; LEGACY</text>
+  </g>
+</svg>

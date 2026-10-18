@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="30%" stop-color="#31103f" />
+      <stop offset="60%" stop-color="#701a75" />
+      <stop offset="85%" stop-color="#a21caf" />
+      <stop offset="100%" stop-color="#fef08a" />
+    </linearGradient>
+
+    <linearGradient id="goldFrame" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb" />
+      <stop offset="20%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#d97706" />
+      <stop offset="80%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+
+    <linearGradient id="staffGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="40%" stop-color="#fde047" />
+      <stop offset="70%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <linearGradient id="horseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="50%" stop-color="#f1f5f9" />
+      <stop offset="100%" stop-color="#cbd5e1" />
+    </linearGradient>
+
+    <linearGradient id="riderCloak" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#15803d" />
+      <stop offset="50%" stop-color="#166534" />
+      <stop offset="100%" stop-color="#14532d" />
+    </linearGradient>
+
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feOffset dx="2" dy="4" result="offset" />
+      <feComposite in="SourceGraphic" in2="offset" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Sky -->
+  <rect width="600" height="800" fill="url(#skyGrad)" rx="24" />
+
+  <!-- Background Victory Procession City / Crowd Horizon -->
+  <path d="M 0 500 Q 300 460 600 500 L 600 800 L 0 800 Z" fill="#3b0764" />
+  <path d="M 0 540 Q 300 500 600 540 L 600 800 L 0 800 Z" fill="#1e1b4b" />
+
+  <!-- Five Background Wands Held High by Cheering Foot Soldiers -->
+  <g id="backgroundWands">
+    <rect x="80" y="160" width="12" height="420" rx="6" fill="url(#staffGrad)" opacity="0.8" />
+    <circle cx="86" cy="160" r="8" fill="#22c55e" />
+
+    <rect x="150" y="120" width="12" height="460" rx="6" fill="url(#staffGrad)" opacity="0.8" />
+    <circle cx="156" cy="120" r="8" fill="#22c55e" />
+
+    <rect x="220" y="180" width="12" height="400" rx="6" fill="url(#staffGrad)" opacity="0.8" />
+    <circle cx="226" cy="180" r="8" fill="#22c55e" />
+
+    <rect x="420" y="140" width="12" height="440" rx="6" fill="url(#staffGrad)" opacity="0.8" />
+    <circle cx="426" cy="140" r="8" fill="#22c55e" />
+
+    <rect x="500" y="180" width="12" height="400" rx="6" fill="url(#staffGrad)" opacity="0.8" />
+    <circle cx="506" cy="180" r="8" fill="#22c55e" />
+  </g>
+
+  <!-- White Horse & Draped Caparison -->
+  <g id="whiteHorse" transform="translate(180, 280)">
+    <!-- Horse Body -->
+    <path d="M 0 160 C -60 120, -60 20, 20 -20 C 100 -40, 160 20, 200 100 C 220 140, 200 200, 150 240 L -20 240 Z" fill="url(#horseGrad)" filter="url(#softShadow)" />
+
+    <!-- Horse Head & Neck -->
+    <path d="M 20 -20 C 60 -80, 120 -100, 160 -60 C 180 -40, 170 0, 130 20 Z" fill="url(#horseGrad)" />
+    <!-- Muzzle & Eye -->
+    <path d="M 160 -60 Q 180 -50 170 -30 Q 150 -20 140 -40 Z" fill="#cbd5e1" />
+    <circle cx="145" cy="-50" r="4" fill="#0f172a" />
+    <!-- Ears -->
+    <path d="M 110 -85 L 120 -105 L 125 -80 Z" fill="#e2e8f0" />
+
+    <!-- Green & Gold Royal Caparison / Blanket -->
+    <path d="M 20 80 Q 90 60 160 80 L 170 200 Q 90 220 10 200 Z" fill="#15803d" stroke="url(#goldFrame)" stroke-width="2" />
+    <path d="M 20 180 Q 90 195 160 180 L 170 200 Q 90 220 10 200 Z" fill="#fef08a" />
+
+    <!-- Harness & Reins -->
+    <path d="M 150 -40 L 40 40" stroke="url(#goldFrame)" stroke-width="3" />
+    <path d="M 140 -30 L 100 80" stroke="url(#goldFrame)" stroke-width="2" />
+  </g>
+
+  <!-- Victorious Rider -->
+  <g id="victoriousRider" transform="translate(260, 220)">
+    <!-- Emerald Cloak -->
+    <path d="M -40 40 Q -80 120 -60 200 L 20 200 Q 40 120 0 40 Z" fill="url(#riderCloak)" filter="url(#softShadow)" />
+
+    <!-- Saffron Tunic -->
+    <path d="M -25 30 L 25 30 L 30 180 L -30 180 Z" fill="#eab308" />
+
+    <!-- Rider Head & Profile -->
+    <circle cx="0" cy="-10" r="20" fill="#fed7aa" />
+
+    <!-- Golden Laurel Wreath Victory Crown -->
+    <g transform="translate(0, -20)">
+      <circle cx="0" cy="0" r="22" fill="none" stroke="#fef08a" stroke-width="4" filter="url(#glow)" />
+      <path d="M -20 0 Q -25 -10 -15 -15 Q -5 -10 0 0 Q 5 -10 15 -15 Q 25 -10 20 0 Z" fill="#22c55e" />
+    </g>
+
+    <!-- Victorious Arm Holding Laurel-Wreathed Main Staff -->
+    <g transform="translate(20, 40)">
+      <!-- Arm -->
+      <line x1="-10" y1="0" x2="30" y2="-40" stroke="#fed7aa" stroke-width="12" stroke-linecap="round" />
+
+      <!-- Main Victory Wand -->
+      <g transform="translate(30, -40)">
+        <rect x="-8" y="-240" width="16" height="460" rx="8" fill="url(#staffGrad)" filter="url(#softShadow)" />
+        <circle cx="0" cy="-240" r="10" fill="#fef08a" filter="url(#glow)" />
+
+        <!-- Laurel Wreath Crown tied on top of Wand -->
+        <circle cx="0" cy="-180" r="32" fill="none" stroke="url(#goldFrame)" stroke-width="6" filter="url(#glow)" />
+        <path d="M -24 -180 C -24 -205, 0 -220, 24 -180 C 24 -155, 0 -140, -24 -180 Z" fill="#22c55e" opacity="0.8" />
+
+        <!-- Red & Gold Ribbons flowing from Wreath -->
+        <path d="M -10 -155 Q -40 -120 -20 -80" fill="none" stroke="#ef4444" stroke-width="4" />
+        <path d="M 10 -155 Q 40 -120 20 -80" fill="none" stroke="#fef08a" stroke-width="4" />
+      </g>
+    </g>
+  </g>
+
+  <!-- Golden Mystical Ornate Border Frame -->
+  <g id="tarotBorder">
+    <!-- Outer Border -->
+    <rect x="16" y="16" width="568" height="768" rx="20" fill="none" stroke="url(#goldFrame)" stroke-width="6" />
+    <rect x="26" y="26" width="548" height="748" rx="14" fill="none" stroke="url(#goldFrame)" stroke-width="1.5" stroke-dasharray="8,4" />
+
+    <!-- Four Corner Filigree Scrolls -->
+    <path d="M 30 60 C 30 35, 35 30, 60 30 C 45 45, 45 45, 30 60 Z" fill="url(#goldFrame)" />
+    <circle cx="45" cy="45" r="4" fill="#fef08a" />
+    <path d="M 570 60 C 570 35, 565 30, 540 30 C 555 45, 555 45, 570 60 Z" fill="url(#goldFrame)" />
+    <circle cx="555" cy="45" r="4" fill="#fef08a" />
+    <path d="M 30 740 C 30 765, 35 770, 60 770 C 45 755, 45 755, 30 740 Z" fill="url(#goldFrame)" />
+    <circle cx="45" cy="755" r="4" fill="#fef08a" />
+    <path d="M 570 740 C 570 765, 565 770, 540 770 C 555 755, 555 755, 570 740 Z" fill="url(#goldFrame)" />
+    <circle cx="555" cy="755" r="4" fill="#fef08a" />
+
+    <!-- Top Header Badge -->
+    <g transform="translate(300, 48)">
+      <rect x="-140" y="-18" width="280" height="36" rx="18" fill="#0f172a" stroke="url(#goldFrame)" stroke-width="2" />
+      <text x="0" y="5" font-family="'Cinzel', Georgia, serif" font-size="15" font-weight="bold" fill="#fef08a" text-anchor="middle" letter-spacing="2">VI • SIX OF WANDS</text>
+    </g>
+
+    <!-- Bottom Footer Badge -->
+    <g transform="translate(300, 736)">
+      <rect x="-210" y="-22" width="420" height="44" rx="22" fill="#0f172a" stroke="url(#goldFrame)" stroke-width="2" />
+      <text x="0" y="-2" font-family="'Cinzel', Georgia, serif" font-size="15" font-weight="bold" fill="#fef08a" text-anchor="middle">विजय जुलूस (Triumphal Procession)</text>
+      <text x="0" y="15" font-family="sans-serif" font-size="11" fill="#fdba74" text-anchor="middle" letter-spacing="1">Public Victory • Acclaim • Honor &amp; Recognition</text>
+    </g>
+  </g>
+</svg>

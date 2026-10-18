@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090514"/>
+      <stop offset="50%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#311042"/>
+    </linearGradient>
+    <radialGradient id="opalMilk" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#f8fafc"/>
+      <stop offset="65%" stop-color="#e0f2fe"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </radialGradient>
+    <linearGradient id="fire1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#eab308" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0.75"/>
+    </linearGradient>
+    <linearGradient id="fire2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#3b82f6" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ec4899" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="50%" y2="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="16" stdDeviation="22" flood-color="#000" flood-opacity="0.85"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Milky Opal Oval Cabochon -->
+  <g filter="url(#shadow)">
+    <ellipse cx="400" cy="300" rx="220" ry="160" fill="url(#opalMilk)"/>
+  </g>
+
+  <!-- Iridescent Holographic Fire Flashes -->
+  <path d="M 260 260 C 320 200, 420 220, 450 300 C 380 340, 290 320, 260 260 Z" fill="url(#fire1)"/>
+  <path d="M 380 240 C 480 200, 560 260, 540 350 C 460 380, 400 300, 380 240 Z" fill="url(#fire2)"/>
+  <ellipse cx="320" cy="340" rx="90" ry="50" fill="#f43f5e" opacity="0.6" transform="rotate(-15 320 340)"/>
+  <ellipse cx="460" cy="260" rx="70" ry="40" fill="#10b981" opacity="0.65" transform="rotate(25 460 260)"/>
+
+  <!-- High Gloss Cabochon Polish Highlight -->
+  <ellipse cx="330" cy="210" rx="110" ry="55" fill="url(#shine)" transform="rotate(-20 330 210)"/>
+  <circle cx="270" cy="180" r="12" fill="#ffffff" opacity="0.95"/>
+
+  <!-- Label Badge -->
+  <rect x="220" y="520" width="360" height="44" rx="22" fill="#090514" stroke="#e0e7ff" stroke-width="1.5"/>
+  <text x="400" y="548" font-family="Cinzel, Georgia, serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">
+    PRECIOUS RAINBOW OPAL (ओपल)
+  </text>
+</svg>

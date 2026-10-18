@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#022c22"/>
+      <stop offset="50%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+    <radialGradient id="jadeGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="35%" stop-color="#10b981"/>
+      <stop offset="75%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#065f46"/>
+    </radialGradient>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="50%" y2="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Smooth Imperial Jade Oval Cabochon -->
+  <g filter="url(#shadow)">
+    <ellipse cx="400" cy="300" rx="220" ry="160" fill="url(#jadeGrad)"/>
+  </g>
+
+  <!-- Organic Nephrite Mottle Patterns -->
+  <ellipse cx="360" cy="280" rx="140" ry="90" fill="#a7f3d0" opacity="0.18"/>
+  <ellipse cx="440" cy="320" rx="120" ry="80" fill="#022c22" opacity="0.15"/>
+
+  <!-- Waxy Luster Specular Highlight -->
+  <ellipse cx="320" cy="220" rx="110" ry="55" fill="url(#shine)" transform="rotate(-20 320 220)"/>
+  <circle cx="260" cy="190" r="12" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Label Badge -->
+  <rect x="220" y="520" width="360" height="44" rx="22" fill="#022c22" stroke="#34d399" stroke-width="1.5"/>
+  <text x="400" y="548" font-family="Cinzel, Georgia, serif" font-size="18" font-weight="bold" fill="#ecfdf5" text-anchor="middle">
+    IMPERIAL GREEN JADE (यशब)
+  </text>
+</svg>

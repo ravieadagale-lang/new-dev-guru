@@ -1,0 +1,5 @@
+{
+  "summary": "AstroNext Consultation Phase 2B.2 session isolation architecture specification. Details authenticated UID-scoped caching, asynchronous race condition mitigations, zero-cross-talk memory state management, private notes quarantine, and authoritative Firestore persistence boundaries.",
+  "updatedAt": "2026-10-15T08:57:26.251045170Z",
+  "userFacing": true
+}
