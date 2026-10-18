@@ -10,6 +10,8 @@ import { CANONICAL_CONSULTATION_SERVICES } from "../domain/consultation/defaultS
 import { formatMoney } from "../domain/consultation/money";
 import { calculateConsultationPrice } from "../domain/consultation/pricingEngine";
 import { ConsultationProvider } from "../context/ConsultationContext";
+import { AstrologerDirectoryFilter } from "../components/consultation/AstrologerDirectoryFilter";
+import { Astrologer } from "../domain/consultation/astrologersData";
 import {
   ShieldCheck,
   Sparkles,
@@ -39,6 +41,7 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
   // Selected service for the one-to-one booking pathway
   const [selectedServiceId, setSelectedServiceId] = useState<string>("service_kundli_milan");
   const [showQuickQuestionModal, setShowQuickQuestionModal] = useState(false);
+  const [targetAstrologer, setTargetAstrologer] = useState<Astrologer | null>(null);
 
   const isAuthorizedConsultant = canAccessConsultantWorkspace(user?.email);
   const bookingWorkspaceRef = useRef<HTMLDivElement>(null);
@@ -48,6 +51,21 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
       setSelectedServiceId(serviceId);
     }
     bookingWorkspaceRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleSelectAstrologer = (astrologer: Astrologer) => {
+    setTargetAstrologer(astrologer);
+    if (astrologer.defaultServiceId) {
+      setSelectedServiceId(astrologer.defaultServiceId);
+    }
+    bookingWorkspaceRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleAskQuickQuestion = (astrologer?: Astrologer) => {
+    if (astrologer) {
+      setTargetAstrologer(astrologer);
+    }
+    setShowQuickQuestionModal(true);
   };
 
   return (
@@ -152,6 +170,12 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
               Claim 20% Advance Discount
             </button>
           </section>
+
+          {/* ASTROLOGER DIRECTORY & FILTER SYSTEM */}
+          <AstrologerDirectoryFilter
+            onSelectAstrologer={handleSelectAstrologer}
+            onAskQuickQuestion={handleAskQuickQuestion}
+          />
 
           {/* SECTION 13 — HOW IT WORKS */}
           <section className="bg-slate-50/80 rounded-3xl border border-slate-200/80 p-6 sm:p-8 space-y-6">
@@ -390,7 +414,7 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
                        Quick Question Consultation
                     </h3>
                     <p className="text-xs text-slate-500">
-                      Focused astrological inquiry with {PRIMARY_CONSULTANT.name}
+                      Focused astrological inquiry with {targetAstrologer ? targetAstrologer.name : PRIMARY_CONSULTANT.name}
                     </p>
                   </div>
                   <button
@@ -406,6 +430,7 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
                   userEmail={user?.email}
                   userName={user?.displayName || "Dev-Guru Client"}
                   userProfile={userProfile}
+                  onOpenAuthModal={onOpenAuthModal}
                 />
               </div>
             </div>

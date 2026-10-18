@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   CANONICAL_QUICK_SERVICES,
 } from "../../domain/consultation/defaultServices";
@@ -11,6 +11,7 @@ import { formatMoney } from "../../domain/consultation/money";
 import { PRIMARY_CONSULTANT } from "../../domain/consultation/operatorConfig";
 import { validateClientConsultationDetails } from "../../domain/consultation/validation";
 import { firestoreQuickQuestionAdapter } from "../../domain/consultation/firestoreQuickQuestionAdapter";
+import { firebaseAuth } from "../../services/firebase/firebaseClient";
 import {
   Zap,
   Clock,
@@ -26,12 +27,14 @@ import {
   Sparkles,
   Inbox,
   User,
+  LogIn,
 } from "lucide-react";
 
 interface QuickQuestionWorkspaceProps {
   userEmail?: string | null;
   userName?: string | null;
   userProfile?: any;
+  onOpenAuthModal?: () => void;
 }
 
 type DeliveryOption = "WRITTEN_ANALYSIS" | "VOICE_NOTE" | "CHAT_THREAD";
@@ -72,6 +75,7 @@ export const QuickQuestionWorkspace: React.FC<QuickQuestionWorkspaceProps> = ({
   userEmail,
   userName,
   userProfile,
+  onOpenAuthModal,
 }) => {
   const [selectedQuickService, setSelectedQuickService] = useState<QuickConsultationService>(
     CANONICAL_QUICK_SERVICES[0]
@@ -108,6 +112,48 @@ export const QuickQuestionWorkspace: React.FC<QuickQuestionWorkspaceProps> = ({
       localStorage.setItem("astronext_quick_inquiries", JSON.stringify(submittedInquiries));
     } catch {}
   }, [submittedInquiries]);
+
+  // Load inquiries from Firestore when authenticated
+  useEffect(() => {
+    const authUid = firebaseAuth.currentUser?.uid;
+    if (authUid) {
+      firestoreQuickQuestionAdapter.listInquiriesByClient(authUid).then((remote) => {
+        if (remote && remote.length > 0) {
+          setSubmittedInquiries((prev) => {
+            const map = new Map<string, any>();
+            remote.forEach((r) => {
+              map.set(r.id, {
+                id: r.id,
+                clientId: r.clientId,
+                clientEmail: r.clientEmail,
+                clientName: r.clientName,
+                consultantId: PRIMARY_CONSULTANT.id,
+                serviceId: r.serviceId,
+                questionText: r.question,
+                clientBirthDetails: r.birthDetails
+                  ? { dob: r.birthDetails.dob, time: r.birthDetails.tob, place: r.birthDetails.pob }
+                  : undefined,
+                urgencyHours: r.turnaroundHours,
+                deliveryMethod: r.deliveryFormat,
+                status: r.status,
+                paymentStatus: "CONFIRMED",
+                createdAt: r.createdAt,
+                answer: (r as any).answer,
+                answeredAt: (r as any).answeredAt,
+              });
+            });
+            // Merge with local inquiries not yet synced
+            prev.forEach((p) => {
+              if (!map.has(p.id)) map.set(p.id, p);
+            });
+            return Array.from(map.values()).sort(
+              (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+            );
+          });
+        }
+      });
+    }
+  }, [userEmail]);
 
   // Pre-fill form from userProfile
   useEffect(() => {
@@ -674,10 +720,13 @@ export const QuickQuestionWorkspace: React.FC<QuickQuestionWorkspaceProps> = ({
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-white border border-amber-900/10 text-left text-xs space-y-1 text-slate-600">
-              <div className="font-bold text-slate-900">Truthful Environment Record:</div>
+            <div className="p-4 rounded-2xl bg-white border border-amber-900/10 text-left text-xs space-y-1.5 text-slate-600">
+              <div className="font-bold text-slate-900 flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <span>Sanctuary Dispatch Status:</span>
+              </div>
               <div>
-                In Phase 1, inquiries remain stored in your local session workspace. Full Firestore synchronization and gateway processing will connect in Phase 3.
+                Your inquiry has been dispatched to {PRIMARY_CONSULTANT.name}'s Consultant Workbench and stored in your account record. You can view progress and answers below anytime.
               </div>
             </div>
 

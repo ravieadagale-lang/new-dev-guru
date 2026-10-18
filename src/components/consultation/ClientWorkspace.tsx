@@ -88,8 +88,16 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
       const match = CANONICAL_CONSULTATION_SERVICES.find((s) => s.id === initialServiceId);
       if (match) return match;
     }
-    return CANONICAL_CONSULTATION_SERVICES[0];
   });
+
+  useEffect(() => {
+    if (initialServiceId) {
+      const match = CANONICAL_CONSULTATION_SERVICES.find((s) => s.id === initialServiceId);
+      if (match && match.id !== selectedService.id) {
+        setSelectedService(match);
+      }
+    }
+  }, [initialServiceId]);
 
   // Guided Booking Flow (1: Service, 2: Channel, 3: Date & Slot, 4: Details, 5: Review & Payment, 6: Success)
   const [bookingStep, setBookingStep] = useState<1 | 2 | 3 | 4 | 5 | 6>(initialStep || 1);
