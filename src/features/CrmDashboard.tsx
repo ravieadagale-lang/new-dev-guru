@@ -12,7 +12,11 @@ import {
   MessageSquare 
 } from "lucide-react";
 
-export const CrmDashboard: React.FC = () => {
+interface CrmDashboardProps {
+  onNavigateTab?: (tab: string, meta?: any) => void;
+}
+
+export const CrmDashboard: React.FC<CrmDashboardProps> = ({ onNavigateTab }) => {
   const [activeQueueTab, setActiveQueueTab] = useState<"inquiries" | "workspace">("workspace");
 
   const sampleProfile: UserProfile = {
@@ -112,7 +116,9 @@ export const CrmDashboard: React.FC = () => {
       ) : (
         <AstroPractitionerWorkspace
           userProfile={sampleProfile}
-          onSelectTab={() => {}}
+          onSelectTab={(t) => {
+            if (onNavigateTab) onNavigateTab(t);
+          }}
         />
       )}
     </div>

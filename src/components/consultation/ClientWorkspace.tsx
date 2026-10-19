@@ -88,16 +88,17 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
       const match = CANONICAL_CONSULTATION_SERVICES.find((s) => s.id === initialServiceId);
       if (match) return match;
     }
+    return CANONICAL_CONSULTATION_SERVICES[0];
   });
 
   useEffect(() => {
     if (initialServiceId) {
       const match = CANONICAL_CONSULTATION_SERVICES.find((s) => s.id === initialServiceId);
-      if (match && match.id !== selectedService.id) {
+      if (match && match.id !== selectedService?.id) {
         setSelectedService(match);
       }
     }
-  }, [initialServiceId]);
+  }, [initialServiceId, selectedService?.id]);
 
   // Guided Booking Flow (1: Service, 2: Channel, 3: Date & Slot, 4: Details, 5: Review & Payment, 6: Success)
   const [bookingStep, setBookingStep] = useState<1 | 2 | 3 | 4 | 5 | 6>(initialStep || 1);
@@ -108,12 +109,13 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
 
   // Candidate Available Dates derived from Consultant's configured availability
   const candidateDates = useMemo(() => {
+    const activeService = selectedService || CANONICAL_CONSULTATION_SERVICES[0];
     return getAvailableDates({
       availability,
-      serviceDurationMinutes: selectedService.durationMinutes,
-      bufferMinutes: selectedService.bufferMinutes || availability.rules[0]?.bufferMinutes || 15,
+      serviceDurationMinutes: activeService.durationMinutes,
+      bufferMinutes: activeService.bufferMinutes || availability.rules[0]?.bufferMinutes || 15,
       clientTimezone: selectedTimezone,
-      daysAhead: selectedService.maxAdvanceBookingDays || 21,
+      daysAhead: activeService.maxAdvanceBookingDays || 21,
       existingBookings: bookings,
       requestedMode: selectedMode,
     });
@@ -131,16 +133,17 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
   // Candidate Slots for the Selected Date (STRICTLY derived from Consultant Availability)
   const candidateSlots = useMemo(() => {
     if (!selectedDate) return [];
+    const activeService = selectedService || CANONICAL_CONSULTATION_SERVICES[0];
     return generateCandidateSlots({
       availability,
-      serviceDurationMinutes: selectedService.durationMinutes,
-      bufferMinutes: selectedService.bufferMinutes || availability.rules[0]?.bufferMinutes || 15,
+      serviceDurationMinutes: activeService.durationMinutes,
+      bufferMinutes: activeService.bufferMinutes || availability.rules[0]?.bufferMinutes || 15,
       bookingDate: selectedDate,
       clientTimezone: selectedTimezone,
       existingBookings: bookings,
       requestedMode: selectedMode,
-      minimumNoticeMinutes: selectedService.minimumNoticeMinutes,
-      maximumAdvanceDays: selectedService.maxAdvanceBookingDays,
+      minimumNoticeMinutes: activeService.minimumNoticeMinutes,
+      maximumAdvanceDays: activeService.maxAdvanceBookingDays,
     });
   }, [availability, selectedService, selectedDate, selectedTimezone, bookings, selectedMode]);
 
@@ -266,8 +269,9 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
 
   // Price breakdown
   const priceBreakdown = useMemo(() => {
-    return calculateConsultationPrice(selectedService.price, selectedPaymentOption);
-  }, [selectedService.price, selectedPaymentOption]);
+    const activeService = selectedService || CANONICAL_CONSULTATION_SERVICES[0];
+    return calculateConsultationPrice(activeService.price, selectedPaymentOption);
+  }, [selectedService, selectedPaymentOption]);
 
   // Filter client's own bookings: strictly empty if unauthenticated
   const clientBookings = useMemo(() => {
@@ -303,6 +307,12 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
   }, [clientBookings, bookingFilter]);
 
   const handleStartBooking = (service: ConsultationService) => {
+    if (!userEmail) {
+      if (onOpenAuthModal) {
+        onOpenAuthModal();
+        return;
+      }
+    }
     setSelectedService(service);
     setSelectedMode(service.supportedModes[0] || "VIDEO");
     setBookingStep(2);

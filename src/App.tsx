@@ -31,6 +31,8 @@ import { AdminDashboard } from "./features/AdminDashboard";
 import { ChineseAstrologyView } from "./features/ChineseAstrologyView";
 import { BabyNameView } from "./features/BabyNameView";
 import { DailyHoroscope } from "./components/DailyHoroscope";
+import { PalmReader } from "./features/PalmReader";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 // Dedicated About & Legal Support Views
 import { AboutUsView } from "./features/AboutUsView";
@@ -73,6 +75,9 @@ export const TAB_LABELS: Record<string, string> = {
   baby_names: "Baby Names & Janmakshar",
   vastu_fengshui: "Vastu Shastra & Feng Shui",
   face_reading: "Samudrika Face Reader",
+  palm_reading: "Hastarekha Palmistry",
+  palm: "Hastarekha Palmistry",
+  palmistry: "Hastarekha Palmistry",
   dreams: "Dream Interpretation",
   mantras: "Mantras & Sacred Sound",
   images: "Sacred Gallery & Yantras",
@@ -90,7 +95,119 @@ export const TAB_LABELS: Record<string, string> = {
   refund: "Refund Policy",
   faq: "Frequently Asked Questions",
   contact: "Contact Us",
-  referrals: "Referral & Rewards"
+  referrals: "Referral & Rewards",
+  notifications: "Sacred Notifications Hub"
+};
+
+export const KNOWN_TABS = new Set([
+  "home",
+  "astrology",
+  "chinese_astrology",
+  "numerology",
+  "tarot",
+  "baby_names",
+  "vastu_fengshui",
+  "face_reading",
+  "palm_reading",
+  "palm",
+  "palmistry",
+  "compatibility",
+  "marketplace",
+  "consultation",
+  "panchang",
+  "festivals_vrat",
+  "festivals",
+  "vrat_guide",
+  "mantras",
+  "dreams",
+  "images",
+  "milestones",
+  "referrals",
+  "blog",
+  "horoscope",
+  "daily_horoscope",
+  "dashboard",
+  "crm",
+  "admin",
+  "about",
+  "privacy",
+  "terms",
+  "refund",
+  "faq",
+  "contact",
+  "notifications"
+]);
+
+const NotFoundFallbackView: React.FC<{
+  currentTab: string;
+  onReturnHome: () => void;
+  onNavigateTab: (tab: string) => void;
+}> = ({ currentTab, onReturnHome, onNavigateTab }) => {
+  return (
+    <div className="max-w-2xl mx-auto py-16 px-4 text-center space-y-6">
+      <div className="w-16 h-16 mx-auto rounded-3xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-600 shadow-xs">
+        <Home className="w-8 h-8 text-amber-600" />
+      </div>
+      <div>
+        <span className="text-[11px] font-bold uppercase tracking-wider text-amber-800 bg-amber-100/70 px-3 py-1 rounded-full">
+          Cosmic Navigation Recovery
+        </span>
+        <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mt-3">
+          Page Not Found ({currentTab})
+        </h2>
+        <p className="text-sm text-slate-600 mt-2 max-w-md mx-auto leading-relaxed">
+          The requested pathway is currently uncharted or has moved. Explore our core Vedic sanctuaries below or return safely to the home portal.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 max-w-lg mx-auto">
+        <button
+          onClick={() => onNavigateTab("home")}
+          className="p-3 rounded-2xl bg-white border border-slate-200 hover:border-amber-400 text-xs font-bold text-slate-800 hover:text-amber-900 transition-all shadow-xs cursor-pointer"
+        >
+          ✦ Home Portal
+        </button>
+        <button
+          onClick={() => onNavigateTab("astrology")}
+          className="p-3 rounded-2xl bg-white border border-slate-200 hover:border-amber-400 text-xs font-bold text-slate-800 hover:text-amber-900 transition-all shadow-xs cursor-pointer"
+        >
+          ✦ Vedic Astrology
+        </button>
+        <button
+          onClick={() => onNavigateTab("panchang")}
+          className="p-3 rounded-2xl bg-white border border-slate-200 hover:border-amber-400 text-xs font-bold text-slate-800 hover:text-amber-900 transition-all shadow-xs cursor-pointer"
+        >
+          ✦ Panchang &amp; Muhurta
+        </button>
+        <button
+          onClick={() => onNavigateTab("compatibility")}
+          className="p-3 rounded-2xl bg-white border border-slate-200 hover:border-amber-400 text-xs font-bold text-slate-800 hover:text-amber-900 transition-all shadow-xs cursor-pointer"
+        >
+          ✦ Kundli Milan
+        </button>
+        <button
+          onClick={() => onNavigateTab("consultation")}
+          className="p-3 rounded-2xl bg-white border border-slate-200 hover:border-amber-400 text-xs font-bold text-slate-800 hover:text-amber-900 transition-all shadow-xs cursor-pointer"
+        >
+          ✦ Live Consultation
+        </button>
+        <button
+          onClick={() => onNavigateTab("horoscope")}
+          className="p-3 rounded-2xl bg-white border border-slate-200 hover:border-amber-400 text-xs font-bold text-slate-800 hover:text-amber-900 transition-all shadow-xs cursor-pointer"
+        >
+          ✦ Daily Horoscope
+        </button>
+      </div>
+
+      <button
+        onClick={onReturnHome}
+        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-amber-300 font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
+      >
+        <Home className="w-4 h-4" />
+        <span>Return to Home Sanctuary</span>
+      </button>
+    </div>
+  );
 };
 
 export default function App() {
@@ -99,6 +216,7 @@ export default function App() {
   const [navHistory, setNavHistory] = useState<Array<{ tab: string; metadata?: any }>>([
     { tab: "home" }
   ]);
+  const [pendingPostAuthTab, setPendingPostAuthTab] = useState<{ tab: string; metadata?: any } | null>(null);
   const [astrologyInitialSubSection, setAstrologyInitialSubSection] = useState<string>("birth_chart");
   const [userRole, setUserRole] = useState<UserRole>("visitor");
   const [selectedLanguage, setSelectedLanguage] = useState<LanguageCode>("en");
@@ -185,7 +303,14 @@ export default function App() {
     } else if (tabId === "onboarding") {
       setIsOnboardingOpen(true);
       return;
-    } else if (["birth_chart", "kundli", "vargas", "shadbala", "tajika", "dashas", "reports", "yogas", "doshas", "transits", "btr", "divisional_charts", "bnn", "lalkitab", "jaimini", "prashna", "kp", "matchmaking"].includes(tabId)) {
+    } else if (["overview", "root"].includes(tabId)) {
+      resolvedTab = "home";
+    } else if (["calendar", "best_time", "my_day", "muhurta", "muhurats", "choghadiya", "tithi"].includes(tabId)) {
+      resolvedTab = "panchang";
+    } else if (["remedies", "gemstones", "yantras"].includes(tabId)) {
+      resolvedTab = "astrology";
+      setAstrologyInitialSubSection("advanced_tools");
+    } else if (["birth_chart", "kundli", "vargas", "shadbala", "ashtakavarga", "tajika", "dashas", "dasha", "reports", "yogas", "doshas", "transits", "btr", "divisional_charts", "bnn", "lalkitab", "lal_kitab", "jaimini", "prashna", "kp", "kp_system", "nakshatra", "planetary_analysis"].includes(tabId)) {
       resolvedTab = "astrology";
       setAstrologyInitialSubSection(tabId);
     } else if (tabId === "astrology") {
@@ -193,18 +318,52 @@ export default function App() {
       if (metaObj.subId) {
         setAstrologyInitialSubSection(metaObj.subId);
       }
-    } else if (["best_time", "my_day"].includes(tabId)) {
-      resolvedTab = "panchang";
-    } else if (tabId === "vastu") {
+    } else if (["palm", "palm_reading", "palmistry", "hastarekha"].includes(tabId)) {
+      resolvedTab = "palm_reading";
+    } else if (["matchmaking", "milan", "guna_milan"].includes(tabId)) {
+      resolvedTab = "compatibility";
+    } else if (["crm", "practitioner_workspace", "client_profiles", "astrologer_crm"].includes(tabId)) {
+      resolvedTab = "crm";
+    } else if (["admin", "admin_control_center", "rule_debugger", "super_admin"].includes(tabId)) {
+      resolvedTab = "admin";
+    } else if (["daily_horoscope", "horoscope", "rashifal"].includes(tabId)) {
+      resolvedTab = "horoscope";
+    } else if (["vastu", "fengshui", "vastu_shastra"].includes(tabId)) {
       resolvedTab = "vastu_fengshui";
-    } else if (["baby_name", "baby"].includes(tabId)) {
+    } else if (["baby_name", "baby", "janmakshar"].includes(tabId)) {
       resolvedTab = "baby_names";
-    } else if (["face", "face_reading"].includes(tabId)) {
+    } else if (["face", "face_reading", "samudrika"].includes(tabId)) {
       resolvedTab = "face_reading";
-    } else if (["dream", "dreams"].includes(tabId)) {
+    } else if (["dream", "dreams", "swapna"].includes(tabId)) {
       resolvedTab = "dreams";
-    } else if (["gallery", "images"].includes(tabId)) {
+    } else if (["gallery", "images", "sacred_gallery"].includes(tabId)) {
       resolvedTab = "images";
+    } else if (["mantra", "mantras", "chants", "sound"].includes(tabId)) {
+      resolvedTab = "mantras";
+    } else if (["shop", "store", "marketplace", "products"].includes(tabId)) {
+      resolvedTab = "marketplace";
+    } else if (["consult", "consultation", "booking", "astrologers"].includes(tabId)) {
+      resolvedTab = "consultation";
+    } else if (["profile", "account", "dashboard"].includes(tabId)) {
+      resolvedTab = "dashboard";
+    } else if (tabId === "notifications") {
+      resolvedTab = "notifications";
+    } else if (!KNOWN_TABS.has(tabId)) {
+      // If still unrecognized, check lowercase
+      const lower = tabId.toLowerCase();
+      if (KNOWN_TABS.has(lower)) {
+        resolvedTab = lower;
+      }
+    }
+
+    // Consultation Seeker Authentication Gate:
+    // If user clicks on consultation and is NOT logged in, prompt login/signup modal immediately
+    // and remember to redirect to consultation after successful authentication.
+    if (resolvedTab === "consultation" && !user?.email) {
+      setPendingPostAuthTab({ tab: "consultation", metadata: metaObj });
+      setAuthModalMode("login");
+      setIsAuthModalOpen(true);
+      return;
     }
 
     setCurrentTab(resolvedTab);
@@ -383,6 +542,15 @@ export default function App() {
     }
   }, [user, authProfile]);
 
+  // Auto-redirect to pending tab (such as 'consultation') once user authenticates
+  useEffect(() => {
+    if (user?.email && pendingPostAuthTab) {
+      const dest = pendingPostAuthTab;
+      setPendingPostAuthTab(null);
+      navigateToTabInternal(dest.tab, dest.metadata, true);
+    }
+  }, [user?.email]);
+
   // Modal & Drawer States
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -518,7 +686,12 @@ export default function App() {
 
       {/* Main Canvas Routing Container */}
       <main className="flex-1 w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-6">
-        <AnimatePresence mode="wait">
+        <ErrorBoundary
+          fallbackTitle="Dev-Guru Sacred Sanctuary Recovery"
+          fallbackMessage="An unexpected issue occurred while rendering this view. You can return to the home sanctuary safely without losing your session."
+          onReset={() => handleNavigateTab("home")}
+        >
+          <AnimatePresence mode="wait">
           <motion.div
             key={currentTab}
             initial={{ opacity: 0, y: 6 }}
@@ -600,6 +773,14 @@ export default function App() {
               />
             )}
 
+            {/* Hastarekha & Palmistry Sanctuary */}
+            {(currentTab === "palm_reading" || currentTab === "palm" || currentTab === "palmistry") && (
+              <PalmReader
+                selectedLanguage={selectedLanguage}
+                onNavigateTab={handleNavigateTab}
+              />
+            )}
+
             {/* 7. Kundli & Astrological Compatibility */}
             {currentTab === "compatibility" && (
               <CompatibilityView
@@ -625,6 +806,7 @@ export default function App() {
               <ConsultationView
                 userProfile={userProfile}
                 onOpenAuthModal={() => {
+                  setPendingPostAuthTab({ tab: "consultation" });
                   setAuthModalMode("login");
                   setIsAuthModalOpen(true);
                 }}
@@ -711,9 +893,9 @@ export default function App() {
               />
             )}
 
-            {currentTab === "crm" && <CrmDashboard />}
+            {currentTab === "crm" && <CrmDashboard onNavigateTab={handleNavigateTab} />}
 
-            {currentTab === "admin" && <AdminDashboard />}
+            {currentTab === "admin" && <AdminDashboard onSelectTab={handleNavigateTab} />}
 
             {/* 18. About Us */}
             {currentTab === "about" && (
@@ -760,8 +942,18 @@ export default function App() {
                 userProfile={userProfile}
               />
             )}
+
+            {/* Fallback View: Guarantees that an unrecognized tab NEVER yields a blank page */}
+            {!KNOWN_TABS.has(currentTab) && (
+              <NotFoundFallbackView
+                currentTab={currentTab}
+                onReturnHome={() => handleNavigateTab("home")}
+                onNavigateTab={handleNavigateTab}
+              />
+            )}
           </motion.div>
         </AnimatePresence>
+        </ErrorBoundary>
       </main>
 
       {/* Complete Footer */}
@@ -836,15 +1028,31 @@ export default function App() {
       {/* Unified Authentication Modal (LOGIN & SIGN UP) */}
       <UnifiedAuthModal
         isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
+        onClose={() => {
+          setIsAuthModalOpen(false);
+          setPendingPostAuthTab(null);
+        }}
         initialMode={authModalMode}
-        onSelectTab={handleNavigateTab}
+        targetTab={pendingPostAuthTab?.tab}
+        customSubtitle={
+          pendingPostAuthTab?.tab === "consultation"
+            ? "Sign in or create an account to book your 1-on-1 private consultation"
+            : undefined
+        }
+        onSelectTab={(tab) => {
+          if (!pendingPostAuthTab) {
+            handleNavigateTab(tab);
+          }
+        }}
         onAuthSuccess={(role, targetTab, actionType, userName, email) => {
-          // Explicitly force navigation to 'home' tab for all authenticated CUSTOMER users, overriding any dashboard or profile redirection
           if (role === "SUPER_ADMIN" || role === "ADMIN") {
             handleNavigateTab("admin");
+          } else if (pendingPostAuthTab) {
+            const dest = pendingPostAuthTab;
+            setPendingPostAuthTab(null);
+            handleNavigateTab(dest.tab, dest.metadata);
           } else {
-            handleNavigateTab("home");
+            handleNavigateTab(targetTab || "home");
           }
 
           // Trigger celebratory popup message on new user signup or user login

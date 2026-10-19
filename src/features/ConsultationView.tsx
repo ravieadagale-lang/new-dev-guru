@@ -39,7 +39,7 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
   const [activeSide, setActiveSide] = useState<"CLIENT" | "CONSULTANT">("CLIENT");
 
   // Selected service for the one-to-one booking pathway
-  const [selectedServiceId, setSelectedServiceId] = useState<string>("service_kundli_milan");
+  const [selectedServiceId, setSelectedServiceId] = useState<string>("srv-vedic-comprehensive");
   const [showQuickQuestionModal, setShowQuickQuestionModal] = useState(false);
   const [targetAstrologer, setTargetAstrologer] = useState<Astrologer | null>(null);
 
@@ -47,6 +47,10 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
   const bookingWorkspaceRef = useRef<HTMLDivElement>(null);
 
   const scrollToBooking = (serviceId?: string) => {
+    if (!user?.email && onOpenAuthModal) {
+      onOpenAuthModal();
+      return;
+    }
     if (serviceId) {
       setSelectedServiceId(serviceId);
     }
@@ -54,6 +58,10 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
   };
 
   const handleSelectAstrologer = (astrologer: Astrologer) => {
+    if (!user?.email && onOpenAuthModal) {
+      onOpenAuthModal();
+      return;
+    }
     setTargetAstrologer(astrologer);
     if (astrologer.defaultServiceId) {
       setSelectedServiceId(astrologer.defaultServiceId);
@@ -62,6 +70,10 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
   };
 
   const handleAskQuickQuestion = (astrologer?: Astrologer) => {
+    if (!user?.email && onOpenAuthModal) {
+      onOpenAuthModal();
+      return;
+    }
     if (astrologer) {
       setTargetAstrologer(astrologer);
     }
@@ -250,7 +262,7 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
             {/* Curated Service Topic Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {CANONICAL_CONSULTATION_SERVICES.map((srv) => {
-                const isPrimaryTopic = srv.id === "service_kundli_milan";
+                const isPrimaryTopic = srv.id === "srv-vedic-comprehensive";
                 const priceFull = calculateConsultationPrice(srv.price, "PAY_IN_FULL_NOW");
 
                 return (
@@ -370,6 +382,30 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
 
           {/* ONE-TO-ONE CLIENT BOOKING WORKSPACE */}
           <div ref={bookingWorkspaceRef} className="pt-2">
+            {!user?.email && (
+              <div className="mb-6 bg-gradient-to-r from-amber-900 via-amber-950 to-slate-950 text-amber-50 rounded-3xl p-6 sm:p-8 shadow-md border border-amber-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-6 animate-in fade-in duration-300">
+                <div className="space-y-2">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold uppercase tracking-wider">
+                    <LogIn className="w-3.5 h-3.5" />
+                    <span>Seeker Authentication Required</span>
+                  </div>
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">
+                    Sign In to Book Your 1-on-1 Consultation
+                  </h3>
+                  <p className="text-xs sm:text-sm text-amber-200/80 max-w-xl leading-relaxed">
+                    To reserve auspicious slots with {PRIMARY_CONSULTANT.name}, preserve your consultation history, and receive encrypted session links, please sign in or register before booking.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={onOpenAuthModal}
+                  className="px-6 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-amber-950 font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer shrink-0 flex items-center justify-center gap-2"
+                >
+                  <LogIn className="w-4 h-4" />
+                  <span>Sign In / Register</span>
+                </button>
+              </div>
+            )}
             <ClientWorkspace
               userEmail={user?.email}
               userName={user?.displayName || "Dev-Guru Client"}
@@ -396,7 +432,7 @@ export const ConsultationView: React.FC<ConsultationViewProps> = ({
 
             <button
               type="button"
-              onClick={() => setShowQuickQuestionModal(true)}
+              onClick={() => handleAskQuickQuestion()}
               className="px-6 py-3.5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer shrink-0 flex items-center justify-center gap-2"
             >
               <Zap className="w-4 h-4 text-slate-950" />

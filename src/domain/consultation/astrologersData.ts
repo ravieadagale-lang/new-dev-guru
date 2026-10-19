@@ -185,7 +185,7 @@ export const VERIFIED_ASTROLOGERS: readonly Astrologer[] = Object.freeze([
     discountedFee: 1680,
     durationMinutes: 45,
     bio: "Deep specialization in Vedic matrimonial compatibility, resolving Nadi & Bhakoot doshas through classical Shastric remedies and Upapada harmonic synchronizations.",
-    defaultServiceId: "service_kundli_milan",
+    defaultServiceId: "srv-kundli-full-life",
   },
   {
     id: "astrologer-raghavendra-sharma",

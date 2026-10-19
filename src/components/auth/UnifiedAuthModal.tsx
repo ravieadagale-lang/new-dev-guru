@@ -19,6 +19,8 @@ export interface UnifiedAuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialMode?: "login" | "signup" | "forgot";
+  targetTab?: string;
+  customSubtitle?: string;
   onAuthSuccess?: (
     role: string, 
     targetTab?: string, 
@@ -33,6 +35,8 @@ export const UnifiedAuthModal: React.FC<UnifiedAuthModalProps> = ({
   isOpen,
   onClose,
   initialMode = "login",
+  targetTab,
+  customSubtitle,
   onAuthSuccess,
   onSelectTab,
 }) => {
@@ -70,8 +74,9 @@ export const UnifiedAuthModal: React.FC<UnifiedAuthModalProps> = ({
       const result = await login(cleanEmail, password);
       if (result.success) {
         const resolvedRole = result.role || "CUSTOMER";
-        // Explicitly force navigation to the 'home' tab for all authenticated CUSTOMER users, overriding any dashboard or profile redirection
-        const navigationTarget = (resolvedRole === "SUPER_ADMIN" || resolvedRole === "ADMIN") ? "admin" : "home";
+        const navigationTarget = (resolvedRole === "SUPER_ADMIN" || resolvedRole === "ADMIN") 
+          ? "admin" 
+          : (targetTab || "home");
         const userDisplayName = result.displayName || cleanEmail.split("@")[0] || "Seeker";
         if (onSelectTab) onSelectTab(navigationTarget);
         if (onAuthSuccess) onAuthSuccess(resolvedRole, navigationTarget, "login", userDisplayName, cleanEmail);
@@ -82,8 +87,9 @@ export const UnifiedAuthModal: React.FC<UnifiedAuthModalProps> = ({
       const result = await signUp(cleanEmail, password, cleanName);
       if (result.success) {
         const resolvedRole = result.role || "CUSTOMER";
-        // Explicitly force navigation to the 'home' tab for all authenticated CUSTOMER users, overriding any dashboard or profile redirection
-        const navigationTarget = (resolvedRole === "SUPER_ADMIN" || resolvedRole === "ADMIN") ? "admin" : "home";
+        const navigationTarget = (resolvedRole === "SUPER_ADMIN" || resolvedRole === "ADMIN") 
+          ? "admin" 
+          : (targetTab || "home");
         const userDisplayName = result.displayName || cleanName || cleanEmail.split("@")[0] || "Seeker";
         if (onSelectTab) onSelectTab(navigationTarget);
         if (onAuthSuccess) onAuthSuccess(resolvedRole, navigationTarget, "signup", userDisplayName, cleanEmail);
@@ -126,9 +132,15 @@ export const UnifiedAuthModal: React.FC<UnifiedAuthModalProps> = ({
                 {mode === "forgot" && "Reset Password"}
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                {mode === "login" && "Access your Vedic profile, saved charts & reports"}
-                {mode === "signup" && "Begin your personal astrological journey"}
-                {mode === "forgot" && "We will send secure recovery instructions"}
+                {customSubtitle ? (
+                  customSubtitle
+                ) : (
+                  <>
+                    {mode === "login" && "Access your Vedic profile, saved charts & reports"}
+                    {mode === "signup" && "Begin your personal astrological journey"}
+                    {mode === "forgot" && "We will send secure recovery instructions"}
+                  </>
+                )}
               </p>
             </div>
           </div>

@@ -14,7 +14,11 @@ import { ConsultantWorkspace } from "../components/consultation/ConsultantWorksp
 import { useSuperAdminAuth } from "../services/auth/SuperAdminAuthContext";
 import { SuperAdminLoginCard } from "../components/auth/SuperAdminLoginCard";
 
-export const AdminDashboard: React.FC = () => {
+interface AdminDashboardProps {
+  onSelectTab?: (tabId: string) => void;
+}
+
+export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onSelectTab }) => {
   const { user, isSuperAdmin, isAdmin, isServerVerified, isLoading, logout } = useSuperAdminAuth();
 
   // Dual Workspace state for Super Admin (Ravie Adagale can toggle between Super Admin Control Center and Practitioner Workspace)
@@ -157,7 +161,7 @@ export const AdminDashboard: React.FC = () => {
 
       {/* Render selected view */}
       {superAdminView === "CONTROL_CENTER" ? (
-        <AstroAdminControlCenter />
+        <AstroAdminControlCenter onSelectTab={onSelectTab} />
       ) : (
         <ConsultantWorkspace userEmail={user.email} />
       )}

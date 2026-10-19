@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { UserProfile, LanguageCode, PlanetPosition, HouseDetail } from "../types";
 import { AstrologyBirthInputBar } from "../components/astrology/AstrologyBirthInputBar";
 import { KundliPdfReportGeneratorModal } from "../components/KundliPdfReportGeneratorModal";
 import { calculateLagna, generatePlanetaryPositions } from "../data/astrologyData";
-import { VedicWorkspaceView, VedicSection } from "../components/astrology/VedicWorkspaceView";
+import { VedicWorkspaceView, VedicSection, normalizeVedicSection } from "../components/astrology/VedicWorkspaceView";
 import { PrashnaWorkspaceView } from "../components/astrology/PrashnaWorkspaceView";
 import { KPWorkspaceView } from "../components/astrology/KPWorkspaceView";
 import { JaiminiWorkspaceView } from "../components/astrology/JaiminiWorkspaceView";
@@ -90,11 +90,44 @@ export const AstrologyView: React.FC<AstrologyViewProps> = ({
     };
   }, [userProfile]);
 
-  // Default directly to Vedic Astrology as the primary workspace (no large card selection landing)
-  const [selectedSystem, setSelectedSystem] = useState<AstrologySystemId>(initialSystem);
-  const [vedicInitialSection, setVedicInitialSection] = useState<VedicSection>(initialSubSection);
+  const [selectedSystem, setSelectedSystem] = useState<AstrologySystemId>(() => {
+    if (initialSystem && ["btr", "vedic", "prashna", "kp", "jaimini", "tajika", "bnn", "lalkitab"].includes(initialSystem)) {
+      return initialSystem;
+    }
+    const sub = String(initialSubSection || "").toLowerCase().trim();
+    if (["btr", "prashna", "kp", "jaimini", "tajika", "bnn", "lalkitab"].includes(sub)) {
+      return sub as AstrologySystemId;
+    }
+    if (sub === "kp_system") return "kp";
+    if (sub === "lal_kitab") return "lalkitab";
+    return "vedic";
+  });
+
+  const [vedicInitialSection, setVedicInitialSection] = useState<VedicSection>(() => normalizeVedicSection(initialSubSection));
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
   const [btrSuccessBanner, setBtrSuccessBanner] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (initialSystem && ["btr", "vedic", "prashna", "kp", "jaimini", "tajika", "bnn", "lalkitab"].includes(initialSystem)) {
+      setSelectedSystem(initialSystem);
+    }
+  }, [initialSystem]);
+
+  useEffect(() => {
+    if (initialSubSection) {
+      const sub = String(initialSubSection).toLowerCase().trim();
+      if (["btr", "prashna", "kp", "jaimini", "tajika", "bnn", "lalkitab"].includes(sub)) {
+        setSelectedSystem(sub as AstrologySystemId);
+      } else if (sub === "kp_system") {
+        setSelectedSystem("kp");
+      } else if (sub === "lal_kitab") {
+        setSelectedSystem("lalkitab");
+      } else {
+        setSelectedSystem("vedic");
+        setVedicInitialSection(normalizeVedicSection(sub));
+      }
+    }
+  }, [initialSubSection]);
 
   // Compute Lagna and Planetary positions deterministically from safe profile
   const calculatedLagna = useMemo(() => {
@@ -472,7 +505,17 @@ export const AstrologyView: React.FC<AstrologyViewProps> = ({
             houses={houses}
             lagnaSign={calculatedLagna}
           />
-        ) : null}
+        ) : (
+          /* Safe Fallback: Default directly to VedicWorkspaceView so no system ever renders null/blank */
+          <VedicWorkspaceView
+            userProfile={safeProfile}
+            planets={planets}
+            houses={houses}
+            lagnaSign={calculatedLagna}
+            onOpenPdfModal={() => setIsPdfModalOpen(true)}
+            initialSection={vedicInitialSection}
+          />
+        )}
 
         {/* Kundli PDF Report Generator Modal */}
         {isPdfModalOpen && (

@@ -49,6 +49,22 @@ export type VedicSection =
   | "transits"
   | "advanced_tools";
 
+export function normalizeVedicSection(sec?: string): VedicSection {
+  if (!sec) return "birth_chart";
+  const s = String(sec).toLowerCase().trim();
+  if (s === "vargas" || s === "divisional_charts" || s === "varga" || s === "divisional") return "divisional_charts";
+  if (s === "dashas" || s === "dasha" || s === "vimshottari") return "dasha";
+  if (s === "shadbala" || s === "ashtakavarga" || s === "strength") return "strength";
+  if (s === "remedies" || s === "reports" || s === "ayanamsha" || s === "tools" || s === "advanced_tools" || s === "gemstones") return "advanced_tools";
+  if (s === "yogas" || s === "yoga") return "yogas";
+  if (s === "doshas" || s === "dosha") return "doshas";
+  if (s === "transits" || s === "transit" || s === "gochara") return "transits";
+  if (s === "nakshatra" || s === "nakshatras") return "nakshatra";
+  if (s === "planetary_analysis" || s === "planets" || s === "dignities") return "planetary_analysis";
+  if (s === "birth_chart" || s === "kundli" || s === "chart" || s === "rashi") return "birth_chart";
+  return "birth_chart";
+}
+
 export const VedicWorkspaceView: React.FC<VedicWorkspaceViewProps> = ({
   userProfile,
   planets,
@@ -57,14 +73,28 @@ export const VedicWorkspaceView: React.FC<VedicWorkspaceViewProps> = ({
   onOpenPdfModal,
   initialSection = "birth_chart",
 }) => {
-  const [activeSection, setActiveSection] = useState<VedicSection>(initialSection);
-  const [strengthSubTab, setStrengthSubTab] = useState<"shadbala" | "ashtakavarga">("shadbala");
-  const [advancedSubTab, setAdvancedSubTab] = useState<"remedies" | "ayanamsha" | "reports" | "tools">("remedies");
+  const [activeSection, setActiveSection] = useState<VedicSection>(() => normalizeVedicSection(initialSection));
+  const [strengthSubTab, setStrengthSubTab] = useState<"shadbala" | "ashtakavarga">(() => {
+    const s = String(initialSection).toLowerCase().trim();
+    return s === "ashtakavarga" ? "ashtakavarga" : "shadbala";
+  });
+  const [advancedSubTab, setAdvancedSubTab] = useState<"remedies" | "ayanamsha" | "reports" | "tools">(() => {
+    const s = String(initialSection).toLowerCase().trim();
+    if (s === "reports" || s === "ayanamsha" || s === "tools") return s;
+    return "remedies";
+  });
   const [analysisMode, setAnalysisMode] = useState<"standard" | "research" | "traditional">("standard");
 
   useEffect(() => {
     if (initialSection) {
-      setActiveSection(initialSection);
+      const normalized = normalizeVedicSection(initialSection);
+      setActiveSection(normalized);
+      const s = String(initialSection).toLowerCase().trim();
+      if (s === "ashtakavarga") setStrengthSubTab("ashtakavarga");
+      else if (s === "shadbala") setStrengthSubTab("shadbala");
+      else if (s === "reports" || s === "ayanamsha" || s === "tools" || s === "remedies") {
+        setAdvancedSubTab(s);
+      }
     }
   }, [initialSection]);
 
@@ -354,6 +384,16 @@ export const VedicWorkspaceView: React.FC<VedicWorkspaceViewProps> = ({
               />
             )}
           </div>
+        )}
+
+        {/* Robust Fallback if activeSection is somehow not matched - guarantees no blank space */}
+        {!["birth_chart", "divisional_charts", "planetary_analysis", "nakshatra", "yogas", "doshas", "dasha", "strength", "transits", "advanced_tools"].includes(activeSection) && (
+          <KundliWorkspace
+            userProfile={safeProfile}
+            planets={planets}
+            houses={houses}
+            lagnaSign={lagnaSign}
+          />
         )}
       </div>
     </div>
