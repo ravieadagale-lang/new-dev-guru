@@ -5,6 +5,8 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
+  verifyPasswordResetCode,
+  confirmPasswordReset,
   updateProfile,
   onAuthStateChanged,
   type Auth,
@@ -14,6 +16,10 @@ import {
   getFirestore,
   type Firestore,
 } from "firebase/firestore";
+import {
+  getStorage,
+  type FirebaseStorage,
+} from "firebase/storage";
 import firebaseConfigData from "../../../firebase-applet-config.json";
 
 // Safe Firebase App Initialization
@@ -42,12 +48,15 @@ export const firestoreDb: Firestore =
   firebaseConfigData.firestoreDatabaseId && firebaseConfigData.firestoreDatabaseId !== "(default)"
     ? getFirestore(firebaseApp, firebaseConfigData.firestoreDatabaseId)
     : getFirestore(firebaseApp);
+export const firebaseStorage: FirebaseStorage = getStorage(firebaseApp);
 
 export {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
+  verifyPasswordResetCode,
+  confirmPasswordReset,
   updateProfile,
   onAuthStateChanged,
   type User,

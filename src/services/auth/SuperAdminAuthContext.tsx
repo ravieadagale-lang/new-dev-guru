@@ -13,6 +13,8 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
+  verifyPasswordResetCode,
+  confirmPasswordReset,
   updateProfile,
 } from "firebase/auth";
 import { firebaseAuth } from "../firebase/firebaseClient";
@@ -57,7 +59,7 @@ export function formatAuthErrorMessage(err: any): string {
     rawMsg.includes("auth/operation-not-allowed") ||
     rawMsg.includes("operation-not-allowed")
   ) {
-    return "Email/Password authentication provider is disabled in this Firebase project. Session fallback activated.";
+    return "Email/Password authentication provider is disabled in this Firebase project. Please enable Email/Password in the Firebase Authentication console.";
   }
   if (code === "auth/user-not-found" || rawMsg.includes("auth/user-not-found")) {
     return "No account found with this email. Please check your email or Sign Up.";
@@ -74,11 +76,32 @@ export function formatAuthErrorMessage(err: any): string {
   if (code === "auth/weak-password" || rawMsg.includes("auth/weak-password")) {
     return "Password must be at least 6 characters long.";
   }
+  if (code === "auth/expired-action-code" || rawMsg.includes("auth/expired-action-code") || rawMsg.includes("expired-action-code")) {
+    return "This password reset link has expired. Please request a new reset link.";
+  }
+  if (code === "auth/invalid-action-code" || rawMsg.includes("auth/invalid-action-code") || rawMsg.includes("invalid-action-code")) {
+    return "This password reset link is invalid or has already been used. Please request a new reset link.";
+  }
+  if (code === "auth/user-disabled" || rawMsg.includes("auth/user-disabled")) {
+    return "This account has been disabled. Please contact support.";
+  }
   if (code === "auth/too-many-requests" || rawMsg.includes("auth/too-many-requests")) {
     return "Too many attempts. Please wait a moment before trying again.";
   }
   if (code === "auth/network-request-failed" || rawMsg.includes("auth/network-request-failed")) {
     return "Network error. Please check your internet connection.";
+  }
+  if (code === "auth/missing-password" || rawMsg.includes("auth/missing-password")) {
+    return "Please enter your password.";
+  }
+  if (code === "auth/popup-closed-by-user" || rawMsg.includes("auth/popup-closed-by-user")) {
+    return "Sign-in window was closed before completion.";
+  }
+  if (
+    rawMsg.includes("Missing or insufficient permissions") ||
+    rawMsg.includes("permission-denied")
+  ) {
+    return "Database access permission denied. Please verify your account permissions.";
   }
 
   // Clean any remaining Firebase technical wrappers
@@ -107,6 +130,8 @@ export interface SuperAdminAuthContextValue {
   signUp: (arg1: string, arg2: string, arg3?: string) => Promise<AuthResult>;
   logout: () => Promise<void>;
   sendPasswordReset: (email: string) => Promise<{ success: boolean; error?: string }>;
+  verifyResetCode: (code: string) => Promise<{ success: boolean; email?: string; error?: string }>;
+  confirmResetPassword: (code: string, newPassword: string) => Promise<{ success: boolean; error?: string }>;
   updateUserProfileData: (updates: UserProfileUpdatePayload) => Promise<void>;
   refreshProfile: () => Promise<void>;
 }
@@ -127,7 +152,7 @@ export const SuperAdminAuthProvider: React.FC<{ children: ReactNode }> = ({
     setError(null);
   }, []);
 
-  const loadProfile = useCallback(async (authUser: User) => {
+  const loadProfile = useCallback(async (authUser: User, throwOnError: boolean = false) => {
     try {
       const email = normalizeEmail(authUser.email || "");
       const determinedRole = resolveRoleFromEmail(email);
@@ -142,9 +167,13 @@ export const SuperAdminAuthProvider: React.FC<{ children: ReactNode }> = ({
         determinedRole
       );
       setUserProfile(profile);
+      return profile;
     } catch (err: any) {
       console.error("[SuperAdminAuth] Profile sync error:", err);
-      // Fallback local representation if network/firestore has temporary glitch
+      if (throwOnError) {
+        throw err;
+      }
+      // Fallback local representation if network/firestore has temporary glitch during read
       const email = normalizeEmail(authUser.email || "");
       const role = resolveRoleFromEmail(email);
       setUserProfile({
@@ -155,6 +184,7 @@ export const SuperAdminAuthProvider: React.FC<{ children: ReactNode }> = ({
         createdAt: new Date().toISOString(),
         lastLoginAt: new Date().toISOString(),
       });
+      return null;
     }
   }, []);
 
@@ -200,53 +230,6 @@ export const SuperAdminAuthProvider: React.FC<{ children: ReactNode }> = ({
         displayName: cred.user.displayName || email.split("@")[0] || "Seeker",
       };
     } catch (err: any) {
-      const code = (err?.code || "").toLowerCase();
-      const rawMsg = (err?.message || "").toString();
-
-      // If Firebase Email/Password auth provider is not enabled on this cloud instance (auth/operation-not-allowed),
-      // seamlessly establish an authenticated session so seekers and administrators are never blocked.
-      if (
-        code === "auth/operation-not-allowed" ||
-        rawMsg.includes("auth/operation-not-allowed") ||
-        rawMsg.includes("operation-not-allowed")
-      ) {
-        console.warn("[SuperAdminAuth] Firebase Email/Password provider not active; activating authenticated session fallback for:", email);
-        const determinedRole = resolveRoleFromEmail(email);
-        const fallbackUser: any = {
-          uid: `usr_${email.replace(/[^a-zA-Z0-9]/g, "_")}`,
-          email,
-          displayName: email.split("@")[0] || "Seeker",
-          emailVerified: true,
-        };
-        setUser(fallbackUser);
-        const fallbackProfile: UserProfile = {
-          userId: fallbackUser.uid,
-          email,
-          displayName: fallbackUser.displayName,
-          role: determinedRole,
-          createdAt: new Date().toISOString(),
-          lastLoginAt: new Date().toISOString(),
-        };
-        setUserProfile(fallbackProfile);
-        try {
-          localStorage.setItem(
-            "astronext_active_user_profile",
-            JSON.stringify({
-              id: fallbackUser.uid,
-              email,
-              name: fallbackUser.displayName,
-              role: determinedRole,
-            })
-          );
-        } catch {}
-        return {
-          success: true,
-          user: fallbackUser,
-          role: determinedRole,
-          displayName: fallbackUser.displayName,
-        };
-      }
-
       const msg = formatAuthErrorMessage(err);
       setError(msg);
       return { success: false, error: msg };
@@ -307,7 +290,8 @@ export const SuperAdminAuthProvider: React.FC<{ children: ReactNode }> = ({
           console.warn("[SuperAdminAuth] updateProfile displayName error:", e);
         }
       }
-      await loadProfile(cred.user);
+      // Require truthful profile creation in Firestore; fail truthfully if Firestore profile write is rejected
+      await loadProfile(cred.user, true);
       const determinedRole = resolveRoleFromEmail(email);
       return {
         success: true,
@@ -316,51 +300,6 @@ export const SuperAdminAuthProvider: React.FC<{ children: ReactNode }> = ({
         displayName: displayName || cred.user.displayName || email.split("@")[0] || "Seeker",
       };
     } catch (err: any) {
-      const code = (err?.code || "").toLowerCase();
-      const rawMsg = (err?.message || "").toString();
-
-      if (
-        code === "auth/operation-not-allowed" ||
-        rawMsg.includes("auth/operation-not-allowed") ||
-        rawMsg.includes("operation-not-allowed")
-      ) {
-        console.warn("[SuperAdminAuth] Firebase Email/Password provider not active; activating authenticated session fallback for sign-up:", email);
-        const determinedRole = resolveRoleFromEmail(email);
-        const fallbackUser: any = {
-          uid: `usr_${email.replace(/[^a-zA-Z0-9]/g, "_")}`,
-          email,
-          displayName: displayName || email.split("@")[0] || "Seeker",
-          emailVerified: true,
-        };
-        setUser(fallbackUser);
-        const fallbackProfile: UserProfile = {
-          userId: fallbackUser.uid,
-          email,
-          displayName: fallbackUser.displayName,
-          role: determinedRole,
-          createdAt: new Date().toISOString(),
-          lastLoginAt: new Date().toISOString(),
-        };
-        setUserProfile(fallbackProfile);
-        try {
-          localStorage.setItem(
-            "astronext_active_user_profile",
-            JSON.stringify({
-              id: fallbackUser.uid,
-              email,
-              name: fallbackUser.displayName,
-              role: determinedRole,
-            })
-          );
-        } catch {}
-        return {
-          success: true,
-          user: fallbackUser,
-          role: determinedRole,
-          displayName: fallbackUser.displayName,
-        };
-      }
-
       const msg = formatAuthErrorMessage(err);
       setError(msg);
       return { success: false, error: msg };
@@ -378,6 +317,7 @@ export const SuperAdminAuthProvider: React.FC<{ children: ReactNode }> = ({
       setUserProfile(null);
       try {
         localStorage.removeItem("astronext_active_user_profile");
+        localStorage.removeItem("devguru_active_user_profile");
       } catch {}
       if (typeof window !== "undefined") {
         window.dispatchEvent(new Event("astronext:auth_state_change"));
@@ -406,16 +346,59 @@ export const SuperAdminAuthProvider: React.FC<{ children: ReactNode }> = ({
       await sendPasswordResetEmail(firebaseAuth, email);
       return { success: true };
     } catch (err: any) {
-      const code = (err?.code || "").toLowerCase();
-      const rawMsg = (err?.message || "").toString();
-      if (
-        code === "auth/operation-not-allowed" ||
-        rawMsg.includes("auth/operation-not-allowed") ||
-        rawMsg.includes("operation-not-allowed")
-      ) {
-        // Return success in fallback mode
-        return { success: true };
-      }
+      const msg = formatAuthErrorMessage(err);
+      setError(msg);
+      return { success: false, error: msg };
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const verifyResetCode = async (code: string): Promise<{ success: boolean; email?: string; error?: string }> => {
+    setIsLoading(true);
+    setError(null);
+    const cleanCode = (code || "").trim();
+    if (!cleanCode) {
+      const err = "Password reset code is missing or invalid.";
+      setError(err);
+      setIsLoading(false);
+      return { success: false, error: err };
+    }
+    try {
+      const email = await verifyPasswordResetCode(firebaseAuth, cleanCode);
+      return { success: true, email };
+    } catch (err: any) {
+      const msg = formatAuthErrorMessage(err);
+      setError(msg);
+      return { success: false, error: msg };
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const confirmResetPassword = async (
+    code: string,
+    newPass: string
+  ): Promise<{ success: boolean; error?: string }> => {
+    setIsLoading(true);
+    setError(null);
+    const cleanCode = (code || "").trim();
+    if (!cleanCode) {
+      const err = "Password reset code is missing or invalid.";
+      setError(err);
+      setIsLoading(false);
+      return { success: false, error: err };
+    }
+    if (!newPass || newPass.length < 6) {
+      const err = "Password must be at least 6 characters long.";
+      setError(err);
+      setIsLoading(false);
+      return { success: false, error: err };
+    }
+    try {
+      await confirmPasswordReset(firebaseAuth, cleanCode, newPass);
+      return { success: true };
+    } catch (err: any) {
       const msg = formatAuthErrorMessage(err);
       setError(msg);
       return { success: false, error: msg };
@@ -470,6 +453,8 @@ export const SuperAdminAuthProvider: React.FC<{ children: ReactNode }> = ({
         signUp,
         logout,
         sendPasswordReset,
+        verifyResetCode,
+        confirmResetPassword,
         updateUserProfileData,
         refreshProfile,
       }}

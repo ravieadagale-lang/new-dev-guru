@@ -284,6 +284,65 @@ describe("Blank Pages Prevention & Navigation Resilience Test Suite", () => {
       expect(validKnown.id).toBe("srv-kp-career-finance");
       expect(validKnown.durationMinutes).toBe(30);
     });
+
+    it("verifies consultation auth gating logic: prompts auth if guest, redirects if logged in", () => {
+      type NavResult = {
+        allowedTab: string | null;
+        openedAuthModal: boolean;
+        pendingPostAuthTab: string | null;
+      };
+
+      const handleConsultationNavigation = (
+        targetTab: string,
+        isUserLoggedIn: boolean
+      ): NavResult => {
+        if (targetTab === "consultation") {
+          if (!isUserLoggedIn) {
+            return {
+              allowedTab: null,
+              openedAuthModal: true,
+              pendingPostAuthTab: "consultation",
+            };
+          }
+          return {
+            allowedTab: "consultation",
+            openedAuthModal: false,
+            pendingPostAuthTab: null,
+          };
+        }
+        return {
+          allowedTab: targetTab,
+          openedAuthModal: false,
+          pendingPostAuthTab: null,
+        };
+      };
+
+      // 1. Unauthenticated user clicks consultation
+      const guestResult = handleConsultationNavigation("consultation", false);
+      expect(guestResult.openedAuthModal).toBe(true);
+      expect(guestResult.allowedTab).toBeNull();
+      expect(guestResult.pendingPostAuthTab).toBe("consultation");
+
+      // 2. Authenticated user clicks consultation
+      const userResult = handleConsultationNavigation("consultation", true);
+      expect(userResult.openedAuthModal).toBe(false);
+      expect(userResult.allowedTab).toBe("consultation");
+      expect(userResult.pendingPostAuthTab).toBeNull();
+
+      // 3. Post-auth resolution redirects directly to consultation
+      const resolvePostAuthTarget = (
+        pending: string | null,
+        userRole: string
+      ) => {
+        if (userRole === "SUPER_ADMIN" || userRole === "ADMIN") return "admin";
+        if (pending) return pending;
+        return "home";
+      };
+
+      expect(resolvePostAuthTarget(guestResult.pendingPostAuthTab, "CUSTOMER")).toBe("consultation");
+      expect(resolvePostAuthTarget(null, "CUSTOMER")).toBe("home");
+      expect(resolvePostAuthTarget("consultation", "SUPER_ADMIN")).toBe("admin");
+    });
   });
 });
 

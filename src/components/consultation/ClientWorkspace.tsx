@@ -552,6 +552,26 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
           {/* STEP 1: CHOOSE WHAT YOU NEED HELP WITH */}
           {bookingStep === 1 && (
             <div className="space-y-6">
+              {!userEmail && (
+                <div className="bg-amber-50/90 border border-amber-200/90 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-amber-950">
+                  <div className="flex items-center gap-2.5 text-xs">
+                    <LogIn className="w-4 h-4 text-amber-800 shrink-0" />
+                    <span>
+                      <strong>Sign In Required:</strong> You will be prompted to sign in or register before reserving your session.
+                    </span>
+                  </div>
+                  {onOpenAuthModal && (
+                    <button
+                      type="button"
+                      onClick={onOpenAuthModal}
+                      className="px-4 py-1.5 rounded-xl bg-amber-800 hover:bg-amber-900 text-white text-xs font-bold transition-all shadow-xs cursor-pointer shrink-0"
+                    >
+                      Sign In Now
+                    </button>
+                  )}
+                </div>
+              )}
+
               <div className="space-y-1">
                 <h3 className="font-serif text-2xl font-bold text-slate-900">
                   Step 1: Choose Your Consultation Focus
@@ -601,7 +621,15 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
               <div className="flex justify-end pt-4">
                 <button
                   type="button"
-                  onClick={() => setBookingStep(2)}
+                  onClick={() => {
+                    if (!userEmail) {
+                      if (onOpenAuthModal) {
+                        onOpenAuthModal();
+                        return;
+                      }
+                    }
+                    setBookingStep(2);
+                  }}
                   className="px-6 py-3 rounded-2xl bg-amber-800 hover:bg-amber-900 text-white font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center gap-2 shadow-xs"
                 >
                   <span>Continue to Communication Channel</span>
@@ -1452,7 +1480,29 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
             </div>
           </div>
 
-          {filteredBookings.length === 0 ? (
+          {!userEmail ? (
+            <div className="p-10 text-center rounded-2xl bg-amber-50/70 border border-amber-200/80 space-y-4 max-w-lg mx-auto">
+              <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center mx-auto">
+                <LogIn className="w-6 h-6" />
+              </div>
+              <div className="space-y-1">
+                <h4 className="font-bold text-base text-amber-950">Sign In to View Your Consultations</h4>
+                <p className="text-xs text-amber-900/80 max-w-sm mx-auto leading-relaxed">
+                  Your bookings, scheduled sessions, and session summaries are preserved in your seeker account.
+                </p>
+              </div>
+              {onOpenAuthModal && (
+                <button
+                  type="button"
+                  onClick={onOpenAuthModal}
+                  className="px-6 py-2.5 rounded-xl bg-amber-800 hover:bg-amber-900 text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-xs inline-flex items-center gap-2"
+                >
+                  <LogIn className="w-3.5 h-3.5" />
+                  <span>Sign In / Register</span>
+                </button>
+              )}
+            </div>
+          ) : filteredBookings.length === 0 ? (
             <div className="p-12 text-center rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
               <Sparkles className="w-10 h-10 text-slate-400 mx-auto" />
               <h4 className="font-bold text-sm text-slate-700">No Consultations Found</h4>

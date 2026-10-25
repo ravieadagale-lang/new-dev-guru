@@ -23,9 +23,9 @@ async function verifyLiveAuth() {
   console.log("    ASTRONEXT — LIVE FIREBASE AUTH CONFIGURATION VERIFIER       ");
   console.log("=================================================================\n");
 
-  const targetProject = "astronext-app";
-  const targetAppId = "1:535561647553:web:4a1560ce471bf1ad87eb40";
-  const targetAuthDomain = "astronext-app.firebaseapp.com";
+  const targetProject = "dev-guru-41d29";
+  const targetAppId = "1:1040485924291:web:4ce2388d2d2c2d88f11176";
+  const targetAuthDomain = "dev-guru-41d29.firebaseapp.com";
 
   console.log("[1] Checking Config Parameters (Secrets Excluded)...");
   console.log(`  - Project ID          : ${rawConfig.projectId}`);
@@ -49,17 +49,19 @@ async function verifyLiveAuth() {
   console.log(`  - Firestore Project   : ${firestoreProject}`);
 
   console.log("\n[3] Target Project Verification Verdict...");
+  const configStr = JSON.stringify(rawConfig);
   const isTargetVerified =
     appProject === targetProject &&
     authProject === targetProject &&
     rawConfig.authDomain === targetAuthDomain &&
     rawConfig.projectId === targetProject &&
-    !JSON.stringify(rawConfig).includes("infra-ticket-l1ttq");
+    !configStr.includes("astronext-app") &&
+    !configStr.includes("infra-ticket-l1ttq");
 
   if (isTargetVerified) {
-    console.log("  >>> PASS: Firebase Auth SDK is properly connected to 'astronext-app'.");
+    console.log("  >>> PASS: Firebase Auth SDK is properly connected to 'dev-guru-41d29'.");
   } else {
-    console.error("  >>> FAIL: Firebase Auth SDK is NOT properly connected to 'astronext-app'.");
+    console.error("  >>> FAIL: Firebase Auth SDK is NOT properly connected to 'dev-guru-41d29'.");
     process.exit(1);
   }
   console.log("\n=================================================================");

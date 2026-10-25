@@ -1,12 +1,12 @@
 {
-  "projectId": "infra-ticket-l1ttq",
-  "appId": "1:602114835453:web:f3c672561e5e41281d8f94",
-  "apiKey": "AIzaSyAIzTYb8pZLh7SgV3WlUbohRvZEai_Q7js",
-  "authDomain": "infra-ticket-l1ttq.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-remixdevguru-6cd0c799-21f3-4d62-ae50-9f0690f287a2",
-  "storageBucket": "infra-ticket-l1ttq.firebasestorage.app",
-  "messagingSenderId": "602114835453",
-  "measurementId": "",
-  "oAuthClientId": "602114835453-jc32vjjh7f41mhrn017s1453bd3as7to.apps.googleusercontent.com",
+  "projectId": "dev-guru-41d29",
+  "appId": "1:1040485924291:web:4ce2388d2d2c2d88f11176",
+  "apiKey": "AIzaSyBVoU2qGUA6rSJq2EAdAViCeQoiQf38cJw",
+  "authDomain": "dev-guru-41d29.firebaseapp.com",
+  "firestoreDatabaseId": "(default)",
+  "storageBucket": "dev-guru-41d29.firebasestorage.app",
+  "messagingSenderId": "1040485924291",
+  "measurementId": "G-5V4N8T432P",
+  "oAuthClientId": "",
   "recaptchaSiteKey": ""
 }

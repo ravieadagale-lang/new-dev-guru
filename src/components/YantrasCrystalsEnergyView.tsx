@@ -300,7 +300,7 @@ export const YantrasCrystalsEnergyView: React.FC<YantrasCrystalsEnergyViewProps>
             { id: "rudraksha_beads", label: "Sacred Rudrakshas (1–21 Mukhi)", icon: Disc },
             { id: "crystal_grids", label: "Lo Shu Crystal Grids", icon: Layers },
             { id: "chakras_energy", label: "Chakras & Energy Body", icon: Activity },
-            { id: "chakra_balancing_ch38", label: "Chakra Balancing Remedies (Ch. 38)", icon: Heart },
+            { id: "chakra_balancing_ch38", label: "Chakra Balancing Remedies", icon: Heart },
             { id: "triads", label: "Yantra-Crystal-Mantra Triads", icon: Flame },
             { id: "integrated_program", label: "Integrated System Guidance", icon: ShieldAlert }
           ].map((tab) => {

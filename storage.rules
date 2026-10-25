@@ -1,0 +1,92 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Helper: Authenticated user check
+    function isAuthenticated() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    // Helper: Super Admin check
+    function isSuperAdmin() {
+      return isAuthenticated() && 
+        request.auth.token.email_verified == true &&
+        ('email' in request.auth.token) &&
+        (request.auth.token.email == 'ravieadagale@gmail.com' ||
+         request.auth.token.email.lower() == 'ravieadagale@gmail.com');
+    }
+
+    // Helper: Admin check
+    function isAdmin() {
+      return isAuthenticated() && 
+        request.auth.token.email_verified == true &&
+        ('email' in request.auth.token) &&
+        (request.auth.token.email == 'ravii.adagale20@gmail.com' ||
+         request.auth.token.email.lower() == 'ravii.adagale20@gmail.com');
+    }
+
+    function isStaffAdmin() {
+      return isSuperAdmin() || isAdmin();
+    }
+
+    // 1. User Profile Avatars
+    // Path: /users/{userId}/avatars/{fileName}
+    // Read: Publicly readable for chat, profile cards, and consultant previews
+    // Write: Authenticated account owner or Super Admin only, strict 5MB limit, approved image types (JPEG, PNG, WebP)
+    match /users/{userId}/avatars/{fileName} {
+      allow read: if true;
+      allow write: if ((isAuthenticated() && request.auth.uid == userId) || isSuperAdmin())
+        && fileName.size() > 0 && fileName.size() <= 256
+        && request.resource.size <= 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|webp)');
+      allow delete: if (isAuthenticated() && request.auth.uid == userId) || isSuperAdmin();
+    }
+
+    // 2. Private Consultation Documents & Attachments
+    // Path: /consultations/{bookingId}/{fileName}
+    // Read & Write: Strictly authorized consultation participants (client, consultant, or staff admin)
+    // Cross-service lookup is protected by firestore.exists() check before accessing document data
+    match /consultations/{bookingId}/{fileName} {
+      allow read: if isAuthenticated() && (
+        isStaffAdmin() ||
+        (
+          bookingId.size() > 0 && bookingId.size() <= 128 &&
+          firestore.exists(/databases/(default)/documents/consultations/$(bookingId)) &&
+          (
+            firestore.get(/databases/(default)/documents/consultations/$(bookingId)).data.clientId == request.auth.uid ||
+            firestore.get(/databases/(default)/documents/consultations/$(bookingId)).data.consultantId == request.auth.uid ||
+            (
+              request.auth.token.email_verified == true &&
+              firestore.get(/databases/(default)/documents/consultations/$(bookingId)).data.consultantEmail == request.auth.token.email
+            )
+          )
+        )
+      );
+      allow write: if isAuthenticated()
+        && fileName.size() > 0 && fileName.size() <= 256
+        && bookingId.size() > 0 && bookingId.size() <= 128
+        && request.resource.size <= 10 * 1024 * 1024
+        && request.resource.contentType.matches('(image/(jpeg|png|webp)|application/pdf)')
+        && (
+          isStaffAdmin() ||
+          (
+            firestore.exists(/databases/(default)/documents/consultations/$(bookingId)) &&
+            (
+              firestore.get(/databases/(default)/documents/consultations/$(bookingId)).data.clientId == request.auth.uid ||
+              firestore.get(/databases/(default)/documents/consultations/$(bookingId)).data.consultantId == request.auth.uid ||
+              (
+                request.auth.token.email_verified == true &&
+                firestore.get(/databases/(default)/documents/consultations/$(bookingId)).data.consultantEmail == request.auth.token.email
+              )
+            )
+          )
+        );
+      allow delete: if isStaffAdmin();
+    }
+
+    // 3. Default Deny Fallback
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -47,13 +47,6 @@ import {
   AdvancedReportData,
   AdvancedReportInputs
 } from "../data/advanceNumerologyReportGenerator";
-import { 
-  MAJOR_DEITIES_GALLERY, 
-  NUMEROLOGICAL_YANTRAS_1_TO_9, 
-  CRYSTALS_GEMSTONES_GALLERY, 
-  RUDRAKSHA_BEADS_GALLERY,
-  NAVAGRAHA_DEITIES_FULL_GALLERY
-} from "../data/numerologyAssetsData";
 
 interface AdvanceNumerologyReportViewProps {
   initialName?: string;
@@ -223,7 +216,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
               Grand Premium Advance Numerology Report
             </h1>
             <p className="text-sm md:text-base text-slate-300 leading-relaxed">
-              Synthesizing all classical & esoteric numerological systems into a comprehensive, multi-chapter report covering core identity, mobile vibration, signature tuning, business resonance, partner synergy, and ancestral lineage decoding.
+              Synthesizing all classical &amp; esoteric numerological systems into a comprehensive report covering core identity, mobile vibration, signature tuning, business resonance, partner synergy, and ancestral lineage decoding.
             </p>
           </div>
 
@@ -640,7 +633,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
         </div>
       </div>
 
-      {/* CHAPTER 1: BIRTH NUMBER 1-31 DETAILED INTERPRETATION */}
+      {/* BIRTH NUMBER 1-31 DETAILED INTERPRETATION */}
       <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
         <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
           <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
@@ -648,7 +641,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
           </div>
           <div>
             <h2 className="text-xl font-serif font-bold text-amber-200">
-              Chapter 1 • Birth Day Analysis (Day {activeReport.birthNumberAnalysis.day} of the Month)
+              Birth Day Analysis (Day {activeReport.birthNumberAnalysis.day} of the Month)
             </h2>
             <p className="text-xs text-slate-400">
               Archetype: {activeReport.birthNumberAnalysis.title} ({activeReport.birthNumberAnalysis.compoundNotation})
@@ -770,7 +763,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
         </div>
       </div>
 
-      {/* CHAPTER 2: 81 DRIVER-CONDUCTOR COMBINATION DETAILED ARCHETYPE */}
+      {/* 81 DRIVER-CONDUCTOR COMBINATION DETAILED ARCHETYPE */}
       <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
         <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
           <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
@@ -778,7 +771,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
           </div>
           <div>
             <h2 className="text-xl font-serif font-bold text-amber-200">
-              Chapter 2 • 81 Combination Matrix Analysis ({activeReport.combination81Analysis.code})
+              81 Combination Matrix Analysis ({activeReport.combination81Analysis.code})
             </h2>
             <p className="text-xs text-slate-400">
               {activeReport.combination81Analysis.title} • Compatibility Grade: <span className="text-amber-300 font-bold">{activeReport.combination81Analysis.compatibilityGrade}</span>
@@ -841,7 +834,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
         </div>
       </div>
 
-      {/* CHAPTER 3 & 4: SOUL URGE & EXPRESSION CALLING */}
+      {/* SOUL URGE & EXPRESSION CALLING */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* SOUL URGE */}
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 space-y-4">
@@ -849,7 +842,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
             <Heart className="w-5 h-5 text-purple-400" />
             <div>
               <h3 className="font-serif font-bold text-lg text-purple-200">
-                Chapter 3 • Soul Urge Number {activeReport.soulUrgeAnalysis.number}
+                Soul Urge Number {activeReport.soulUrgeAnalysis.number}
               </h3>
               <p className="text-xs text-slate-400">{activeReport.soulUrgeAnalysis.title}</p>
             </div>
@@ -879,7 +872,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
             <Target className="w-5 h-5 text-rose-400" />
             <div>
               <h3 className="font-serif font-bold text-lg text-rose-200">
-                Chapter 4 • Expression Calling {activeReport.expressionAnalysis.number}
+                Expression Calling {activeReport.expressionAnalysis.number}
               </h3>
               <p className="text-xs text-slate-400">{activeReport.expressionAnalysis.title}</p>
             </div>
@@ -904,7 +897,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
         </div>
       </div>
 
-      {/* CHAPTER 5: OUTER PERSONALITY & SECRET INNER DREAM */}
+      {/* OUTER PERSONALITY & SECRET INNER DREAM */}
       <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
         <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
           <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
@@ -912,7 +905,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
           </div>
           <div>
             <h2 className="text-xl font-serif font-bold text-amber-200">
-              Chapter 5 • Outer Persona & Secret Inner Dream Analysis
+              Outer Persona & Secret Inner Dream Analysis
             </h2>
             <p className="text-xs text-slate-400">
               Bridging Outer Social Impact (Personality {activeReport.personalityAnalysis.number}) with Secret Private Self-Image (Inner Dream {activeReport.innerDreamAnalysis.number})
@@ -951,7 +944,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
         </div>
       </div>
 
-      {/* CHAPTER 6: 4 PINNACLES & 4 CHALLENGES LIFE CYCLES */}
+      {/* 4 PINNACLES & 4 CHALLENGES LIFE CYCLES */}
       <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
         <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
           <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
@@ -959,7 +952,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
           </div>
           <div>
             <h2 className="text-xl font-serif font-bold text-amber-200">
-              Chapter 6 • 4 Pinnacles & 4 Challenges Life Cycle Map
+              4 Pinnacles & 4 Challenges Life Cycle Map
             </h2>
             <p className="text-xs text-slate-400">
               Chronological evolution across 4 distinct age phases in your life path
@@ -999,7 +992,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
         </div>
       </div>
 
-      {/* CHAPTER 7: MASTER NUMBERS & KARMIC DEBTS (IF APPLICABLE) */}
+      {/* MASTER NUMBERS & KARMIC DEBTS (IF APPLICABLE) */}
       {(activeReport.masterAndKarmicDetails.masterDetails.length > 0 ||
         activeReport.masterAndKarmicDetails.karmicDetails.length > 0) && (
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
@@ -1009,7 +1002,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
             </div>
             <div>
               <h2 className="text-xl font-serif font-bold text-amber-200">
-                Chapter 7 • Master Numbers & Karmic Debts Insights
+                Master Numbers & Karmic Debts Insights
               </h2>
               <p className="text-xs text-slate-400">
                 Special high-frequency spiritual masters or ancestral karmic debt lessons present in your birth chart
@@ -1352,7 +1345,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
         </div>
       </div>
 
-      {/* CHAPTER 38 CHAKRA BALANCING & CHAPTER 39 BIRTH MONTH GATE */}
+      {/* CHAKRA BALANCING & BIRTH MONTH GATE */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* CHAKRA BALANCING */}
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 space-y-4">
@@ -1360,7 +1353,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
             <Activity className="w-5 h-5 text-emerald-400" />
             <div>
               <h3 className="font-serif font-bold text-lg text-emerald-200">
-                Chapter 38 • Primary Chakra Balancing
+                Primary Chakra Balancing
               </h3>
               <p className="text-xs text-slate-400">
                 Energy Body Realignment for {activeReport.chakraBalancing.primaryChakraToBalance}
@@ -1387,13 +1380,13 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
           </div>
         </div>
 
-        {/* BIRTH MONTH GATE (CHAPTER 39) */}
+        {/* BIRTH MONTH GATE */}
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 space-y-4">
           <div className="flex items-center gap-3 border-b border-slate-800 pb-3">
             <Calendar className="w-5 h-5 text-indigo-400" />
             <div>
               <h3 className="font-serif font-bold text-lg text-indigo-200">
-                Chapter 39 • Birth Month Gate Analysis
+                Birth Month Gate Analysis
               </h3>
               <p className="text-xs text-slate-400">
                 {activeReport.birthMonthAnalysis.monthName} — {activeReport.birthMonthAnalysis.data.title}
@@ -1456,7 +1449,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
         </div>
       </div>
 
-      {/* CHAPTER 40: TELECOMMUNICATION & SPACE RESONANCE */}
+      {/* TELECOMMUNICATION & SPACE RESONANCE */}
       <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
         <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
           <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
@@ -1464,7 +1457,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
           </div>
           <div>
             <h2 className="text-xl font-serif font-bold text-amber-200">
-              Chapter 40 • Telecommunication & Space Resonance
+              Telecommunication & Space Resonance
             </h2>
             <p className="text-xs text-slate-400">
               Mobile phone frequencies, Commercial enterprise vibratory grades, and Living space Vastu numbers
@@ -1661,7 +1654,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
         </div>
       </div>
 
-      {/* CHAPTER 41: CURRENT / SIGNATURE NAME & NICKNAME CALIBRATION */}
+      {/* CURRENT / SIGNATURE NAME & NICKNAME CALIBRATION */}
       <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
         <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
           <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
@@ -1669,7 +1662,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
           </div>
           <div>
             <h2 className="text-xl font-serif font-bold text-amber-200">
-              Chapter 41 • Signature & Nickname Harmonic Calibration
+              Signature & Nickname Harmonic Calibration
             </h2>
             <p className="text-xs text-slate-400">
               Chaldean-Pythagorean signature penmanship calibration and informal calling aura vibrations
@@ -1755,7 +1748,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
         </div>
       </div>
 
-      {/* CHAPTER 42: PARTNER & PARTNERSHIP SYNERGY MATRIX */}
+      {/* PARTNER & PARTNERSHIP SYNERGY MATRIX */}
       <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
         <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
           <div className="p-2.5 rounded-xl bg-pink-500/10 text-pink-400 border border-pink-500/20">
@@ -1763,7 +1756,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
           </div>
           <div>
             <h2 className="text-xl font-serif font-bold text-amber-200">
-              Chapter 42 • Partner Compatibility & Synergy Matrix
+              Partner Compatibility & Synergy Matrix
             </h2>
             <p className="text-xs text-slate-400">
               Dual-chart Driver-Conductor matrix evaluation for matrimonial harmony and corporate partnerships
@@ -1840,7 +1833,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
         )}
       </div>
 
-      {/* CHAPTER 43: ANCESTRAL KARMA & LINEAGE DECODING */}
+      {/* ANCESTRAL KARMA & LINEAGE DECODING */}
       <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
         <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
           <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
@@ -1848,7 +1841,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
           </div>
           <div>
             <h2 className="text-xl font-serif font-bold text-amber-200">
-              Chapter 43 • Ancestral Karma & Lineage Vibrations
+              Ancestral Karma & Lineage Vibrations
             </h2>
             <p className="text-xs text-slate-400">
               Esoteric genetic decoding of inherited traits, subconscious maternal matrix, and paternal dharmic code
@@ -1937,353 +1930,7 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
           </div>
         )}
       </div>
-
-      {/* NUMEROLOGICAL YANTRAS FOR NUMBER 1 TO NUMBER 9 */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
-        <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
-          <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-            <Sparkles className="w-5 h-5" />
-          </div>
-          <div>
-            <h2 className="text-xl font-serif font-bold text-amber-200">
-              Numerological Yantras (Number 1 to Number 9 Magic Squares)
-            </h2>
-            <p className="text-xs text-slate-400">
-              Authentic Vedic 3x3 sacred numeric matrices for planetary energy calibration
-            </p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {NUMEROLOGICAL_YANTRAS_1_TO_9.map((yantra) => (
-            <div
-              key={yantra.number}
-              className="bg-slate-950 rounded-2xl overflow-hidden border border-amber-500/30 hover:border-amber-400/60 shadow-xl transition-all flex flex-col justify-between group"
-            >
-              {/* SACRED 3X3 MAGIC SQUARE PLATE HEADER (PURE VEDIC GEOMETRY, NO STOCK PHOTOS) */}
-              <div className="bg-gradient-to-b from-amber-950/40 via-slate-900 to-slate-950 p-5 border-b border-amber-500/20 relative">
-                {/* Outer Decorative Plate Rivets */}
-                <span className="absolute top-2 left-2 text-amber-500/40 text-xs">✦</span>
-                <span className="absolute top-2 right-2 text-amber-500/40 text-xs">✦</span>
-                <span className="absolute bottom-2 left-2 text-amber-500/40 text-xs">✦</span>
-                <span className="absolute bottom-2 right-2 text-amber-500/40 text-xs">✦</span>
-
-                {/* Badges */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="bg-amber-500 text-slate-950 px-3 py-1 rounded-full text-xs font-bold font-mono shadow-md flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-slate-950 inline-block animate-pulse"></span>
-                    Number {yantra.number} ({yantra.planetName})
-                  </div>
-                  <div className="bg-slate-900/90 border border-amber-500/40 px-3 py-1 rounded-full text-xs font-bold text-amber-300 font-mono shadow-inner">
-                    Magic Sum: {yantra.magicSquareSum}
-                  </div>
-                </div>
-
-                {/* THE 3X3 VEDIC MAGIC SQUARE YANTRA PLATE */}
-                <div className="max-w-[210px] mx-auto bg-gradient-to-br from-amber-900/60 via-amber-950/80 to-slate-950 border-2 border-amber-500/50 rounded-xl p-3 shadow-2xl relative">
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-amber-400 text-center mb-2 font-bold flex items-center justify-center gap-1">
-                    <span>❖</span> {yantra.sanskritName} Yantra <span>❖</span>
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-2">
-                    {yantra.magicSquareMatrix.flatMap((row, rIdx) =>
-                      row.map((cell, cIdx) => (
-                        <div
-                          key={`${rIdx}-${cIdx}`}
-                          className="bg-slate-950/90 border border-amber-500/40 text-amber-200 font-mono font-bold text-base md:text-lg h-12 rounded-lg flex items-center justify-center shadow-md hover:bg-amber-500/20 hover:text-amber-100 transition-colors"
-                        >
-                          {cell}
-                        </div>
-                      ))
-                    )}
-                  </div>
-
-                  <div className="mt-2.5 text-[9px] text-amber-300/80 text-center font-mono font-medium">
-                    Row, Column & Diagonal Sum = {yantra.magicSquareSum}
-                  </div>
-                </div>
-              </div>
-
-              {/* CARD DETAILS */}
-              <div className="p-5 space-y-3.5 flex-1 flex flex-col justify-between">
-                <div className="space-y-2">
-                  <div>
-                    <h3 className="font-serif font-bold text-lg text-amber-200 group-hover:text-amber-100 transition-colors">
-                      {yantra.yantraName}
-                    </h3>
-                    <p className="text-xs text-amber-400/90 font-medium leading-snug">
-                      {yantra.title}
-                    </p>
-                  </div>
-
-                  <div className="inline-block bg-slate-900 border border-slate-800 text-slate-300 px-2.5 py-1 rounded text-[11px] font-mono">
-                    <span className="text-amber-400 font-semibold">Geometry:</span> {yantra.geometryType}
-                  </div>
-
-                  {/* SANSKRIT MANTRA */}
-                  <div className="bg-amber-950/30 border border-amber-500/30 rounded-lg p-2.5 text-xs text-amber-200 font-mono text-center shadow-inner">
-                    <span className="text-[10px] text-amber-400/70 block uppercase font-sans mb-0.5">Sacred Activation Mantra</span>
-                    "{yantra.sanskritMantra}"
-                  </div>
-
-                  {/* DESCRIPTION */}
-                  <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                    {yantra.description}
-                  </p>
-                </div>
-
-                <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
-                  <span className="font-medium text-slate-300">Deity: {yantra.deityName}</span>
-                  <span className="text-[10px] bg-amber-500/10 text-amber-300 border border-amber-500/20 px-2 py-0.5 rounded-full font-mono">
-                    Yantra Shastra
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* DIVINE DEITIES & SACRED SPIRITUAL ARCHETYPES (COMBINED SECTION) */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-8">
-        <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
-          <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-            <Crown className="w-6 h-6" />
-          </div>
-          <div>
-            <h2 className="text-2xl font-serif font-bold text-amber-200">
-              Divine Deities & Sacred Spiritual Archetypes
-            </h2>
-            <p className="text-xs md:text-sm text-slate-300">
-              Cosmic divine rulers, the 9 Navagraha planetary gods (Numbers 1 to 9), and supreme archetypes governing life purpose, protection, abundance, and karmic evolution
-            </p>
-          </div>
-        </div>
-
-        {/* SUBSECTION 1: THE 9 NAVAGRAHA PLANETARY GODS (NUMBERS 1 TO 9) */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2 border-b border-amber-500/20 pb-2">
-            <Sun className="w-4 h-4 text-amber-400" />
-            <h3 className="text-lg font-serif font-bold text-amber-300">
-              1. The 9 Navagraha Planetary Gods (Numbers 1 to 9) — Iconography & Detailed Guidance
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {NAVAGRAHA_DEITIES_FULL_GALLERY.map((graha) => (
-              <div key={graha.number} className="bg-slate-950 rounded-2xl overflow-hidden border border-amber-500/30 hover:border-amber-400/60 transition-all shadow-xl flex flex-col justify-between group">
-                <div>
-                  {/* DEITY IMAGE */}
-                  <div className="h-64 overflow-hidden relative border-b border-amber-500/20 bg-slate-900">
-                    <img
-                      src={resolveImageUrl(graha.imageUrl)}
-                      alt={graha.sanskritName}
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 left-3 bg-amber-500 text-slate-950 px-3 py-1 rounded-full text-xs font-bold font-mono shadow-md">
-                      Number {graha.number} • {graha.planetName}
-                    </div>
-                    <div className="absolute top-3 right-3 bg-slate-950/85 backdrop-blur px-2.5 py-1 rounded-full border border-amber-500/30 text-[10px] text-amber-300 font-mono">
-                      {graha.worshipDay}
-                    </div>
-                    <div className="absolute bottom-2 left-2 right-2 bg-slate-950/80 backdrop-blur px-2.5 py-1 rounded text-[11px] text-amber-200 font-mono text-center border border-amber-500/20">
-                      Mount: {graha.mountVehicle}
-                    </div>
-                  </div>
-
-                  {/* DETAILS & DETAILED GUIDANCE */}
-                  <div className="p-5 space-y-3">
-                    <div className="space-y-1">
-                      <h4 className="font-serif font-bold text-lg text-amber-200 group-hover:text-amber-100 transition-colors">
-                        {graha.sanskritName}
-                      </h4>
-                      <div className="text-xs text-amber-400 font-medium">
-                        {graha.deityTitle}
-                      </div>
-                    </div>
-
-                    <div className="bg-amber-950/40 border border-amber-500/30 rounded-xl p-2.5 text-xs text-amber-200 font-mono italic text-center shadow-inner">
-                      "{graha.mantra}"
-                    </div>
-
-                    <div className="space-y-1.5 pt-1">
-                      <div className="text-[11px] font-bold text-amber-300 uppercase tracking-wider">Detailed Spiritual Guidance:</div>
-                      <p className="text-xs text-slate-300 leading-relaxed">
-                        {graha.guidance}
-                      </p>
-                    </div>
-
-                    {/* ATTRIBUTES */}
-                    <div className="flex flex-wrap gap-1.5 pt-2">
-                      {graha.attributes.map((attr, aIdx) => (
-                        <span key={aIdx} className="bg-slate-900 border border-amber-500/20 text-amber-300 px-2 py-0.5 rounded text-[10px] font-mono">
-                          {attr}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-slate-900/60 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-                  <span>Direction: <strong className="text-slate-200">{graha.direction}</strong></span>
-                  <span className="text-amber-400 font-mono font-semibold">Vedic Graha Shanti</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* SUBSECTION 2: MAJOR VEDIC DEITIES & DIVINE MOTHERS */}
-        <div className="space-y-4 pt-4 border-t border-slate-800/80">
-          <div className="flex items-center gap-2 border-b border-amber-500/20 pb-2">
-            <Sparkles className="w-4 h-4 text-amber-400" />
-            <h3 className="text-lg font-serif font-bold text-amber-300">
-              2. Major Vedic Deities & Divine Mothers — Protection, Prosperity & Karmic Shields
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {MAJOR_DEITIES_GALLERY.map((deity, idx) => (
-              <div key={idx} className="bg-slate-950 rounded-xl overflow-hidden border border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-colors group">
-                <div>
-                  <div className="h-56 overflow-hidden relative">
-                    <img
-                      src={resolveImageUrl(deity.imageUrl)}
-                      alt={deity.name}
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-2 right-2 bg-slate-950/85 backdrop-blur px-2.5 py-1 rounded-full border border-amber-500/30 text-[10px] text-amber-300 font-mono font-medium">
-                      {deity.associatedPlanetsOrNumbers}
-                    </div>
-                  </div>
-                  <div className="p-4 space-y-2">
-                    <div className="font-serif font-bold text-base text-amber-200 group-hover:text-amber-100 transition-colors">{deity.name}</div>
-                    <div className="text-[11px] text-amber-400 font-medium leading-snug">{deity.title}</div>
-                    <div className="bg-amber-950/30 border border-amber-800/30 rounded p-2 text-[10px] text-amber-300 font-mono italic">
-                      "{deity.sanskritMantra}"
-                    </div>
-                    <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                      {deity.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* NAVARATNA SACRED GEMSTONES & PLANETARY CRYSTALS GALLERY */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
-        <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
-          <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-            <Gem className="w-5 h-5" />
-          </div>
-          <div>
-            <h2 className="text-xl font-serif font-bold text-amber-200">
-              Navaratna Sacred Gemstones & Planetary Crystals
-            </h2>
-            <p className="text-xs text-slate-400">
-              Certified natural mineral frequency transmitters for planetary energy resonance & aura amplification
-            </p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {CRYSTALS_GEMSTONES_GALLERY.map((gem, idx) => (
-            <div key={idx} className="bg-slate-950 rounded-xl overflow-hidden border border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group">
-              <div>
-                <div className="h-48 overflow-hidden relative">
-                  <img
-                    src={resolveImageUrl(gem.imageUrl)}
-                    alt={gem.name}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-2 left-2 bg-amber-500 text-slate-950 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono">
-                    Number {gem.number}
-                  </div>
-                  <div className="absolute top-2 right-2 bg-slate-950/85 backdrop-blur px-2.5 py-0.5 rounded-full border border-amber-500/30 text-[10px] text-amber-300 font-mono">
-                    Planet: {gem.planet}
-                  </div>
-                </div>
-
-                <div className="p-4 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-serif font-bold text-base text-amber-200">{gem.name}</h3>
-                    <span className="text-xs text-amber-400 font-mono font-bold">({gem.hindiName})</span>
-                  </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    {gem.benefits}
-                  </p>
-                </div>
-              </div>
-
-              <div className="px-4 pb-4">
-                <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-2 text-[10px] text-amber-300 font-mono text-center">
-                  Vedic Prescription Required Before Wearing
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* SACRED RUDRAKSHA BEADS GALLERY (1 TO 21 MUKHI) */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
-        <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
-          <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-            <Sparkles className="w-5 h-5" />
-          </div>
-          <div>
-            <h2 className="text-xl font-serif font-bold text-amber-200">
-              Sacred Rudraksha Beads Gallery (1 to 21 Mukhi — Including Rare Kuber Mani)
-            </h2>
-            <p className="text-xs text-slate-400">
-              Divine seeds of Lord Shiva — Bio-electric instruments for bio-magnetic calibration & karmic protection
-            </p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {RUDRAKSHA_BEADS_GALLERY.map((rudra, idx) => (
-            <div key={idx} className="bg-slate-950 rounded-xl overflow-hidden border border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group">
-              <div>
-                <div className="h-48 overflow-hidden relative">
-                  <img
-                    src={resolveImageUrl(rudra.imageUrl)}
-                    alt={rudra.mukhi}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-2 left-2 bg-amber-500 text-slate-950 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono">
-                    {rudra.associatedNumber}
-                  </div>
-                  <div className="absolute top-2 right-2 bg-slate-950/85 backdrop-blur px-2.5 py-0.5 rounded-full border border-amber-500/30 text-[10px] text-amber-300 font-mono">
-                    {rudra.planet}
-                  </div>
-                </div>
-
-                <div className="p-4 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-serif font-bold text-base text-amber-200">{rudra.mukhi}</h3>
-                    <span className="text-xs text-amber-400 font-mono font-bold">{rudra.sanskritName}</span>
-                  </div>
-                  <div className="text-[11px] text-amber-300 font-medium">Deity: {rudra.deity}</div>
-                  <div className="bg-amber-950/30 border border-amber-800/30 rounded p-2 text-[10px] text-amber-300 font-mono italic">
-                    "{rudra.mantra}"
-                  </div>
-                  <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                    {rudra.benefits}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };
+

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { firebaseAuth } from "../services/firebase/firebaseClient";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { firebaseAuth, firestoreDb } from "../services/firebase/firebaseClient";
 import {
   ConsultationAvailability,
   ConsultationBooking,
@@ -128,11 +129,38 @@ export const ConsultationProvider: React.FC<{ children: React.ReactNode }> = ({ 
   const activeUidRef = useRef<string | null>(null);
   const activeRequestIdRef = useRef<number>(0);
 
-  // Sync availability configuration locally for consultant workspace convenience
+  // Load persistent availability configuration from Firestore on mount
+  useEffect(() => {
+    let isMounted = true;
+    async function loadRemoteAvailability() {
+      try {
+        const snap = await getDoc(doc(firestoreDb, "systemSettings", "consultationAvailability"));
+        if (snap.exists() && isMounted) {
+          const data = snap.data();
+          if (data && Array.isArray(data.rules) && data.rules.length > 0) {
+            setAvailability(data as ConsultationAvailability);
+          }
+        }
+      } catch (err) {
+        // Fallback to local or canonical defaults silently if offline
+      }
+    }
+    loadRemoteAvailability();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Sync availability configuration locally and persist to Firestore for authorized Super Admin
   useEffect(() => {
     try {
       localStorage.setItem("astronext_consultant_availability", JSON.stringify(availability));
     } catch {}
+
+    const userEmail = firebaseAuth.currentUser?.email?.toLowerCase();
+    if (userEmail === "ravieadagale@gmail.com") {
+      setDoc(doc(firestoreDb, "systemSettings", "consultationAvailability"), availability).catch(() => {});
+    }
   }, [availability]);
 
   // Sync bookings strictly to authenticated UID-scoped storage

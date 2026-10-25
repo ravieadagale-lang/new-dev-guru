@@ -142,8 +142,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         { id: "blog", label: "Articles & Wisdom Blog", targetTab: "blog" }
       ]
     },
-    { id: "consultation", label: "Consultation", badge: "Live" },
-    { id: "marketplace", label: "Marketplace", badge: "Shop" }
+    { id: "consultation", label: "Consultation", badge: "Under Testing" },
+    { id: "marketplace", label: "Marketplace", badge: "Under Testing" }
   ];
 
   const handleNavClick = (tabId: string, subId?: string, targetTab?: string) => {

@@ -120,8 +120,14 @@ describe("Phase 2B: Consultation Firestore Booking Persistence & Concurrency Gua
   });
 
   describe("Booking Creation & Concurrency Control", () => {
-    // A Wednesday 10:00 AM IST (04:30 UTC) slot within canonical consultant availability
-    const validStartTime = "2026-10-21T04:30:00.000Z";
+    // Dynamic next Wednesday 10:00 AM IST (04:30 UTC) slot within canonical consultant availability
+    const getNextWednesdayIso = (): string => {
+      const d = new Date();
+      d.setDate(d.getDate() + ((3 - d.getDay() + 7) % 7 || 7));
+      d.setUTCHours(4, 30, 0, 0);
+      return d.toISOString();
+    };
+    const validStartTime = getNextWednesdayIso();
 
     it("creates a persistent consultation booking and reserves the slot lock in Firestore", async () => {
       const request: ExtendedConsultationRequest = {

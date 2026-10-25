@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowLeft, ChevronRight, Home } from "lucide-react";
+import { ArrowLeft, ChevronRight, Home, Clock } from "lucide-react";
 import { UserRole, UserProfile, Product, LanguageCode, AppTheme } from "./types";
 import { useSuperAdminAuth } from "./services/auth/SuperAdminAuthContext";
 import { playCardClickSound } from "./utils/audioEffects";
@@ -83,8 +83,8 @@ export const TAB_LABELS: Record<string, string> = {
   images: "Sacred Gallery & Yantras",
   milestones: "Spiritual Milestones & Badges",
   blog: "Articles & Wisdom Blog",
-  marketplace: "Sacred Marketplace",
-  consultation: "Live Consultation",
+  marketplace: "Sacred Marketplace (Under Testing)",
+  consultation: "Live Consultation (Under Testing)",
   horoscope: "Daily Horoscope",
   dashboard: "Customer Dashboard",
   crm: "Astrologer CRM Portal",
@@ -206,6 +206,67 @@ const NotFoundFallbackView: React.FC<{
         <Home className="w-4 h-4" />
         <span>Return to Home Sanctuary</span>
       </button>
+    </div>
+  );
+};
+
+const UnderTestingNotice: React.FC<{
+  title: string;
+  category: "Marketplace" | "Consultation";
+  onReturnHome: () => void;
+  onGoBack: () => void;
+}> = ({ title, category, onReturnHome, onGoBack }) => {
+  return (
+    <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6">
+      <div className="bg-gradient-to-b from-[#1c1815] via-[#241e1a] to-[#16120f] border border-amber-500/30 rounded-3xl p-8 sm:p-12 text-center shadow-2xl relative overflow-hidden">
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 text-amber-300 text-xs font-bold uppercase tracking-widest border border-amber-500/30">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            Under Testing and Not Available for Users
+          </div>
+
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shadow-inner">
+            <Clock className="w-8 h-8 text-amber-400" />
+          </div>
+
+          <div className="space-y-2">
+            <h1 className="font-serif text-3xl sm:text-4xl font-bold text-amber-100">
+              {title}
+            </h1>
+            <p className="text-amber-300/80 text-sm font-medium">
+              (Under Testing and Not Available for Users)
+            </p>
+          </div>
+
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Our {category} is currently undergoing internal quality testing, practitioner verification, and security audits. Live user access, bookings, and commercial transactions are temporarily disabled while our systems are prepared for official public release.
+          </p>
+
+          <div className="p-4 rounded-2xl bg-amber-950/40 border border-amber-800/40 text-amber-200/90 text-xs sm:text-sm">
+            ✦ All Vedic Astrology calculations, Kundli charts, Panchang, Muhurta, and Horoscopes remain fully active and free for all users.
+          </div>
+
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
+            <button
+              onClick={onGoBack}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-200 border border-slate-700 hover:border-amber-500/40 font-semibold text-xs transition-all shadow-md cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back</span>
+            </button>
+            <button
+              onClick={onReturnHome}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:shadow-amber-500/20 cursor-pointer"
+            >
+              <Home className="w-4 h-4" />
+              <span>Return to Home</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -356,15 +417,7 @@ export default function App() {
       }
     }
 
-    // Consultation Seeker Authentication Gate:
-    // If user clicks on consultation and is NOT logged in, prompt login/signup modal immediately
-    // and remember to redirect to consultation after successful authentication.
-    if (resolvedTab === "consultation" && !user?.email) {
-      setPendingPostAuthTab({ tab: "consultation", metadata: metaObj });
-      setAuthModalMode("login");
-      setIsAuthModalOpen(true);
-      return;
-    }
+    // Consultation is temporarily under testing and not available for users — allow direct viewing of the notice
 
     setCurrentTab(resolvedTab);
 
@@ -556,7 +609,24 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [authModalMode, setAuthModalMode] = useState<"login" | "signup" | "forgot">("login");
+  const [authModalMode, setAuthModalMode] = useState<"login" | "signup" | "forgot" | "resetPassword">("login");
+  const [resetActionCode, setResetActionCode] = useState<string | null>(null);
+
+  // Check for Firebase Auth Action URL parameters (e.g., resetPassword link: ?mode=resetPassword&oobCode=XYZ)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const actionParam = urlParams.get("mode");
+      const codeParam = urlParams.get("oobCode");
+      if (actionParam === "resetPassword" && codeParam) {
+        setResetActionCode(codeParam);
+        setAuthModalMode("resetPassword");
+        setIsAuthModalOpen(true);
+      }
+    } catch {}
+  }, []);
+
   const [authPopup, setAuthPopup] = useState<{
     isOpen: boolean;
     type: "signup" | "login";
@@ -637,24 +707,15 @@ export default function App() {
         <div className="bg-[#FAF8F5]/95 border-b border-[#E7E2D9] backdrop-blur-xs sticky top-16 z-30 shadow-xs">
           <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-2.5 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              {(() => {
-                const prevEntry = navHistory.length > 1 ? navHistory[navHistory.length - 2] : null;
-                const prevLabel = prevEntry ? (TAB_LABELS[prevEntry.tab] || prevEntry.tab) : "Previous Page";
-                return (
-                  <button
-                    onClick={handleGoBack}
-                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white hover:bg-amber-50 border border-slate-200 hover:border-amber-400 text-xs font-semibold text-slate-800 hover:text-amber-950 shadow-xs transition-all cursor-pointer group"
-                    title={`Go back to ${prevLabel}`}
-                    aria-label={`Go back to ${prevLabel}`}
-                  >
-                    <ArrowLeft className="w-4 h-4 text-amber-700 group-hover:-translate-x-1 transition-transform" />
-                    <span>Back</span>
-                    <span className="hidden sm:inline text-slate-400 font-normal">
-                      to {prevLabel}
-                    </span>
-                  </button>
-                );
-              })()}
+              <button
+                onClick={handleGoBack}
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white hover:bg-amber-50 border border-slate-200 hover:border-amber-400 text-xs font-semibold text-slate-800 hover:text-amber-950 shadow-xs transition-all cursor-pointer group"
+                title="Go to previous page"
+                aria-label="Go to previous page"
+              >
+                <ArrowLeft className="w-4 h-4 text-amber-700 group-hover:-translate-x-1 transition-transform" />
+                <span>Back</span>
+              </button>
 
               {/* Breadcrumb Trail */}
               <nav className="hidden md:flex items-center gap-1.5 text-xs text-slate-500">
@@ -790,26 +851,23 @@ export default function App() {
               />
             )}
 
-            {/* 8. Sacred Marketplace */}
+            {/* 8. Sacred Marketplace (Under Testing and Not Available for Users) */}
             {currentTab === "marketplace" && (
-              <MarketplaceView
-                onAddToCart={handleAddToCart}
-                userProfile={userProfile}
-                onNavigateTab={handleNavigateTab}
-                wishlistItems={wishlistItems}
-                onToggleWishlist={handleToggleWishlist}
+              <UnderTestingNotice
+                title="Sacred Spiritual Marketplace"
+                category="Marketplace"
+                onGoBack={handleGoBack}
+                onReturnHome={() => handleNavigateTab("home")}
               />
             )}
 
-            {/* 9. Live 1-on-1 Consultation */}
+            {/* 9. Live 1-on-1 Consultation (Under Testing and Not Available for Users) */}
             {currentTab === "consultation" && (
-              <ConsultationView
-                userProfile={userProfile}
-                onOpenAuthModal={() => {
-                  setPendingPostAuthTab({ tab: "consultation" });
-                  setAuthModalMode("login");
-                  setIsAuthModalOpen(true);
-                }}
+              <UnderTestingNotice
+                title="Live 1-on-1 Astrological Consultation"
+                category="Consultation"
+                onGoBack={handleGoBack}
+                onReturnHome={() => handleNavigateTab("home")}
               />
             )}
 
@@ -1031,8 +1089,11 @@ export default function App() {
         onClose={() => {
           setIsAuthModalOpen(false);
           setPendingPostAuthTab(null);
+          setResetActionCode(null);
         }}
         initialMode={authModalMode}
+        resetActionCode={resetActionCode}
+        onResetComplete={() => setResetActionCode(null)}
         targetTab={pendingPostAuthTab?.tab}
         customSubtitle={
           pendingPostAuthTab?.tab === "consultation"

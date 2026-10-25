@@ -81,10 +81,10 @@ export const PublicHome: React.FC<PublicHomeProps> = ({
     {
       id: "consultation",
       title: "Live Consecrated Consultations",
-      tagline: "Verified Vedic Practitioners",
-      description: "Real-time 1-on-1 consultations with verified astrologers, detailed Prashna analysis, and personalized remedial guidance.",
-      badge: "Live",
-      icon: <MessageSquare className="w-5 h-5 text-emerald-500" />
+      tagline: "(Under Testing and Not Available for Users)",
+      description: "Real-time 1-on-1 consultations with verified astrologers are currently under testing and not yet available for users.",
+      badge: "Under Testing",
+      icon: <MessageSquare className="w-5 h-5 text-amber-500" />
     },
     {
       id: "numerology",
@@ -185,9 +185,9 @@ export const PublicHome: React.FC<PublicHomeProps> = ({
     {
       id: "marketplace",
       title: "Sacred Spiritual Marketplace",
-      tagline: "Consecrated Gemstones & Puja Items",
-      description: "Certified natural gemstones, original Rudraksha beads, copper yantras, energized malas, and puja kits.",
-      badge: "Shop",
+      tagline: "(Under Testing and Not Available for Users)",
+      description: "Consecrated gemstones, rudraksha, and yantras are currently under testing and not yet available for users.",
+      badge: "Under Testing",
       icon: <ShoppingBag className="w-5 h-5 text-amber-600" />
     }
   ];

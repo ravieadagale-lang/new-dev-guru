@@ -32,16 +32,16 @@ async function runDiagnostic() {
   console.log("=================================================================\n");
 
   const expectedTarget = {
-    projectId: "astronext-app",
-    projectNumber: "535561647553",
-    appId: "1:535561647553:web:4a1560ce471bf1ad87eb40",
-    authDomain: "astronext-app.firebaseapp.com",
-    storageBucket: "astronext-app.firebasestorage.app",
-    messagingSenderId: "535561647553",
+    projectId: "dev-guru-41d29",
+    projectNumber: "1040485924291",
+    appId: "1:1040485924291:web:4ce2388d2d2c2d88f11176",
+    authDomain: "dev-guru-41d29.firebaseapp.com",
+    storageBucket: "dev-guru-41d29.firebasestorage.app",
+    messagingSenderId: "1040485924291",
     firestoreDatabaseId: "(default)",
   };
 
-  const legacyProjectIds = ["infra-ticket-l1ttq", "602114835453"];
+  const legacyProjectIds = ["astronext-app", "535561647553", "infra-ticket-l1ttq", "602114835453"];
 
   // 1. Audit raw configuration file
   console.log("[1] Auditing firebase-applet-config.json...");
@@ -109,7 +109,7 @@ async function runDiagnostic() {
   console.log(`  ✓ Firestore Project   : ${runtimeFirestoreProject} (${runtimeFirestoreProject === expectedTarget.projectId ? "VALID" : "INVALID"})`);
 
   // 4. Check for legacy project contamination
-  console.log("\n[4] Scanning for Legacy Project Leaks (infra-ticket-l1ttq / 602114835453)...");
+  console.log("\n[4] Scanning for Legacy Project Leaks (astronext-app / 535561647553)...");
   const rawString = JSON.stringify(rawConfig);
   let legacyLeaks = 0;
   legacyProjectIds.forEach((legacyId) => {
@@ -128,7 +128,7 @@ async function runDiagnostic() {
   const allMatch = configAudit.every((i) => i.status === "MATCH") && legacyLeaks === 0 && runtimeAppProject === expectedTarget.projectId;
   if (allMatch) {
     console.log("  VERDICT: ALL CHECKS PASSED ✓");
-    console.log("  Application is communicating exclusively with 'astronext-app'.");
+    console.log("  Application is communicating exclusively with 'dev-guru-41d29'.");
   } else {
     console.error("  VERDICT: VERIFICATION FAILED ✗");
     process.exit(1);

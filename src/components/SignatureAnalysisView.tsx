@@ -198,7 +198,7 @@ export const SignatureAnalysisView: React.FC<SignatureAnalysisViewProps> = ({
           {[
             { id: "analyzer", label: "Interactive Signature Analyzer", icon: PenTool },
             { id: "rules", label: "23 Graphology Rules Library", icon: BookOpen },
-            { id: "specimens", label: "15 Specimen Gallery (Ch. 35)", icon: Layers },
+            { id: "specimens", label: "15 Specimen Gallery", icon: Layers },
             { id: "protocol", label: "8-Week Signature Correction", icon: Sparkles }
           ].map((tab) => {
             const Icon = tab.icon;

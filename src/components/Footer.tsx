@@ -114,7 +114,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
                   onClick={() => onSelectTab("consultation")}
                   className="hover:text-amber-300 transition-colors"
                 >
-                  Consultation Booking
+                  Consultation Booking (Under Testing)
                 </button>
               </li>
               <li>
@@ -122,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectTab }) => {
                   onClick={() => onSelectTab("marketplace")}
                   className="hover:text-amber-300 transition-colors"
                 >
-                  Sacred Marketplace
+                  Sacred Marketplace (Under Testing)
                 </button>
               </li>
               <li>

@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { validateProfilePhotoFile } from "../../domain/consultation/validation";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { firebaseStorage, firebaseAuth } from "../../services/firebase/firebaseClient";
 import {
   Camera,
   Trash2,
@@ -68,26 +70,57 @@ export const ProfilePhotoUploader: React.FC<ProfilePhotoUploaderProps> = ({
 
     setIsUploading(true);
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const dataUrl = event.target?.result as string;
-      if (dataUrl) {
-        setPreviewUrl(dataUrl);
-        setIsUploading(false);
-        setFeedback("Profile photo updated in memory. (Cloud Storage persistence contract active)");
-        onPhotoUpdated?.(dataUrl);
-        try {
-          window.dispatchEvent(new Event("astronext:avatar_updated"));
-        } catch {
-          // non-blocking
+    const currentUser = firebaseAuth.currentUser;
+    if (currentUser?.uid) {
+      const sanitizedName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const storagePath = `users/${currentUser.uid}/avatars/${Date.now()}_${sanitizedName}`;
+      const avatarRef = ref(firebaseStorage, storagePath);
+
+      uploadBytes(avatarRef, file, { contentType: file.type })
+        .then(async () => {
+          const downloadUrl = await getDownloadURL(avatarRef);
+          setPreviewUrl(downloadUrl);
+          setIsUploading(false);
+          setFeedback("Profile photo successfully uploaded to Cloud Storage.");
+          onPhotoUpdated?.(downloadUrl);
+          try {
+            window.dispatchEvent(new Event("astronext:avatar_updated"));
+          } catch {}
+        })
+        .catch((uploadErr) => {
+          console.warn("[ProfilePhotoUploader] Cloud storage upload failed, falling back to local preview:", uploadErr);
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            const dataUrl = event.target?.result as string;
+            if (dataUrl) {
+              setPreviewUrl(dataUrl);
+              setIsUploading(false);
+              setFeedback("Profile photo loaded locally. Storage write pending.");
+              onPhotoUpdated?.(dataUrl);
+            }
+          };
+          reader.readAsDataURL(file);
+        });
+    } else {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const dataUrl = event.target?.result as string;
+        if (dataUrl) {
+          setPreviewUrl(dataUrl);
+          setIsUploading(false);
+          setFeedback("Profile photo loaded locally. Sign in to persist to Cloud Storage.");
+          onPhotoUpdated?.(dataUrl);
+          try {
+            window.dispatchEvent(new Event("astronext:avatar_updated"));
+          } catch {}
         }
-      }
-    };
-    reader.onerror = () => {
-      setIsUploading(false);
-      setErrorText("Failed to read image file.");
-    };
-    reader.readAsDataURL(file);
+      };
+      reader.onerror = () => {
+        setIsUploading(false);
+        setErrorText("Failed to read image file.");
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleRemovePhoto = () => {

@@ -246,10 +246,15 @@ export const QuickQuestionWorkspace: React.FC<QuickQuestionWorkspaceProps> = ({
       };
 
       setSubmittedInquiries((prev) => [legacyFormatInquiry, ...prev.filter((i) => i.id !== created.id)]);
+      setValidationError(null);
       setCurrentStep(6);
-    } catch (err) {
-      console.warn("Error submitting quick question to adapter:", err);
-      setCurrentStep(6);
+    } catch (err: unknown) {
+      console.error("Error submitting quick question to adapter:", err);
+      const errorMsg =
+        err instanceof Error
+          ? err.message
+          : "Failed to submit astrological inquiry. Please check your connection and try again.";
+      setValidationError(errorMsg);
     } finally {
       setIsSubmitting(false);
     }

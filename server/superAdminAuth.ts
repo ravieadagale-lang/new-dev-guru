@@ -27,14 +27,9 @@ export interface AuthenticatedSuperAdminRequest extends Request {
   authUser?: VerifiedAuthUser;
 }
 
-let cachedApiKey: string | null = null;
-
 export function getFirebaseApiKey(): string {
-  if (cachedApiKey) return cachedApiKey;
-
   if (process.env.FIREBASE_API_KEY) {
-    cachedApiKey = process.env.FIREBASE_API_KEY;
-    return cachedApiKey;
+    return process.env.FIREBASE_API_KEY;
   }
 
   try {
@@ -43,8 +38,7 @@ export function getFirebaseApiKey(): string {
       const raw = fs.readFileSync(configPath, "utf-8");
       const parsed = JSON.parse(raw);
       if (parsed.apiKey) {
-        cachedApiKey = parsed.apiKey;
-        return cachedApiKey;
+        return parsed.apiKey;
       }
     }
   } catch (err) {

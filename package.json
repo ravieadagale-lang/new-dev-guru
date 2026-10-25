@@ -11,8 +11,10 @@
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
     "test": "vitest run",
+    "test:emulator": "vitest run --config vitest.emulator.config.ts",
     "test:btr": "vitest run tests/btrEngine.test.ts",
-    "diagnose:firebase": "tsx scripts/diagnoseFirebaseConfig.ts"
+    "diagnose:firebase": "tsx scripts/diagnoseFirebaseConfig.ts",
+    "verify:auth": "tsx scripts/verifyLiveFirebaseAuthFlows.ts"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
@@ -29,6 +31,7 @@
     "recharts": "^3.10.1"
   },
   "devDependencies": {
+    "@firebase/rules-unit-testing": "^6.0.0",
     "@tailwindcss/vite": "^4.1.14",
     "@types/d3": "^7.4.3",
     "@types/express": "^4.17.21",

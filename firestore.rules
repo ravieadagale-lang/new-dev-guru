@@ -11,18 +11,20 @@ service cloud.firestore {
       return request.auth != null && request.auth.uid != null;
     }
 
-    // Primitive: Super Admin role verification (strictly ravieadagale@gmail.com)
+    // Primitive: Super Admin role verification (strictly ravieadagale@gmail.com with verified email)
     function isSuperAdmin() {
       return isAuthenticated() && 
+        request.auth.token.email_verified == true &&
         ('email' in request.auth.token) &&
         request.auth.token.email != null &&
         (request.auth.token.email == 'ravieadagale@gmail.com' ||
          request.auth.token.email.lower() == 'ravieadagale@gmail.com');
     }
 
-    // Primitive: Admin role verification (strictly ravii.adagale20@gmail.com)
+    // Primitive: Admin role verification (strictly ravii.adagale20@gmail.com with verified email)
     function isAdmin() {
       return isAuthenticated() && 
+        request.auth.token.email_verified == true &&
         ('email' in request.auth.token) &&
         request.auth.token.email != null &&
         (request.auth.token.email == 'ravii.adagale20@gmail.com' ||
@@ -107,10 +109,16 @@ service cloud.firestore {
 
       // Create: Owner can create their initial profile; cannot self-promote to elevated roles
       allow create: if isSuperAdmin() || (
+        isAdmin() &&
         isOwner(userId) &&
         isValidUser(incoming()) &&
         incoming().userId == request.auth.uid &&
-        (incoming().role == 'CUSTOMER' || incoming().role == 'customer')
+        (incoming().role in ['ADMIN', 'CUSTOMER', 'admin', 'customer'])
+      ) || (
+        isOwner(userId) &&
+        isValidUser(incoming()) &&
+        incoming().userId == request.auth.uid &&
+        (incoming().role in ['CUSTOMER', 'customer'])
       );
 
       // Update: Owner can update profile info; cannot alter userId, createdAt, or escalate role
@@ -119,7 +127,10 @@ service cloud.firestore {
         isValidUser(incoming()) &&
         incoming().userId == existing().userId &&
         (!('createdAt' in existing()) || incoming().createdAt == existing().createdAt) &&
-        (incoming().role == existing().role || isSuperAdmin())
+        (
+          incoming().role == existing().role ||
+          (isAdmin() && incoming().role in ['ADMIN', 'CUSTOMER'])
+        )
       );
 
       // Delete: Only Super Admin may delete user profile documents
@@ -142,23 +153,27 @@ service cloud.firestore {
       allow write: if isSuperAdmin();
     }
 
-    // 3. Orders & Consultations
+    // 3. Orders Catalog & Purchases
+    // Clients do not perform direct writes to orders; orders are managed by Super Admin / server backend
     match /orders/{orderId} {
+      // READ: Account owner can read only their own orders; staff admin can inspect orders
       allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || isStaffAdmin());
-      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
-      allow update, delete: if isSuperAdmin();
+      // WRITE: Strictly restricted to Super Admin / trusted backend; clients cannot forge payment confirmation, refunds, or fulfillment
+      allow create, update, delete: if isSuperAdmin();
     }
 
     // 4. System Configurations & Platform Settings
     match /systemSettings/{settingId} {
-      allow read: if true;
+      // consultationAvailability is public for booking calendar slots; all other settings require staff admin
+      allow get: if settingId == 'consultationAvailability' || isStaffAdmin();
+      allow list: if isStaffAdmin();
       allow write: if isSuperAdmin();
     }
 
     // 5. Test Connection probe for client boot validation
     match /test/{docId} {
-      allow read: if true;
-      allow write: if isSuperAdmin();
+      allow get: if docId == 'connection' || isStaffAdmin();
+      allow list, write: if isSuperAdmin();
     }
 
     // 6. Consultations Bookings (consultations/{bookingId})
@@ -167,37 +182,98 @@ service cloud.firestore {
       allow read: if isAuthenticated() && (
         resource.data.clientId == request.auth.uid ||
         resource.data.consultantId == request.auth.uid ||
-        resource.data.consultantEmail == request.auth.token.email ||
+        (
+          resource.data.consultantEmail == request.auth.token.email &&
+          request.auth.token.email_verified == true
+        ) ||
         isStaffAdmin()
       );
 
       // CREATE: Authenticated customer creating their own booking
+      // Disallows direct creation with paymentStatus == "PAID"
       allow create: if isAuthenticated() &&
+        isValidId(bookingId) &&
         request.resource.data.clientId == request.auth.uid &&
-        (request.resource.data.status == "REQUESTED" || request.resource.data.status == "PENDING_CONFIRMATION") &&
+        (request.resource.data.status in ["REQUESTED", "PENDING_CONFIRMATION"]) &&
         request.resource.data.paymentStatus != "PAID" &&
+        (request.resource.data.paymentStatus in ["PAYMENT_NOT_CONNECTED", "PENDING", "PENDING_PAYMENT", "UNPAID", "NOT_PAID"]) &&
         request.resource.data.serviceId is string &&
         request.resource.data.startTime is string &&
-        request.resource.data.endTime is string;
+        request.resource.data.endTime is string &&
+        // Anti-forgery & least privilege: prevent client from setting private notes or internal/refund fields at creation
+        !('internalNotes' in incoming()) &&
+        !('privateNotes' in incoming()) &&
+        !('confidentialNotes' in incoming()) &&
+        !('internalPlanetaryObservations' in incoming()) &&
+        !('refundStatus' in incoming()) &&
+        !('cancellationReason' in incoming());
 
-      // UPDATE: Authorized state transitions or cancellations; immutable clientId, consultantId, createdAt
+      // UPDATE: Authorized state transitions or cancellations; immutable clientId, consultantId, createdAt, serviceId
       // Security Invariant: Direct browser/client writes can NEVER transition paymentStatus to "PAID".
       // Payment status is authoritative only after trusted server-side verification.
       allow update: if isAuthenticated() &&
         (
           resource.data.clientId == request.auth.uid ||
           resource.data.consultantId == request.auth.uid ||
-          resource.data.consultantEmail == request.auth.token.email ||
+          (
+            resource.data.consultantEmail == request.auth.token.email &&
+            request.auth.token.email_verified == true
+          ) ||
           isStaffAdmin()
         ) &&
+        // Immutable identity and ownership fields across all callers
         incoming().clientId == existing().clientId &&
+        (!('clientEmail' in existing()) || incoming().clientEmail == existing().clientEmail) &&
         incoming().consultantId == existing().consultantId &&
+        (!('consultantEmail' in existing()) || incoming().consultantEmail == existing().consultantEmail) &&
         incoming().createdAt == existing().createdAt &&
+        incoming().serviceId == existing().serviceId &&
+        (!('bookingId' in existing()) || incoming().bookingId == existing().bookingId) &&
+        (!('id' in existing()) || incoming().id == existing().id) &&
+        // Price snapshot immutability: neither client nor consultant can modify prices
         incoming().originalPrice.amountMinor == existing().originalPrice.amountMinor &&
         incoming().originalPrice.currency == existing().originalPrice.currency &&
         (
+          !('finalPrice' in existing()) ||
+          (incoming().finalPrice.amountMinor == existing().finalPrice.amountMinor &&
+           incoming().finalPrice.currency == existing().finalPrice.currency)
+        ) &&
+        (
+          !('discountAmount' in existing()) ||
+          (incoming().discountAmount.amountMinor == existing().discountAmount.amountMinor &&
+           incoming().discountAmount.currency == existing().discountAmount.currency)
+        ) &&
+        // Universal payment anti-forgery: client writes cannot set paymentStatus to PAID
+        (
           (existing().paymentStatus == "PAID" && incoming().paymentStatus == "PAID") ||
           (existing().paymentStatus != "PAID" && incoming().paymentStatus != "PAID")
+        ) &&
+        (!('paymentOption' in existing()) || incoming().paymentOption == existing().paymentOption) &&
+        // Role-based field restrictions:
+        (
+          // Staff Admin may update operational fields (subject to payment invariant & immutable identifiers)
+          isStaffAdmin() ||
+          // Assigned Consultant may update status, internal notes, private notes, but CANNOT alter client details or forge payments
+          (
+            (resource.data.consultantId == request.auth.uid ||
+             (resource.data.consultantEmail == request.auth.token.email && request.auth.token.email_verified == true)) &&
+            (!('clientName' in existing()) || incoming().clientName == existing().clientName) &&
+            (!('refundStatus' in incoming()) || ('refundStatus' in existing() && incoming().refundStatus == existing().refundStatus))
+          ) ||
+          // Client / Seeker restrictions:
+          (
+            resource.data.clientId == request.auth.uid &&
+            // Allowed status transitions for client:
+            incoming().status in ["REQUESTED", "PENDING_CONFIRMATION", "RESCHEDULE_REQUESTED", "RESCHEDULED", "CANCELLED_BY_CLIENT"] &&
+            // Client CANNOT tamper with internal or confidential consultant notes:
+            (!('internalNotes' in incoming()) || ('internalNotes' in existing() && incoming().internalNotes == existing().internalNotes)) &&
+            (!('privateNotes' in incoming()) || ('privateNotes' in existing() && incoming().privateNotes == existing().privateNotes)) &&
+            (!('confidentialNotes' in incoming()) || ('confidentialNotes' in existing() && incoming().confidentialNotes == existing().confidentialNotes)) &&
+            (!('internalPlanetaryObservations' in incoming()) || ('internalPlanetaryObservations' in existing() && incoming().internalPlanetaryObservations == existing().internalPlanetaryObservations)) &&
+            // Client CANNOT forge refund fields:
+            (!('refundStatus' in incoming()) || ('refundStatus' in existing() && incoming().refundStatus == existing().refundStatus)) &&
+            (!('refundAmount' in incoming()) || ('refundAmount' in existing() && incoming().refundAmount == existing().refundAmount))
+          )
         );
 
       // Hard deletion strictly forbidden
@@ -209,8 +285,12 @@ service cloud.firestore {
       allow read: if isAuthenticated();
 
       allow create: if isAuthenticated() &&
+        isValidId(lockId) &&
         request.resource.data.clientId == request.auth.uid &&
-        request.resource.data.status == "RESERVED";
+        request.resource.data.status == "RESERVED" &&
+        request.resource.data.consultantId is string &&
+        request.resource.data.startTime is string &&
+        request.resource.data.endTime is string;
 
       // UPDATE: Authorized owner/staff actions OR legitimate reacquisition of a released lock
       allow update: if isAuthenticated() && (
@@ -245,13 +325,17 @@ service cloud.firestore {
     match /quickQuestions/{inquiryId} {
       allow read: if isAuthenticated() && (
         resource.data.clientId == request.auth.uid ||
-        resource.data.clientEmail == request.auth.token.email ||
+        (
+          resource.data.clientEmail == request.auth.token.email &&
+          request.auth.token.email_verified == true
+        ) ||
         isStaffAdmin()
       );
 
       allow create: if isAuthenticated() &&
+        isValidId(inquiryId) &&
         request.resource.data.clientId == request.auth.uid &&
-        (request.resource.data.status == "REQUESTED" || request.resource.data.status == "PENDING_REVIEW") &&
+        (request.resource.data.status in ["REQUESTED", "PENDING_REVIEW"]) &&
         request.resource.data.question is string &&
         request.resource.data.question.size() > 0 &&
         request.resource.data.question.size() <= 4096;
@@ -261,7 +345,10 @@ service cloud.firestore {
         (
           resource.data.clientId == request.auth.uid &&
           incoming().clientId == existing().clientId &&
-          incoming().createdAt == existing().createdAt
+          incoming().createdAt == existing().createdAt &&
+          (!('answer' in incoming()) || incoming().answer == existing().answer) &&
+          (!('answeredAt' in incoming()) || incoming().answeredAt == existing().answeredAt) &&
+          incoming().status != "ANSWERED"
         )
       );
 

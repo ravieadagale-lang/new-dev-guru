@@ -21,6 +21,7 @@ import { SpiritualRemediesMantrasView } from "../components/SpiritualRemediesMan
 import { YantrasCrystalsEnergyView } from "../components/YantrasCrystalsEnergyView";
 import { ChakraBalancingRemediesView } from "../components/ChakraBalancingRemediesView";
 import { BirthMonthView } from "../components/BirthMonthView";
+import { NumerologyRemediesView } from "../components/NumerologyRemediesView";
 import { 
   Sparkles, 
   BookOpen, 
@@ -42,21 +43,9 @@ import {
   PenTool, 
   Flame, 
   Layers, 
-  Heart
+  Heart,
+  Shield
 } from "lucide-react";
-
-const SUPPORTED_LANGUAGES = [
-  { code: "en", name: "English", nativeName: "English" },
-  { code: "hi", name: "Hindi", nativeName: "हिन्दी" },
-  { code: "sa", name: "Sanskrit", nativeName: "संस्कृतम्" },
-  { code: "ta", name: "Tamil", nativeName: "தமிழ்" },
-  { code: "te", name: "Telugu", nativeName: "తెలుగు" },
-  { code: "kn", name: "Kannada", nativeName: "ಕನ್ನಡ" },
-  { code: "ml", name: "Malayalam", nativeName: "മലയാളം" },
-  { code: "bn", name: "Bengali", nativeName: "বাংলা" },
-  { code: "gu", name: "Gujarati", nativeName: "ગુજરાતી" },
-  { code: "mr", name: "Marathi", nativeName: "मराठी" },
-];
 
 interface NumerologyViewProps {
   userProfile: UserProfile;
@@ -85,66 +74,33 @@ export const NumerologyView: React.FC<NumerologyViewProps> = ({
 
   const navTabs = [
     { id: "report_generator", label: "⚡ Advance Report Generator", icon: Sparkles },
+    { id: "sacred_remedies", label: "🌿 Sacred Remedies (Yantras, Deities, Gems, Rudraksha)", icon: Shield },
     { id: "knowledge_base", label: "📚 Knowledge Base & Theory", icon: BookOpen },
     { id: "core", label: "Core Numbers Matrix", icon: Hash },
     { id: "name_system", label: "Name & Destiny System", icon: Type },
-    { id: "compatibility_engine", label: "Compatibility Matrix Engine (Ch. 23)", icon: HeartHandshake },
-    { id: "compatibility_theory", label: "Compatibility Theory (Ch. 23)", icon: BookOpen },
+    { id: "compatibility_engine", label: "Compatibility Matrix Engine", icon: HeartHandshake },
+    { id: "compatibility_theory", label: "Compatibility Theory", icon: BookOpen },
     { id: "archetype_book", label: "Master Archetype Book", icon: Award },
     { id: "master_karmic_book", label: "Master & Karmic Debt Engine", icon: ShieldAlert },
-    { id: "loshu", label: "Lo Shu Grid & Planes (Ch. 24 & 25)", icon: Grid3X3 },
-    { id: "loshu_arrows", label: "16 Lo Shu Arrows (Ch. 26)", icon: Compass },
-    { id: "loshu_missing_repeated", label: "Missing & Repeated Numbers (Ch. 27)", icon: Zap },
-    { id: "mobile_numerology", label: "Mobile Numerology (Ch. 28)", icon: Phone },
-    { id: "vehicle_numerology", label: "Vehicle Numerology (Ch. 29)", icon: Car },
-    { id: "house_numerology", label: "House Numerology (Ch. 30)", icon: Home },
-    { id: "business_numerology", label: "Business & Brand Numerology (Ch. 31-32)", icon: Briefcase },
-    { id: "brand_numerology", label: "Brand Numerology (Ch. 31)", icon: Building2 },
-    { id: "muhurta_numerology", label: "Muhurta Numerology (Ch. 33)", icon: Calendar },
-    { id: "lucky_remedies", label: "Lucky Attributes, Gemstones & Remedies (Ch. 34)", icon: Gem },
-    { id: "signature_analysis", label: "Signature Analysis (Ch. 35)", icon: PenTool },
-    { id: "spiritual_remedies", label: "Spiritual Remedies & Mantras (Ch. 36)", icon: Flame },
-    { id: "yantras_crystals_energy", label: "Yantras, Crystals & Energy (Ch. 37)", icon: Layers },
-    { id: "chakra_balancing_ch38", label: "Chakra Balancing Remedies (Ch. 38)", icon: Heart },
-    { id: "birth_month_ch39", label: "Birth Month Analysis (Ch. 39)", icon: Calendar },
+    { id: "loshu", label: "Lo Shu Grid & Planes", icon: Grid3X3 },
+    { id: "loshu_arrows", label: "16 Lo Shu Arrows", icon: Compass },
+    { id: "loshu_missing_repeated", label: "Missing & Repeated Numbers", icon: Zap },
+    { id: "mobile_numerology", label: "Mobile Numerology", icon: Phone },
+    { id: "vehicle_numerology", label: "Vehicle Numerology", icon: Car },
+    { id: "house_numerology", label: "House Numerology", icon: Home },
+    { id: "business_numerology", label: "Business & Brand Numerology", icon: Briefcase },
+    { id: "brand_numerology", label: "Brand Numerology", icon: Building2 },
+    { id: "muhurta_numerology", label: "Muhurta Numerology", icon: Calendar },
+    { id: "lucky_remedies", label: "Lucky Attributes, Gemstones & Remedies", icon: Gem },
+    { id: "signature_analysis", label: "Signature Analysis", icon: PenTool },
+    { id: "spiritual_remedies", label: "Spiritual Remedies & Mantras", icon: Flame },
+    { id: "yantras_crystals_energy", label: "Yantras, Crystals & Energy", icon: Layers },
+    { id: "chakra_balancing_ch38", label: "Chakra Balancing Remedies", icon: Heart },
+    { id: "birth_month_ch39", label: "Birth Month Analysis", icon: Calendar },
   ];
 
   return (
     <div className="space-y-8 py-4">
-      {/* Language Header Selector Bar */}
-      <div className="bg-gradient-to-r from-slate-950 via-amber-950 to-slate-900 p-4 sm:p-5 rounded-3xl text-white shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-3 border border-amber-500/20">
-        <div className="flex items-center gap-2.5">
-          <Sparkles className="w-5 h-5 text-amber-400 animate-pulse shrink-0" />
-          <div>
-            <h3 className="font-serif font-bold text-sm text-amber-200">
-              Numerology Language / अंकशास्त्र भाषा
-            </h3>
-            <p className="text-[11px] text-amber-100/70">
-              Select your preferred language for calculations, interpretations &amp; PDF reports
-            </p>
-          </div>
-        </div>
-
-        {onLanguageChange && (
-          <div className="flex flex-wrap gap-1.5 w-full md:w-auto">
-            {SUPPORTED_LANGUAGES.map((lang) => (
-              <button
-                key={lang.code}
-                onClick={() => onLanguageChange(lang.code as LanguageCode)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1 cursor-pointer ${
-                  currentLang === lang.code
-                    ? "bg-amber-400 text-slate-950 shadow-md scale-105"
-                    : "bg-white/10 text-amber-100 hover:bg-white/20 border border-white/10"
-                }`}
-              >
-                <span>{lang.nativeName}</span>
-                <span className="text-[10px] opacity-75">({lang.name})</span>
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-
       {/* Subtabs Horizontal Scrolling Ribbon */}
       <div className="flex items-center overflow-x-auto gap-2 border-b border-amber-900/10 pb-2 no-scrollbar text-xs font-semibold">
         {navTabs.map((tab) => {
@@ -179,6 +135,10 @@ export const NumerologyView: React.FC<NumerologyViewProps> = ({
           userProfile={userProfile}
           selectedLanguage={currentLang}
         />
+      )}
+
+      {activeTab === "sacred_remedies" && (
+        <NumerologyRemediesView initialNumber={numbers.birthNumber} />
       )}
 
       {activeTab === "knowledge_base" && (

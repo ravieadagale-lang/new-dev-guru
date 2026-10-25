@@ -94,7 +94,13 @@ describe("AstroNext Consultation Phase 2B.2 — Session Isolation & Cache Closur
     adapter = new FirestoreConsultationBookingAdapter();
   });
 
-  const validIsoStartTime = "2026-10-21T04:30:00.000Z";
+  const getNextWednesdayIso = (): string => {
+    const d = new Date();
+    d.setDate(d.getDate() + ((3 - d.getDay() + 7) % 7 || 7));
+    d.setUTCHours(4, 30, 0, 0);
+    return d.toISOString();
+  };
+  const validIsoStartTime = getNextWednesdayIso();
 
   const createSampleBooking = (id: string, clientUid: string, clientEmail: string): ConsultationBooking => ({
     id,

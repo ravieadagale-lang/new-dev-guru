@@ -938,7 +938,7 @@ export const PanchangMuhuratView: React.FC<PanchangMuhuratViewProps> = ({
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-amber-900/10 shadow-xs space-y-6">
           <div>
             <h3 className="font-serif text-2xl font-bold text-slate-900">
-              Chaldean Numerology Hourly Vibrations (Ch. 33)
+              Chaldean Numerology Hourly Vibrations
             </h3>
             <p className="text-xs text-slate-500">
               Synchronizing daily planetary hours with your Life Path and Expression numbers
