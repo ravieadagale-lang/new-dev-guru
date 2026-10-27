@@ -47,6 +47,7 @@ import {
   AdvancedReportData,
   AdvancedReportInputs
 } from "../data/advanceNumerologyReportGenerator";
+import { SignatureAndNameCorrectionCard } from "./SignatureAndNameCorrectionCard";
 
 interface AdvanceNumerologyReportViewProps {
   initialName?: string;
@@ -1746,6 +1747,15 @@ export const AdvanceNumerologyReportView: React.FC<AdvanceNumerologyReportViewPr
             </div>
           </div>
         </div>
+
+        {/* 81 COMBINATION MATRIX NAME, SIGNATURE & NICKNAME SUGGESTIONS CARD */}
+        <SignatureAndNameCorrectionCard
+          fullName={fullName || activeReport.clientInfo?.fullName || "Aarav Sharma"}
+          signatureName={currentSignatureName || activeReport.extendedInputsAnalysis?.nameSignatureAnalysis?.currentSignatureName || fullName}
+          nickname={nickname || activeReport.extendedInputsAnalysis?.nameSignatureAnalysis?.nicknameAnalysis?.nickname || ""}
+          driver={activeReport.coreCalculations?.driverNumber ?? 1}
+          conductor={activeReport.coreCalculations?.conductorNumber ?? 1}
+        />
       </div>
 
       {/* PARTNER & PARTNERSHIP SYNERGY MATRIX */}

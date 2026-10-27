@@ -846,7 +846,7 @@ export function generateAdvanceNumerologyReport(
         `Align energy with ${targetChakraData.sanskritName} (${targetChakraData.englishName}) located at ${targetChakraData.location}.`,
         `Primary Planetary Rulers: ${targetChakraData.primaryPlanets} (${targetChakraData.numbers}).`,
         `Focus color therapy with ${targetChakraData.colorName}.`,
-        `Practice daily affirmations and remedies as detailed in Chapter 38.`
+        `Practice daily affirmations and remedies for primary chakra balancing.`
       ]
     },
     birthMonthAnalysis: {
